@@ -65,6 +65,14 @@ fn frame_path_for_index(dir: &Path, frame_index: u32) -> Result<PathBuf, String>
         .ok_or_else(|| format!("Frame {frame_index} was not found in {}", dir.display()))
 }
 
+fn source_frame_path_for_index(dir: &Path, frame_index: u32) -> Result<PathBuf, String> {
+    let paths = png_file_paths(dir)?;
+    paths
+        .get(frame_index as usize)
+        .cloned()
+        .ok_or_else(|| format!("Source frame {frame_index} was not found in {}", dir.display()))
+}
+
 fn project_file_path(project_root: &Path) -> PathBuf {
     project_root.join(PROJECT_FILE_NAME)
 }
@@ -1096,6 +1104,36 @@ fn preprocess_project_frames(
     })
 }
 
+fn materialize_frame_assets(
+    project_root: &Path,
+    project_file: &ProjectFile,
+    frame_index: u32,
+) -> Result<(PathBuf, PathBuf, PathBuf), String> {
+    let source_dir = project_root.join(&project_file.paths.source_frames_dir);
+    let line_dir = project_root.join(&project_file.paths.line_frames_dir);
+    let thumb_dir = project_root.join(&project_file.paths.thumb_frames_dir);
+    let paint_dir = project_root.join(&project_file.paths.paint_frames_dir);
+    let frame_name = frame_file_name(frame_index);
+    let source_path = source_frame_path_for_index(&source_dir, frame_index)?;
+    let line_path = line_dir.join(&frame_name);
+    let thumb_path = thumb_dir.join(&frame_name);
+    let paint_path = paint_dir.join(&frame_name);
+
+    fs::create_dir_all(&line_dir).map_err(|error| error.to_string())?;
+    fs::create_dir_all(&thumb_dir).map_err(|error| error.to_string())?;
+    fs::create_dir_all(&paint_dir).map_err(|error| error.to_string())?;
+
+    if !line_path.exists() || !thumb_path.exists() {
+        preprocess_source_frame(&source_path, &line_path, &thumb_path)?;
+    }
+
+    if !paint_path.exists() {
+        write_transparent_placeholder_frame(&paint_path, project_file.width, project_file.height)?;
+    }
+
+    Ok((line_path, paint_path, thumb_path))
+}
+
 #[command]
 pub fn ensure_ffmpeg_tools(app: tauri::AppHandle) -> Result<ToolSetupResult, String> {
     ensure_ffmpeg_tools_internal(&app)
@@ -1160,7 +1198,7 @@ pub fn get_painted_frames(project_root: String) -> Result<Vec<u32>, String> {
     let mut painted_frames = Vec::new();
 
     for frame_index in 0..project_file.frame_count {
-        let frame_path = frame_path_for_index(&paint_dir, frame_index)?;
+        let frame_path = paint_dir.join(frame_file_name(frame_index));
 
         if paint_image_has_visible_pixels(&frame_path)? {
             painted_frames.push(frame_index);
@@ -1178,17 +1216,16 @@ pub fn export_video(project_root: String, output_path: String) -> Result<ExportR
         String::from("ffmpeg was not found. Set OEKAKI_TOOLS_DIR or install ffmpeg.")
     })?;
     let export_dir = export_frames_dir(&root);
-    let line_dir = root.join(&project_file.paths.line_frames_dir);
-    let paint_dir = root.join(&project_file.paths.paint_frames_dir);
     let output_path = PathBuf::from(output_path);
 
     fs::create_dir_all(&export_dir).map_err(|error| error.to_string())?;
     clear_directory(&export_dir)?;
 
     for frame_index in 0..project_file.frame_count {
+        let (line_path, paint_path, _) = materialize_frame_assets(&root, &project_file, frame_index)?;
         let frame_name = frame_file_name(frame_index);
         let line_image = normalize_gray_image(
-            image::open(frame_path_for_index(&line_dir, frame_index)?)
+            image::open(line_path)
                 .map_err(|error| error.to_string())?
                 .to_luma8(),
             project_file.width,
@@ -1196,7 +1233,7 @@ pub fn export_video(project_root: String, output_path: String) -> Result<ExportR
         );
         let paint_image = normalize_rgba_image(
             ensure_paint_image(
-                &frame_path_for_index(&paint_dir, frame_index)?,
+                &paint_path,
                 project_file.width,
                 project_file.height,
             )?,
@@ -1222,10 +1259,8 @@ pub fn get_frame_bundle(project_root: String, frame_index: u32) -> Result<FrameB
     let root = PathBuf::from(project_root);
     let project_file = read_project_file(&root)?;
     let line_dir = root.join(&project_file.paths.line_frames_dir);
-    let paint_dir = root.join(&project_file.paths.paint_frames_dir);
-    let thumb_dir = root.join(&project_file.paths.thumb_frames_dir);
-    let line_frame_path = frame_path_for_index(&line_dir, frame_index)?;
-    let paint_frame_path = frame_path_for_index(&paint_dir, frame_index)?;
+    let (line_frame_path, paint_frame_path, thumb_frame_path) =
+        materialize_frame_assets(&root, &project_file, frame_index)?;
 
     Ok(FrameBundle {
         frame_index,
@@ -1237,9 +1272,7 @@ pub fn get_frame_bundle(project_root: String, frame_index: u32) -> Result<FrameB
         } else {
             None
         },
-        thumbnail_path: frame_path_for_index(&thumb_dir, frame_index)
-            .ok()
-            .map(|path| path.display().to_string()),
+        thumbnail_path: Some(thumb_frame_path.display().to_string()),
         width: project_file.width,
         height: project_file.height,
     })
@@ -1253,11 +1286,7 @@ pub fn draw_stroke(
 ) -> Result<SaveResult, String> {
     let root = PathBuf::from(project_root);
     let project_file = read_project_file(&root)?;
-    let paint_dir = root.join(&project_file.paths.paint_frames_dir);
-    let paint_path = frame_path_for_index(&paint_dir, frame_index)
-        .unwrap_or_else(|_| paint_dir.join(frame_file_name(frame_index)));
-
-    fs::create_dir_all(&paint_dir).map_err(|error| error.to_string())?;
+    let (_, paint_path, _) = materialize_frame_assets(&root, &project_file, frame_index)?;
     let mut image = ensure_paint_image(&paint_path, project_file.width, project_file.height)?;
     draw_stroke_on_image(&mut image, &stroke);
     image.save(&paint_path).map_err(|error| error.to_string())?;
@@ -1279,6 +1308,9 @@ pub fn fill_region(
     let root = PathBuf::from(project_root);
     let project_file = read_project_file(&root)?;
     let region_dir = root.join(&project_file.paths.region_metadata_dir);
+    if !region_metadata_path(&region_dir, frame_index).exists() {
+        preprocess_project_frames(&root, &project_file.paths)?;
+    }
     let fill_color = Rgba([color.r, color.g, color.b, color.a]);
     let region_metadata = read_region_metadata(&region_dir, frame_index)?;
     let region = find_region_at_point(&region_metadata, x, y);
@@ -1303,14 +1335,7 @@ pub fn fill_region(
 
         let fill_x = candidate_region.centroid_x.round() as u32;
         let fill_y = candidate_region.centroid_y.round() as u32;
-        let line_path =
-            frame_path_for_index(&root.join(&project_file.paths.line_frames_dir), candidate_frame)?;
-        let paint_path =
-            frame_path_for_index(&root.join(&project_file.paths.paint_frames_dir), candidate_frame)
-                .unwrap_or_else(|_| {
-                    root.join(&project_file.paths.paint_frames_dir)
-                        .join(frame_file_name(candidate_frame))
-                });
+        let (line_path, paint_path, _) = materialize_frame_assets(&root, &project_file, candidate_frame)?;
         let line_image = image::open(&line_path)
             .map_err(|error| error.to_string())?
             .to_luma8();

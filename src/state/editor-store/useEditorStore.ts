@@ -7,6 +7,7 @@ type Listener = () => void;
 let state: EditorState = {
   activeTool: "Pen",
   currentFrame: 0,
+  isPlaying: false,
   zoom: 1,
   project: null,
   frameBundle: null,
@@ -42,10 +43,13 @@ const actions = {
     };
     emit();
   },
-  setCurrentFrame(currentFrame: number) {
+  setCurrentFrame(currentFrame: number | ((currentFrame: number) => number)) {
     state = {
       ...state,
-      currentFrame
+      currentFrame:
+        typeof currentFrame === "function"
+          ? currentFrame(state.currentFrame)
+          : currentFrame
     };
     emit();
   },
@@ -56,9 +60,18 @@ const actions = {
     };
     emit();
   },
+  setIsPlaying(isPlaying: boolean) {
+    state = {
+      ...state,
+      isPlaying
+    };
+    emit();
+  },
   setProject(project: ProjectSummary | null) {
     state = {
       ...state,
+      currentFrame: 0,
+      isPlaying: false,
       project,
       frameBundle: null,
       paintRevisions: {},

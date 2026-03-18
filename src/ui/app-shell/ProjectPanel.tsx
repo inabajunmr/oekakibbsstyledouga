@@ -9,8 +9,7 @@ import {
   exportVideo,
   getFrameBundle,
   getPaintedFrames,
-  openProject,
-  preprocessProject
+  openProject
 } from "../../infra/tauri-api/client";
 import { isTauriApp } from "../../infra/tauri-api/platform";
 import { useEditorStore } from "../../state/editor-store/useEditorStore";
@@ -158,8 +157,6 @@ export function ProjectPanel() {
 
     try {
       const nextProject = await createProject(videoPath, projectRoot);
-      setStatusMessage("Preparing line frames...");
-      await preprocessProject(nextProject.projectRoot);
       setProject(nextProject);
       setPaintedFrames(await getPaintedFrames(nextProject.projectRoot));
       const bundle = await getFrameBundle(nextProject.projectRoot, currentFrame);
@@ -187,8 +184,6 @@ export function ProjectPanel() {
 
     try {
       const nextProject = await openProject(projectRoot);
-      setStatusMessage("Refreshing line frames...");
-      await preprocessProject(nextProject.projectRoot);
       setProject(nextProject);
       setPaintedFrames(await getPaintedFrames(nextProject.projectRoot));
       const bundle = await getFrameBundle(nextProject.projectRoot, currentFrame);
