@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://juninaba.com/oekakibbsstyledouga/project.schema.json",
+  "title": "oekakibbsstyledouga project",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "sourceVideoPath",
+    "fps",
+    "width",
+    "height",
+    "frameCount",
+    "paths"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sourceVideoPath": {
+      "type": "string"
+    },
+    "fps": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "width": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "height": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "frameCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceFramesDir",
+        "lineFramesDir",
+        "paintFramesDir",
+        "thumbFramesDir",
+        "regionMetadataDir"
+      ],
+      "properties": {
+        "sourceFramesDir": {
+          "type": "string"
+        },
+        "lineFramesDir": {
+          "type": "string"
+        },
+        "paintFramesDir": {
+          "type": "string"
+        },
+        "thumbFramesDir": {
+          "type": "string"
+        },
+        "regionMetadataDir": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
