@@ -4,7 +4,13 @@ import { Timeline } from "../timeline/Timeline";
 import { useEditorStore } from "../../state/editor-store/useEditorStore";
 
 const tools = ["Pen", "Fill", "Eyedropper"];
-const swatches = ["#0a0908", "#d1495b", "#edae49", "#00798c", "#30638e"];
+const swatches = [
+  { hex: "#0a0908", rgba: { r: 10, g: 9, b: 8, a: 255 } },
+  { hex: "#d1495b", rgba: { r: 209, g: 73, b: 91, a: 255 } },
+  { hex: "#edae49", rgba: { r: 237, g: 174, b: 73, a: 255 } },
+  { hex: "#00798c", rgba: { r: 0, g: 121, b: 140, a: 255 } },
+  { hex: "#30638e", rgba: { r: 48, g: 99, b: 142, a: 255 } }
+];
 
 export function EditorShell() {
   const {
@@ -15,7 +21,9 @@ export function EditorShell() {
     project,
     setActiveTool,
     setCurrentFrame,
-    setIsPlaying
+    selectedColor,
+    setIsPlaying,
+    setSelectedColor
   } =
     useEditorStore();
 
@@ -70,13 +78,18 @@ export function EditorShell() {
         <section className="sidebar__section">
           <h2 className="sidebar__title">Palette</h2>
           <div className="swatch-list">
-            {swatches.map((color) => (
+            {swatches.map((swatch) => (
               <button
-                key={color}
-                className="swatch"
-                style={{ background: color }}
+                key={swatch.hex}
+                className={`swatch${selectedColor.r === swatch.rgba.r &&
+                selectedColor.g === swatch.rgba.g &&
+                selectedColor.b === swatch.rgba.b
+                  ? " swatch--active"
+                  : ""}`}
+                onClick={() => setSelectedColor(swatch.rgba)}
+                style={{ background: swatch.hex }}
                 type="button"
-                aria-label={color}
+                aria-label={swatch.hex}
               />
             ))}
           </div>
@@ -98,6 +111,7 @@ export function EditorShell() {
             <code>currentFrame: {currentFrame}</code>
             <code>project loaded: {project ? "yes" : "no"}</code>
             <code>source mode: {project?.sourceMode ?? "none"}</code>
+            <code>color: rgba({selectedColor.r}, {selectedColor.g}, {selectedColor.b}, {selectedColor.a})</code>
             <code>line frame: {frameBundle?.lineFramePath ?? "none"}</code>
             <code>render mode: canvas-only</code>
           </div>

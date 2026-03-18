@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from "react";
 import type { FrameBundle, ProjectSummary } from "../../infra/tauri-api/types";
-import type { EditorState } from "./types";
+import type { EditorColor, EditorState } from "./types";
 
 type Listener = () => void;
 
@@ -9,6 +9,7 @@ let state: EditorState = {
   currentFrame: 0,
   isPlaying: false,
   zoom: 1,
+  selectedColor: { r: 209, g: 73, b: 91, a: 255 },
   project: null,
   frameBundle: null,
   paintRevisions: {},
@@ -57,6 +58,13 @@ const actions = {
     state = {
       ...state,
       zoom
+    };
+    emit();
+  },
+  setSelectedColor(selectedColor: EditorColor) {
+    state = {
+      ...state,
+      selectedColor
     };
     emit();
   },

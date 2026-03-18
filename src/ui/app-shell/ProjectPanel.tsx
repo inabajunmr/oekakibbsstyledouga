@@ -9,7 +9,8 @@ import {
   exportVideo,
   getFrameBundle,
   getPaintedFrames,
-  openProject
+  openProject,
+  preprocessProject
 } from "../../infra/tauri-api/client";
 import { isTauriApp } from "../../infra/tauri-api/platform";
 import { useEditorStore } from "../../state/editor-store/useEditorStore";
@@ -32,6 +33,18 @@ export function ProjectPanel() {
   const [projectRoot, setProjectRoot] = useState(demoProjectRoot);
   const [outputPath, setOutputPath] = useState(demoOutputPath);
   const [busy, setBusy] = useState(false);
+
+  function startBackgroundPreprocess(nextProjectRoot: string) {
+    void preprocessProject(nextProjectRoot)
+      .then((result) => {
+        setStatusMessage(
+          `Prepared fill metadata for ${result.frameCount} frame(s) in the background`
+        );
+      })
+      .catch((error) => {
+        setStatusMessage(`Background preprocess failed: ${String(error)}`);
+      });
+  }
 
   useEffect(() => {
     if (!isTauriApp()) {
@@ -152,6 +165,8 @@ export function ProjectPanel() {
       return;
     }
 
+    setProject(null);
+    setFrameBundle(null);
     setBusy(true);
     setStatusMessage("Creating project...");
 
@@ -161,6 +176,7 @@ export function ProjectPanel() {
       setPaintedFrames(await getPaintedFrames(nextProject.projectRoot));
       const bundle = await getFrameBundle(nextProject.projectRoot, currentFrame);
       setFrameBundle(bundle);
+      startBackgroundPreprocess(nextProject.projectRoot);
       setStatusMessage(
         nextProject.sourceMode === "video"
           ? `Created project at ${nextProject.projectRoot}`
@@ -179,6 +195,8 @@ export function ProjectPanel() {
       return;
     }
 
+    setProject(null);
+    setFrameBundle(null);
     setBusy(true);
     setStatusMessage("Opening project...");
 
@@ -188,6 +206,7 @@ export function ProjectPanel() {
       setPaintedFrames(await getPaintedFrames(nextProject.projectRoot));
       const bundle = await getFrameBundle(nextProject.projectRoot, currentFrame);
       setFrameBundle(bundle);
+      startBackgroundPreprocess(nextProject.projectRoot);
       setStatusMessage(
         nextProject.sourceMode === "video"
           ? `Opened project at ${nextProject.projectRoot}`

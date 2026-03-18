@@ -1,14 +1,21 @@
 use std::{
+    collections::BTreeMap,
+    collections::HashMap,
     collections::VecDeque,
-    env,
+    env, fs,
     fs::File,
-    fs,
     io::{Cursor, Read, Write},
     path::{Path, PathBuf},
     process::Command,
+    sync::{Mutex, OnceLock},
+    time::{Instant, SystemTime, UNIX_EPOCH},
 };
 
-use image::{imageops::FilterType, DynamicImage, GrayImage, ImageBuffer, Luma, Rgba, RgbaImage};
+use image::{
+    codecs::png::{CompressionType, FilterType as PngFilterType, PngEncoder},
+    imageops::FilterType,
+    DynamicImage, GrayImage, ImageBuffer, ImageEncoder, Luma, Rgba, RgbaImage,
+};
 use reqwest::blocking::Client;
 use tauri::command;
 use tauri::Manager;
@@ -16,8 +23,8 @@ use zip::ZipArchive;
 
 use crate::models::{
     ExportResult, FillResult, FrameBundle, FrameRegionMetadata, PreprocessResult, ProjectFile,
-    ProjectPaths, ProjectSummary, RegionBounds, RegionMetadata, RgbaColor, SaveResult, StrokeInput,
-    ToolSetupResult,
+    ProjectPaths, ProjectSummary, RegionBounds, RegionMetadata, RegionTrackIndex, RgbaColor,
+    SaveResult, StrokeInput, ToolSetupResult, TrackFrameEntry,
 };
 
 const PROJECT_FILE_NAME: &str = "project.json";
@@ -33,6 +40,65 @@ struct VideoMetadata {
 struct DownloadSpec {
     ffmpeg_url: &'static str,
     ffprobe_url: &'static str,
+}
+
+fn line_image_cache() -> &'static Mutex<HashMap<String, GrayImage>> {
+    static CACHE: OnceLock<Mutex<HashMap<String, GrayImage>>> = OnceLock::new();
+    CACHE.get_or_init(|| Mutex::new(HashMap::new()))
+}
+
+fn paint_image_cache() -> &'static Mutex<HashMap<String, RgbaImage>> {
+    static CACHE: OnceLock<Mutex<HashMap<String, RgbaImage>>> = OnceLock::new();
+    CACHE.get_or_init(|| Mutex::new(HashMap::new()))
+}
+
+fn label_map_cache() -> &'static Mutex<HashMap<String, Vec<u32>>> {
+    static CACHE: OnceLock<Mutex<HashMap<String, Vec<u32>>>> = OnceLock::new();
+    CACHE.get_or_init(|| Mutex::new(HashMap::new()))
+}
+
+fn clear_image_caches() {
+    if let Ok(mut cache) = line_image_cache().lock() {
+        cache.clear();
+    }
+
+    if let Ok(mut cache) = paint_image_cache().lock() {
+        cache.clear();
+    }
+
+    if let Ok(mut cache) = label_map_cache().lock() {
+        cache.clear();
+    }
+}
+
+fn log_file_path() -> PathBuf {
+    let current_dir = env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
+
+    if current_dir.file_name().and_then(|name| name.to_str()) == Some("src-tauri") {
+        return current_dir.parent().unwrap_or(&current_dir).join("log.txt");
+    }
+
+    current_dir.join("log.txt")
+}
+
+fn log_message(message: impl AsRef<str>) {
+    let now = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .unwrap_or_default();
+    let timestamp = format!(
+        "{}.{}",
+        now.as_secs(),
+        format!("{:03}", now.subsec_millis())
+    );
+    let line = format!("[{timestamp}] {}\n", message.as_ref());
+
+    if let Ok(mut file) = fs::OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open(log_file_path())
+    {
+        let _ = file.write_all(line.as_bytes());
+    }
 }
 
 fn frame_file_name(frame_index: u32) -> String {
@@ -67,10 +133,12 @@ fn frame_path_for_index(dir: &Path, frame_index: u32) -> Result<PathBuf, String>
 
 fn source_frame_path_for_index(dir: &Path, frame_index: u32) -> Result<PathBuf, String> {
     let paths = png_file_paths(dir)?;
-    paths
-        .get(frame_index as usize)
-        .cloned()
-        .ok_or_else(|| format!("Source frame {frame_index} was not found in {}", dir.display()))
+    paths.get(frame_index as usize).cloned().ok_or_else(|| {
+        format!(
+            "Source frame {frame_index} was not found in {}",
+            dir.display()
+        )
+    })
 }
 
 fn project_file_path(project_root: &Path) -> PathBuf {
@@ -84,6 +152,8 @@ fn build_project_paths() -> ProjectPaths {
         paint_frames_dir: String::from("frames/paint"),
         thumb_frames_dir: String::from("frames/thumb"),
         region_metadata_dir: String::from("regions"),
+        region_track_index_path: String::from("regions/track-index.json"),
+        region_label_maps_dir: String::from("regions/labels"),
     }
 }
 
@@ -133,9 +203,7 @@ fn resolve_binary(names: &[&str]) -> Option<PathBuf> {
         candidates.push(PathBuf::from("/usr/bin").join(name));
     }
 
-    candidates
-        .into_iter()
-        .find(|candidate| candidate.exists())
+    candidates.into_iter().find(|candidate| candidate.exists())
 }
 
 fn current_download_spec() -> Result<DownloadSpec, String> {
@@ -164,15 +232,14 @@ fn current_download_spec() -> Result<DownloadSpec, String> {
             ffprobe_url:
                 "https://ffmpeg.martin-riedl.de/redirect/latest/linux/arm64/snapshot/ffprobe.zip",
         }),
-        (os, arch) => Err(format!("Automatic ffmpeg download is not supported on {os}/{arch} yet.")),
+        (os, arch) => Err(format!(
+            "Automatic ffmpeg download is not supported on {os}/{arch} yet."
+        )),
     }
 }
 
 fn archive_entry_matches(name: &str, expected_binary: &str) -> bool {
-    Path::new(name)
-        .file_name()
-        .and_then(|part| part.to_str())
-        == Some(expected_binary)
+    Path::new(name).file_name().and_then(|part| part.to_str()) == Some(expected_binary)
 }
 
 fn download_zip(client: &Client, url: &str) -> Result<Vec<u8>, String> {
@@ -183,10 +250,17 @@ fn download_zip(client: &Client, url: &str) -> Result<Vec<u8>, String> {
         .error_for_status()
         .map_err(|error| error.to_string())?;
 
-    response.bytes().map(|bytes| bytes.to_vec()).map_err(|error| error.to_string())
+    response
+        .bytes()
+        .map(|bytes| bytes.to_vec())
+        .map_err(|error| error.to_string())
 }
 
-fn extract_binary_from_zip(zip_bytes: &[u8], binary_name: &str, destination: &Path) -> Result<(), String> {
+fn extract_binary_from_zip(
+    zip_bytes: &[u8],
+    binary_name: &str,
+    destination: &Path,
+) -> Result<(), String> {
     let cursor = Cursor::new(zip_bytes);
     let mut archive = ZipArchive::new(cursor).map_err(|error| error.to_string())?;
 
@@ -199,14 +273,21 @@ fn extract_binary_from_zip(zip_bytes: &[u8], binary_name: &str, destination: &Pa
 
         let mut output = File::create(destination).map_err(|error| error.to_string())?;
         let mut buffer = Vec::new();
-        entry.read_to_end(&mut buffer).map_err(|error| error.to_string())?;
-        output.write_all(&buffer).map_err(|error| error.to_string())?;
+        entry
+            .read_to_end(&mut buffer)
+            .map_err(|error| error.to_string())?;
+        output
+            .write_all(&buffer)
+            .map_err(|error| error.to_string())?;
 
         #[cfg(unix)]
         {
             use std::os::unix::fs::PermissionsExt;
 
-            let mut permissions = output.metadata().map_err(|error| error.to_string())?.permissions();
+            let mut permissions = output
+                .metadata()
+                .map_err(|error| error.to_string())?
+                .permissions();
             permissions.set_mode(0o755);
             fs::set_permissions(destination, permissions).map_err(|error| error.to_string())?;
         }
@@ -214,11 +295,15 @@ fn extract_binary_from_zip(zip_bytes: &[u8], binary_name: &str, destination: &Pa
         return Ok(());
     }
 
-    Err(format!("Downloaded archive did not contain `{binary_name}`"))
+    Err(format!(
+        "Downloaded archive did not contain `{binary_name}`"
+    ))
 }
 
 fn ensure_ffmpeg_tools_internal(app: &tauri::AppHandle) -> Result<ToolSetupResult, String> {
-    if let (Some(ffmpeg), Some(_ffprobe)) = (resolve_binary(&["ffmpeg"]), resolve_binary(&["ffprobe"])) {
+    if let (Some(ffmpeg), Some(_ffprobe)) =
+        (resolve_binary(&["ffmpeg"]), resolve_binary(&["ffprobe"]))
+    {
         let tool_dir = ffmpeg
             .parent()
             .map(Path::to_path_buf)
@@ -276,6 +361,8 @@ fn ensure_project_dirs(project_root: &Path, paths: &ProjectPaths) -> Result<(), 
     fs::create_dir_all(project_root.join(&paths.thumb_frames_dir))
         .map_err(|error| error.to_string())?;
     fs::create_dir_all(project_root.join(&paths.region_metadata_dir))
+        .map_err(|error| error.to_string())?;
+    fs::create_dir_all(project_root.join(&paths.region_label_maps_dir))
         .map_err(|error| error.to_string())?;
     Ok(())
 }
@@ -336,7 +423,11 @@ fn write_placeholder_frame(path: &Path, width: u32, height: u32) -> Result<(), S
         return Ok(());
     }
 
-    let image = ImageBuffer::from_pixel(width.max(1), height.max(1), Rgba([255u8, 255u8, 255u8, 255u8]));
+    let image = ImageBuffer::from_pixel(
+        width.max(1),
+        height.max(1),
+        Rgba([255u8, 255u8, 255u8, 255u8]),
+    );
     image.save(path).map_err(|error| error.to_string())
 }
 
@@ -475,7 +566,12 @@ fn preprocess_source_frame(
     Ok(())
 }
 
-fn seed_placeholder_frames(dir: &Path, frame_count: u32, width: u32, height: u32) -> Result<(), String> {
+fn seed_placeholder_frames(
+    dir: &Path,
+    frame_count: u32,
+    width: u32,
+    height: u32,
+) -> Result<(), String> {
     for frame_index in 0..frame_count {
         let frame_name = frame_file_name(frame_index);
         write_placeholder_frame(&dir.join(frame_name.as_str()), width, height)?;
@@ -518,21 +614,87 @@ fn normalize_rgba_image(image: RgbaImage, width: u32, height: u32) -> RgbaImage 
         .to_rgba8()
 }
 
+fn load_line_image(path: &Path, width: u32, height: u32) -> Result<GrayImage, String> {
+    let key = path.display().to_string();
+
+    if let Ok(cache) = line_image_cache().lock() {
+        if let Some(image) = cache.get(&key) {
+            return Ok(image.clone());
+        }
+    }
+
+    let image = normalize_gray_image(
+        image::open(path)
+            .map_err(|error| error.to_string())?
+            .to_luma8(),
+        width,
+        height,
+    );
+
+    if let Ok(mut cache) = line_image_cache().lock() {
+        cache.insert(key, image.clone());
+    }
+
+    Ok(image)
+}
+
 fn blank_paint_image(width: u32, height: u32) -> RgbaImage {
     ImageBuffer::from_pixel(width, height, Rgba([0, 0, 0, 0]))
 }
 
 fn ensure_paint_image(path: &Path, width: u32, height: u32) -> Result<RgbaImage, String> {
+    let key = path.display().to_string();
+
+    if let Ok(cache) = paint_image_cache().lock() {
+        if let Some(image) = cache.get(&key) {
+            return Ok(image.clone());
+        }
+    }
+
     if path.exists() {
-        let image = image::open(path).map_err(|error| error.to_string())?;
-        let rgba = image.to_rgba8();
+        let rgba = normalize_rgba_image(
+            image::open(path)
+                .map_err(|error| error.to_string())?
+                .to_rgba8(),
+            width,
+            height,
+        );
 
         if rgba.width() == width && rgba.height() == height {
+            if let Ok(mut cache) = paint_image_cache().lock() {
+                cache.insert(key, rgba.clone());
+            }
             return Ok(rgba);
         }
     }
 
-    Ok(blank_paint_image(width, height))
+    let blank = blank_paint_image(width, height);
+
+    if let Ok(mut cache) = paint_image_cache().lock() {
+        cache.insert(key, blank.clone());
+    }
+
+    Ok(blank)
+}
+
+fn save_paint_image(path: &Path, image: &RgbaImage) -> Result<(), String> {
+    let file = File::create(path).map_err(|error| error.to_string())?;
+    let encoder =
+        PngEncoder::new_with_quality(file, CompressionType::Fast, PngFilterType::NoFilter);
+    encoder
+        .write_image(
+            image.as_raw(),
+            image.width(),
+            image.height(),
+            image::ExtendedColorType::Rgba8,
+        )
+        .map_err(|error| error.to_string())?;
+
+    if let Ok(mut cache) = paint_image_cache().lock() {
+        cache.insert(path.display().to_string(), image.clone());
+    }
+
+    Ok(())
 }
 
 fn paint_image_has_visible_pixels(path: &Path) -> Result<bool, String> {
@@ -540,9 +702,18 @@ fn paint_image_has_visible_pixels(path: &Path) -> Result<bool, String> {
         return Ok(false);
     }
 
-    let image = image::open(path)
-        .map_err(|error| error.to_string())?
-        .to_rgba8();
+    let key = path.display().to_string();
+    let image = if let Ok(cache) = paint_image_cache().lock() {
+        cache.get(&key).cloned()
+    } else {
+        None
+    };
+    let image = match image {
+        Some(image) => image,
+        None => image::open(path)
+            .map_err(|error| error.to_string())?
+            .to_rgba8(),
+    };
     Ok(image.pixels().any(|pixel| pixel[3] > 0))
 }
 
@@ -633,74 +804,85 @@ fn color_matches(pixel: &Rgba<u8>, color: &Rgba<u8>) -> bool {
     pixel.0 == color.0
 }
 
-fn fill_region_on_image(
-    line_image: &GrayImage,
-    paint_image: &mut RgbaImage,
-    start_x: u32,
-    start_y: u32,
-    color: Rgba<u8>,
-) -> bool {
-    let width = paint_image.width();
-    let height = paint_image.height();
-
-    if start_x >= width || start_y >= height {
-        return false;
-    }
-
-    if line_blocks_fill(line_image, start_x, start_y) {
-        return false;
-    }
-
-    let target = *paint_image.get_pixel(start_x, start_y);
-
-    if color_matches(&target, &color) {
-        return false;
-    }
-
-    let mut queue = VecDeque::from([(start_x, start_y)]);
-
-    while let Some((x, y)) = queue.pop_front() {
-        if x >= width || y >= height {
-            continue;
-        }
-
-        if line_blocks_fill(line_image, x, y) {
-            continue;
-        }
-
-        let current = *paint_image.get_pixel(x, y);
-
-        if !color_matches(&current, &target) {
-            continue;
-        }
-
-        paint_image.put_pixel(x, y, color);
-
-        if x > 0 {
-            queue.push_back((x - 1, y));
-        }
-        if x + 1 < width {
-            queue.push_back((x + 1, y));
-        }
-        if y > 0 {
-            queue.push_back((x, y - 1));
-        }
-        if y + 1 < height {
-            queue.push_back((x, y + 1));
-        }
-    }
-
-    true
-}
-
 fn region_metadata_path(dir: &Path, frame_index: u32) -> PathBuf {
     dir.join(format!("{frame_index:06}.json"))
 }
 
-fn build_region_metadata(frame_index: u32, line_image: &GrayImage) -> FrameRegionMetadata {
+fn region_track_index_path(project_root: &Path, paths: &ProjectPaths) -> PathBuf {
+    if paths.region_track_index_path.is_empty() {
+        return project_root.join("regions").join("track-index.json");
+    }
+
+    project_root.join(&paths.region_track_index_path)
+}
+
+fn region_label_maps_dir(project_root: &Path, paths: &ProjectPaths) -> PathBuf {
+    if paths.region_label_maps_dir.is_empty() {
+        return project_root.join("regions").join("labels");
+    }
+
+    project_root.join(&paths.region_label_maps_dir)
+}
+
+fn region_label_map_path(project_root: &Path, paths: &ProjectPaths, frame_index: u32) -> PathBuf {
+    region_label_maps_dir(project_root, paths).join(format!("{frame_index:06}.bin"))
+}
+
+fn write_region_label_map(path: &Path, label_map: &[u32]) -> Result<(), String> {
+    let mut bytes = Vec::with_capacity(label_map.len() * 4);
+
+    for label in label_map {
+        bytes.extend_from_slice(&label.to_le_bytes());
+    }
+
+    fs::write(path, bytes).map_err(|error| error.to_string())
+}
+
+fn load_region_label_map(path: &Path, width: u32, height: u32) -> Result<Vec<u32>, String> {
+    let key = path.display().to_string();
+
+    if let Ok(cache) = label_map_cache().lock() {
+        if let Some(label_map) = cache.get(&key) {
+            return Ok(label_map.clone());
+        }
+    }
+
+    let bytes = fs::read(path).map_err(|error| error.to_string())?;
+    let expected_len = (width as usize)
+        .checked_mul(height as usize)
+        .and_then(|pixel_count| pixel_count.checked_mul(4))
+        .ok_or_else(|| String::from("Region label map dimensions overflowed."))?;
+
+    if bytes.len() != expected_len {
+        return Err(format!(
+            "Region label map at {} has invalid length {} (expected {}).",
+            path.display(),
+            bytes.len(),
+            expected_len
+        ));
+    }
+
+    let mut label_map = Vec::with_capacity((width * height) as usize);
+
+    for chunk in bytes.chunks_exact(4) {
+        label_map.push(u32::from_le_bytes([chunk[0], chunk[1], chunk[2], chunk[3]]));
+    }
+
+    if let Ok(mut cache) = label_map_cache().lock() {
+        cache.insert(key, label_map.clone());
+    }
+
+    Ok(label_map)
+}
+
+fn build_region_metadata(
+    frame_index: u32,
+    line_image: &GrayImage,
+) -> (FrameRegionMetadata, Vec<u32>) {
     let width = line_image.width();
     let height = line_image.height();
     let mut visited = vec![false; (width * height) as usize];
+    let mut label_map = vec![0; (width * height) as usize];
     let mut regions = Vec::new();
     let mut next_region_id = 1_u32;
 
@@ -723,6 +905,7 @@ fn build_region_metadata(frame_index: u32, line_image: &GrayImage) -> FrameRegio
             let mut max_y = y;
 
             while let Some((cx, cy)) = queue.pop_front() {
+                let current_index = (cy * width + cx) as usize;
                 area += 1;
                 sum_x += cx as f32;
                 sum_y += cy as f32;
@@ -730,6 +913,7 @@ fn build_region_metadata(frame_index: u32, line_image: &GrayImage) -> FrameRegio
                 max_x = max_x.max(cx);
                 min_y = min_y.min(cy);
                 max_y = max_y.max(cy);
+                label_map[current_index] = next_region_id;
 
                 let neighbors = [
                     (cx.wrapping_sub(1), cy, cx > 0),
@@ -771,12 +955,15 @@ fn build_region_metadata(frame_index: u32, line_image: &GrayImage) -> FrameRegio
         }
     }
 
-    FrameRegionMetadata {
-        frame_index,
-        width,
-        height,
-        regions,
-    }
+    (
+        FrameRegionMetadata {
+            frame_index,
+            width,
+            height,
+            regions,
+        },
+        label_map,
+    )
 }
 
 fn write_region_metadata(
@@ -798,6 +985,47 @@ fn read_region_metadata(
     serde_json::from_str(&content).map_err(|error| error.to_string())
 }
 
+fn build_region_track_index(all_region_metadata: &[FrameRegionMetadata]) -> RegionTrackIndex {
+    let mut tracks: BTreeMap<u32, Vec<TrackFrameEntry>> = BTreeMap::new();
+
+    for metadata in all_region_metadata {
+        for region in &metadata.regions {
+            tracks
+                .entry(region.track_id)
+                .or_default()
+                .push(TrackFrameEntry {
+                    frame_index: metadata.frame_index,
+                    region_id: region.region_id,
+                    centroid_x: region.centroid_x.round().max(0.0) as u32,
+                    centroid_y: region.centroid_y.round().max(0.0) as u32,
+                    sample_x: region.bounds.x,
+                    sample_y: region.bounds.y,
+                });
+        }
+    }
+
+    RegionTrackIndex { tracks }
+}
+
+fn write_region_track_index(
+    project_root: &Path,
+    paths: &ProjectPaths,
+    index: &RegionTrackIndex,
+) -> Result<(), String> {
+    let content = serde_json::to_string_pretty(index).map_err(|error| error.to_string())?;
+    fs::write(region_track_index_path(project_root, paths), content)
+        .map_err(|error| error.to_string())
+}
+
+fn read_region_track_index(
+    project_root: &Path,
+    paths: &ProjectPaths,
+) -> Result<RegionTrackIndex, String> {
+    let content = fs::read_to_string(region_track_index_path(project_root, paths))
+        .map_err(|error| error.to_string())?;
+    serde_json::from_str(&content).map_err(|error| error.to_string())
+}
+
 fn find_region_at_point(metadata: &FrameRegionMetadata, x: u32, y: u32) -> Option<&RegionMetadata> {
     metadata.regions.iter().find(|region| {
         x >= region.bounds.x
@@ -805,6 +1033,69 @@ fn find_region_at_point(metadata: &FrameRegionMetadata, x: u32, y: u32) -> Optio
             && x < region.bounds.x + region.bounds.width
             && y < region.bounds.y + region.bounds.height
     })
+}
+
+fn fill_region_using_label_map(
+    paint_image: &mut RgbaImage,
+    label_map: &[u32],
+    region_id: u32,
+    sample_x: u32,
+    sample_y: u32,
+    color: Rgba<u8>,
+) -> bool {
+    let width = paint_image.width();
+    let height = paint_image.height();
+
+    if width == 0 || height == 0 {
+        return false;
+    }
+
+    let sample_index = if sample_x < width && sample_y < height {
+        let index = (sample_y * width + sample_x) as usize;
+        if label_map.get(index).copied() == Some(region_id) {
+            Some(index)
+        } else {
+            None
+        }
+    } else {
+        None
+    };
+
+    let sample_index =
+        sample_index.or_else(|| label_map.iter().position(|label| *label == region_id));
+
+    let Some(sample_index) = sample_index else {
+        return false;
+    };
+
+    let target_x = (sample_index as u32) % width;
+    let target_y = (sample_index as u32) / width;
+    let target = *paint_image.get_pixel(target_x, target_y);
+
+    if color_matches(&target, &color) {
+        return false;
+    }
+
+    let mut changed = false;
+
+    for (index, label) in label_map.iter().enumerate() {
+        if *label != region_id {
+            continue;
+        }
+
+        let x = (index as u32) % width;
+        let y = (index as u32) / width;
+        let current = *paint_image.get_pixel(x, y);
+
+        if !color_matches(&current, &target) {
+            continue;
+        }
+
+        paint_image.put_pixel(x, y, color);
+        changed = true;
+    }
+
+    changed
 }
 
 fn region_match_score(current: &RegionMetadata, previous: &RegionMetadata) -> f32 {
@@ -929,13 +1220,7 @@ fn extract_source_frames(
 ) -> Result<(), String> {
     let output_pattern = output_dir.join("%06d.png");
     let output = Command::new(ffmpeg)
-        .args([
-            "-hide_banner",
-            "-loglevel",
-            "error",
-            "-y",
-            "-i",
-        ])
+        .args(["-hide_banner", "-loglevel", "error", "-y", "-i"])
         .arg(video_path)
         .args(["-start_number", "0"])
         .arg(output_pattern)
@@ -953,20 +1238,38 @@ fn create_project_file_from_video(
     project_root: &Path,
     video_path: &Path,
 ) -> Result<ProjectFile, String> {
+    log_message(format!(
+        "create_project_file_from_video start project_root={} video_path={}",
+        project_root.display(),
+        video_path.display()
+    ));
     let paths = build_project_paths();
     ensure_project_dirs(project_root, &paths)?;
+    log_message("create_project_file_from_video ensured_dirs");
 
     let ffmpeg = resolve_binary(&["ffmpeg"]);
     let ffprobe = resolve_binary(&["ffprobe"]);
 
     if let (Some(ffmpeg), Some(ffprobe)) = (ffmpeg, ffprobe) {
+        log_message(format!(
+            "create_project_file_from_video using_video_tools ffmpeg={} ffprobe={}",
+            ffmpeg.display(),
+            ffprobe.display()
+        ));
+        let source_dir = project_root.join(&paths.source_frames_dir);
+        clear_png_files(&source_dir)?;
+        log_message("create_project_file_from_video cleared_source_dir");
         let metadata = probe_video_metadata(&ffprobe, video_path)?;
-        extract_source_frames(
-            &ffmpeg,
-            video_path,
-            &project_root.join(&paths.source_frames_dir),
-        )?;
-        let frame_count = png_file_paths(&project_root.join(&paths.source_frames_dir))?.len() as u32;
+        log_message(format!(
+            "create_project_file_from_video probed_video width={} height={} fps={}",
+            metadata.width, metadata.height, metadata.fps
+        ));
+        extract_source_frames(&ffmpeg, video_path, &source_dir)?;
+        let frame_count = png_file_paths(&source_dir)?.len() as u32;
+        log_message(format!(
+            "create_project_file_from_video extracted_frames count={}",
+            frame_count
+        ));
 
         seed_blank_paint_frames(
             &project_root.join(&paths.paint_frames_dir),
@@ -974,6 +1277,7 @@ fn create_project_file_from_video(
             metadata.width,
             metadata.height,
         )?;
+        log_message("create_project_file_from_video seeded_blank_paint_frames");
 
         return Ok(ProjectFile {
             version: 1,
@@ -987,6 +1291,7 @@ fn create_project_file_from_video(
         });
     }
 
+    log_message("create_project_file_from_video fallback_placeholder");
     let project_file = ProjectFile {
         version: 1,
         source_video_path: video_path.display().to_string(),
@@ -1052,14 +1357,17 @@ fn preprocess_project_frames(
     let thumb_dir = project_root.join(&paths.thumb_frames_dir);
     let paint_dir = project_root.join(&paths.paint_frames_dir);
     let region_dir = project_root.join(&paths.region_metadata_dir);
+    let label_map_dir = region_label_maps_dir(project_root, paths);
 
     clear_png_files(&line_dir)?;
     clear_png_files(&thumb_dir)?;
     clear_json_files(&region_dir)?;
+    clear_directory(&label_map_dir)?;
     fs::create_dir_all(&line_dir).map_err(|error| error.to_string())?;
     fs::create_dir_all(&thumb_dir).map_err(|error| error.to_string())?;
     fs::create_dir_all(&paint_dir).map_err(|error| error.to_string())?;
     fs::create_dir_all(&region_dir).map_err(|error| error.to_string())?;
+    fs::create_dir_all(&label_map_dir).map_err(|error| error.to_string())?;
 
     let mut frame_count = 0;
     let mut all_region_metadata = Vec::new();
@@ -1081,7 +1389,11 @@ fn preprocess_project_frames(
         let line_image = image::open(line_dir.join(&file_name))
             .map_err(|error| error.to_string())?
             .to_luma8();
-        let metadata = build_region_metadata(frame_count, &line_image);
+        let (metadata, label_map) = build_region_metadata(frame_count, &line_image);
+        write_region_label_map(
+            &region_label_map_path(project_root, paths, frame_count),
+            &label_map,
+        )?;
         all_region_metadata.push(metadata);
         write_transparent_placeholder_frame(
             &paint_dir.join(&file_name),
@@ -1096,6 +1408,9 @@ fn preprocess_project_frames(
     for metadata in &all_region_metadata {
         write_region_metadata(&region_dir, metadata.frame_index, metadata)?;
     }
+
+    let track_index = build_region_track_index(&all_region_metadata);
+    write_region_track_index(project_root, paths, &track_index)?;
 
     Ok(PreprocessResult {
         frame_count,
@@ -1134,6 +1449,17 @@ fn materialize_frame_assets(
     Ok((line_path, paint_path, thumb_path))
 }
 
+#[derive(Debug)]
+struct FillFrameMetrics {
+    frame_index: u32,
+    changed: bool,
+    materialize_ms: u128,
+    load_ms: u128,
+    fill_ms: u128,
+    save_ms: Option<u128>,
+    total_ms: u128,
+}
+
 #[command]
 pub fn ensure_ffmpeg_tools(app: tauri::AppHandle) -> Result<ToolSetupResult, String> {
     ensure_ffmpeg_tools_internal(&app)
@@ -1145,7 +1471,13 @@ pub fn create_project(
     video_path: String,
     project_root: String,
 ) -> Result<ProjectSummary, String> {
+    clear_image_caches();
+    log_message(format!(
+        "create_project start video_path={} project_root={}",
+        video_path, project_root
+    ));
     let _ = ensure_ffmpeg_tools_internal(&app);
+    log_message("create_project tools_ready");
     let project_root = PathBuf::from(project_root);
     let source_video_path = PathBuf::from(video_path);
 
@@ -1171,7 +1503,17 @@ pub fn create_project(
     }
 
     let project_file = create_project_file_from_video(&project_root, &source_video_path)?;
+    log_message(format!(
+        "create_project project_file_ready frame_count={} source_mode={}",
+        project_file.frame_count, project_file.source_mode
+    ));
     write_project_file(&project_root, &project_file)?;
+    log_message(format!(
+        "create_project complete project_root={} frame_count={} source_mode={}",
+        project_root.display(),
+        project_file.frame_count,
+        project_file.source_mode
+    ));
 
     Ok(project_summary_from_file(&project_root, &project_file))
 }
@@ -1210,6 +1552,7 @@ pub fn get_painted_frames(project_root: String) -> Result<Vec<u32>, String> {
 
 #[command]
 pub fn export_video(project_root: String, output_path: String) -> Result<ExportResult, String> {
+    let started_at = Instant::now();
     let root = PathBuf::from(project_root);
     let project_file = read_project_file(&root)?;
     let ffmpeg = resolve_binary(&["ffmpeg"]).ok_or_else(|| {
@@ -1222,21 +1565,12 @@ pub fn export_video(project_root: String, output_path: String) -> Result<ExportR
     clear_directory(&export_dir)?;
 
     for frame_index in 0..project_file.frame_count {
-        let (line_path, paint_path, _) = materialize_frame_assets(&root, &project_file, frame_index)?;
+        let (line_path, paint_path, _) =
+            materialize_frame_assets(&root, &project_file, frame_index)?;
         let frame_name = frame_file_name(frame_index);
-        let line_image = normalize_gray_image(
-            image::open(line_path)
-                .map_err(|error| error.to_string())?
-                .to_luma8(),
-            project_file.width,
-            project_file.height,
-        );
+        let line_image = load_line_image(&line_path, project_file.width, project_file.height)?;
         let paint_image = normalize_rgba_image(
-            ensure_paint_image(
-                &paint_path,
-                project_file.width,
-                project_file.height,
-            )?,
+            ensure_paint_image(&paint_path, project_file.width, project_file.height)?,
             project_file.width,
             project_file.height,
         );
@@ -1247,6 +1581,13 @@ pub fn export_video(project_root: String, output_path: String) -> Result<ExportR
     }
 
     export_video_with_ffmpeg(&ffmpeg, &export_dir, &output_path, project_file.fps)?;
+    log_message(format!(
+        "export_video project_root={} output_path={} frame_count={} elapsed_ms={}",
+        root.display(),
+        output_path.display(),
+        project_file.frame_count,
+        started_at.elapsed().as_millis()
+    ));
 
     Ok(ExportResult {
         output_path: output_path.display().to_string(),
@@ -1256,11 +1597,18 @@ pub fn export_video(project_root: String, output_path: String) -> Result<ExportR
 
 #[command]
 pub fn get_frame_bundle(project_root: String, frame_index: u32) -> Result<FrameBundle, String> {
+    let started_at = Instant::now();
     let root = PathBuf::from(project_root);
     let project_file = read_project_file(&root)?;
     let line_dir = root.join(&project_file.paths.line_frames_dir);
     let (line_frame_path, paint_frame_path, thumb_frame_path) =
         materialize_frame_assets(&root, &project_file, frame_index)?;
+    log_message(format!(
+        "get_frame_bundle frame={} project_root={} elapsed_ms={}",
+        frame_index,
+        root.display(),
+        started_at.elapsed().as_millis()
+    ));
 
     Ok(FrameBundle {
         frame_index,
@@ -1284,12 +1632,20 @@ pub fn draw_stroke(
     frame_index: u32,
     stroke: StrokeInput,
 ) -> Result<SaveResult, String> {
+    let started_at = Instant::now();
     let root = PathBuf::from(project_root);
     let project_file = read_project_file(&root)?;
     let (_, paint_path, _) = materialize_frame_assets(&root, &project_file, frame_index)?;
     let mut image = ensure_paint_image(&paint_path, project_file.width, project_file.height)?;
     draw_stroke_on_image(&mut image, &stroke);
-    image.save(&paint_path).map_err(|error| error.to_string())?;
+    save_paint_image(&paint_path, &image)?;
+    log_message(format!(
+        "draw_stroke frame={} points={} project_root={} elapsed_ms={}",
+        frame_index,
+        stroke.points.len(),
+        root.display(),
+        started_at.elapsed().as_millis()
+    ));
 
     Ok(SaveResult {
         frame_index,
@@ -1305,52 +1661,197 @@ pub fn fill_region(
     y: u32,
     color: RgbaColor,
 ) -> Result<FillResult, String> {
+    let started_at = Instant::now();
     let root = PathBuf::from(project_root);
     let project_file = read_project_file(&root)?;
     let region_dir = root.join(&project_file.paths.region_metadata_dir);
-    if !region_metadata_path(&region_dir, frame_index).exists() {
+    log_message(format!(
+        "fill_region start frame={} x={} y={} color=rgba({},{},{},{}) project_root={}",
+        frame_index,
+        x,
+        y,
+        color.r,
+        color.g,
+        color.b,
+        color.a,
+        root.display()
+    ));
+
+    if !region_metadata_path(&region_dir, frame_index).exists()
+        || !region_track_index_path(&root, &project_file.paths).exists()
+        || !region_label_map_path(&root, &project_file.paths, frame_index).exists()
+    {
+        let preprocess_started_at = Instant::now();
         preprocess_project_frames(&root, &project_file.paths)?;
+        log_message(format!(
+            "fill_region preprocess frame={} elapsed_ms={}",
+            frame_index,
+            preprocess_started_at.elapsed().as_millis()
+        ));
     }
+
+    let read_metadata_started_at = Instant::now();
     let fill_color = Rgba([color.r, color.g, color.b, color.a]);
     let region_metadata = read_region_metadata(&region_dir, frame_index)?;
+    let track_index = read_region_track_index(&root, &project_file.paths)?;
+    log_message(format!(
+        "fill_region read_metadata frame={} elapsed_ms={}",
+        frame_index,
+        read_metadata_started_at.elapsed().as_millis()
+    ));
     let region = find_region_at_point(&region_metadata, x, y);
     let Some(region) = region else {
+        log_message(format!(
+            "fill_region no_region frame={} elapsed_ms={}",
+            frame_index,
+            started_at.elapsed().as_millis()
+        ));
         return Ok(FillResult {
             track_id: frame_index,
             updated_frames: Vec::new(),
         });
     };
 
+    let Some(track_frames) = track_index.tracks.get(&region.track_id) else {
+        log_message(format!(
+            "fill_region missing_track_index track_id={} frame={} elapsed_ms={}",
+            region.track_id,
+            frame_index,
+            started_at.elapsed().as_millis()
+        ));
+        return Ok(FillResult {
+            track_id: region.track_id,
+            updated_frames: Vec::new(),
+        });
+    };
+
+    log_message(format!(
+        "fill_region track={} candidate_frames={}",
+        region.track_id,
+        track_frames.len()
+    ));
+
+    let worker_count = std::thread::available_parallelism()
+        .map(|count| count.get())
+        .unwrap_or(1)
+        .min(track_frames.len().max(1))
+        .min(8);
+    let chunk_size = track_frames.len().max(1).div_ceil(worker_count);
+    let track_frames = track_frames.clone();
     let mut updated_frames = Vec::new();
+    let mut metrics = Vec::new();
 
-    for candidate_frame in 0..project_file.frame_count {
-        let candidate_metadata = read_region_metadata(&region_dir, candidate_frame)?;
-        let Some(candidate_region) = candidate_metadata
-            .regions
-            .iter()
-            .find(|candidate| candidate.track_id == region.track_id)
-        else {
-            continue;
-        };
+    std::thread::scope(|scope| -> Result<(), String> {
+        let mut handles = Vec::new();
 
-        let fill_x = candidate_region.centroid_x.round() as u32;
-        let fill_y = candidate_region.centroid_y.round() as u32;
-        let (line_path, paint_path, _) = materialize_frame_assets(&root, &project_file, candidate_frame)?;
-        let line_image = image::open(&line_path)
-            .map_err(|error| error.to_string())?
-            .to_luma8();
-        let mut paint_image =
-            ensure_paint_image(&paint_path, project_file.width, project_file.height)?;
-        let changed =
-            fill_region_on_image(&line_image, &mut paint_image, fill_x, fill_y, fill_color);
+        for chunk in track_frames.chunks(chunk_size) {
+            let chunk = chunk.to_vec();
+            let root = root.clone();
+            let project_file = project_file.clone();
 
-        if changed {
-            paint_image
-                .save(&paint_path)
-                .map_err(|error| error.to_string())?;
-            updated_frames.push(candidate_frame);
+            handles.push(
+                scope.spawn(move || -> Result<Vec<FillFrameMetrics>, String> {
+                    let mut chunk_metrics = Vec::with_capacity(chunk.len());
+
+                    for entry in chunk {
+                        let frame_started_at = Instant::now();
+                        let materialize_started_at = Instant::now();
+                        let (_, paint_path, _) =
+                            materialize_frame_assets(&root, &project_file, entry.frame_index)?;
+                        let materialize_elapsed = materialize_started_at.elapsed().as_millis();
+
+                        let load_started_at = Instant::now();
+                        let mut paint_image = ensure_paint_image(
+                            &paint_path,
+                            project_file.width,
+                            project_file.height,
+                        )?;
+                        let label_map = load_region_label_map(
+                            &region_label_map_path(&root, &project_file.paths, entry.frame_index),
+                            project_file.width,
+                            project_file.height,
+                        )?;
+                        let load_elapsed = load_started_at.elapsed().as_millis();
+
+                        let fill_started_at = Instant::now();
+                        let changed = fill_region_using_label_map(
+                            &mut paint_image,
+                            &label_map,
+                            entry.region_id,
+                            entry.sample_x,
+                            entry.sample_y,
+                            fill_color,
+                        );
+                        let fill_elapsed = fill_started_at.elapsed().as_millis();
+
+                        let save_elapsed = if changed {
+                            let save_started_at = Instant::now();
+                            save_paint_image(&paint_path, &paint_image)?;
+                            Some(save_started_at.elapsed().as_millis())
+                        } else {
+                            None
+                        };
+
+                        chunk_metrics.push(FillFrameMetrics {
+                            frame_index: entry.frame_index,
+                            changed,
+                            materialize_ms: materialize_elapsed,
+                            load_ms: load_elapsed,
+                            fill_ms: fill_elapsed,
+                            save_ms: save_elapsed,
+                            total_ms: frame_started_at.elapsed().as_millis(),
+                        });
+                    }
+
+                    Ok(chunk_metrics)
+                }),
+            );
+        }
+
+        for handle in handles {
+            let chunk_metrics = handle
+                .join()
+                .map_err(|_| String::from("A fill worker thread panicked."))??;
+            metrics.extend(chunk_metrics);
+        }
+
+        Ok(())
+    })?;
+
+    metrics.sort_by_key(|entry| entry.frame_index);
+
+    for entry in metrics {
+        if entry.changed {
+            updated_frames.push(entry.frame_index);
+            log_message(format!(
+                "fill_region frame={} changed=yes materialize_ms={} load_ms={} fill_ms={} save_ms={} total_ms={}",
+                entry.frame_index,
+                entry.materialize_ms,
+                entry.load_ms,
+                entry.fill_ms,
+                entry.save_ms.unwrap_or_default(),
+                entry.total_ms
+            ));
+        } else {
+            log_message(format!(
+                "fill_region frame={} changed=no materialize_ms={} load_ms={} fill_ms={} total_ms={}",
+                entry.frame_index,
+                entry.materialize_ms,
+                entry.load_ms,
+                entry.fill_ms,
+                entry.total_ms
+            ));
         }
     }
+
+    log_message(format!(
+        "fill_region complete frame={} track_id={} updated_frames={} workers={} elapsed_ms={}",
+        frame_index,
+        region.track_id,
+        updated_frames.len(),
+        worker_count,
+        started_at.elapsed().as_millis()
+    ));
 
     Ok(FillResult {
         track_id: region.track_id,

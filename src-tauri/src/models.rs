@@ -33,6 +33,10 @@ pub struct ProjectPaths {
     pub paint_frames_dir: String,
     pub thumb_frames_dir: String,
     pub region_metadata_dir: String,
+    #[serde(default)]
+    pub region_track_index_path: String,
+    #[serde(default)]
+    pub region_label_maps_dir: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -142,4 +146,21 @@ pub struct FrameRegionMetadata {
     pub width: u32,
     pub height: u32,
     pub regions: Vec<RegionMetadata>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct TrackFrameEntry {
+    pub frame_index: u32,
+    pub region_id: u32,
+    pub centroid_x: u32,
+    pub centroid_y: u32,
+    pub sample_x: u32,
+    pub sample_y: u32,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct RegionTrackIndex {
+    pub tracks: std::collections::BTreeMap<u32, Vec<TrackFrameEntry>>,
 }

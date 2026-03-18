@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { drawStroke, fillRegion, getFrameBundle } from "../../infra/tauri-api/client";
 import { toAssetUrl } from "../../infra/tauri-api/assets";
 import { isTauriApp } from "../../infra/tauri-api/platform";
@@ -18,6 +18,7 @@ export function CanvasStage() {
     paintRevisions,
     project,
     markFramesPainted,
+    selectedColor,
     setRecentFillFrames,
     setFrameBundle,
     setStatusMessage,
@@ -68,11 +69,6 @@ export function CanvasStage() {
     : undefined;
   const strokesForFrame = localStrokes[currentFrame] ?? [];
 
-  const paintColor = useMemo(
-    () => ({ r: 209, g: 73, b: 91, a: 255 }),
-    []
-  );
-
   useEffect(() => {
     const frame = frameRef.current;
     const canvas = canvasRef.current;
@@ -122,7 +118,7 @@ export function CanvasStage() {
     drawingContext.clearRect(0, 0, canvas.width, canvas.height);
     drawingContext.lineCap = "round";
     drawingContext.lineJoin = "round";
-    drawingContext.strokeStyle = "rgba(209, 73, 91, 0.95)";
+    drawingContext.strokeStyle = `rgba(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b}, ${selectedColor.a / 255})`;
     drawingContext.lineWidth = 4;
 
     function drawPath(points: ScreenPoint[]) {
@@ -153,7 +149,7 @@ export function CanvasStage() {
     }
 
     drawPath(draftPoints);
-  }, [draftPoints, frameBundle, project, strokesForFrame]);
+  }, [draftPoints, frameBundle, project, selectedColor, strokesForFrame]);
 
   function projectPoint(event: React.PointerEvent<HTMLCanvasElement>) {
     const canvas = canvasRef.current;
@@ -181,7 +177,7 @@ export function CanvasStage() {
     }
 
     const stroke: StrokeInput = {
-      color: paintColor,
+      color: selectedColor,
       size: 4,
       points: imagePoints
     };
@@ -225,7 +221,7 @@ export function CanvasStage() {
     }
 
     try {
-      const result = await fillRegion(project.projectRoot, currentFrame, x, y, paintColor);
+      const result = await fillRegion(project.projectRoot, currentFrame, x, y, selectedColor);
 
       if (result.updatedFrames.length > 0) {
         markFramesPainted(result.updatedFrames);

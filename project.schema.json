@@ -45,7 +45,9 @@
         "lineFramesDir",
         "paintFramesDir",
         "thumbFramesDir",
-        "regionMetadataDir"
+        "regionMetadataDir",
+        "regionTrackIndexPath",
+        "regionLabelMapsDir"
       ],
       "properties": {
         "sourceFramesDir": {
@@ -61,6 +63,12 @@
           "type": "string"
         },
         "regionMetadataDir": {
+          "type": "string"
+        },
+        "regionTrackIndexPath": {
+          "type": "string"
+        },
+        "regionLabelMapsDir": {
           "type": "string"
         }
       }
