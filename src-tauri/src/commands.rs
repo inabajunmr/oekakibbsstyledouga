@@ -1732,10 +1732,11 @@ pub fn fill_region(
     ));
 
     let worker_count = std::thread::available_parallelism()
-        .map(|count| count.get())
-        .unwrap_or(1)
+        .map(|count| count.get().saturating_mul(2))
+        .unwrap_or(4)
+        .max(4)
         .min(track_frames.len().max(1))
-        .min(8);
+        .min(24);
     let chunk_size = track_frames.len().max(1).div_ceil(worker_count);
     let track_frames = track_frames.clone();
     let mut updated_frames = Vec::new();

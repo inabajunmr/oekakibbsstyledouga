@@ -1100,3 +1100,1567 @@
 [1773845767.242] get_frame_bundle frame=139 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
 [1773845767.425] get_frame_bundle frame=140 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
 [1773845767.606] get_frame_bundle frame=141 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901354.950] create_project start video_path=/Users/juninaba/Desktop/mountain3.mp4 project_root=/Users/juninaba/Desktop/test
+[1773901354.950] create_project tools_ready
+[1773901354.951] create_project_file_from_video start project_root=/Users/juninaba/Desktop/test video_path=/Users/juninaba/Desktop/mountain3.mp4
+[1773901354.951] create_project_file_from_video ensured_dirs
+[1773901354.951] create_project_file_from_video using_video_tools ffmpeg=/Users/juninaba/Library/Application Support/com.juninaba.oekakibbsstyledouga/tools/ffmpeg/ffmpeg ffprobe=/Users/juninaba/Library/Application Support/com.juninaba.oekakibbsstyledouga/tools/ffmpeg/ffprobe
+[1773901354.973] create_project_file_from_video cleared_source_dir
+[1773901355.053] create_project_file_from_video probed_video width=854 height=480 fps=30
+[1773901357.073] create_project_file_from_video extracted_frames count=236
+[1773901357.078] create_project_file_from_video seeded_blank_paint_frames
+[1773901357.078] create_project project_file_ready frame_count=236 source_mode=video
+[1773901357.078] create_project complete project_root=/Users/juninaba/Desktop/test frame_count=236 source_mode=video
+[1773901364.235] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901364.236] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901598.908] create_project start video_path=/Users/juninaba/Desktop/mountain3.mp4 project_root=/Users/juninaba/Desktop/test
+[1773901598.909] create_project tools_ready
+[1773901598.909] create_project_file_from_video start project_root=/Users/juninaba/Desktop/test video_path=/Users/juninaba/Desktop/mountain3.mp4
+[1773901598.909] create_project_file_from_video ensured_dirs
+[1773901598.910] create_project_file_from_video using_video_tools ffmpeg=/Users/juninaba/Library/Application Support/com.juninaba.oekakibbsstyledouga/tools/ffmpeg/ffmpeg ffprobe=/Users/juninaba/Library/Application Support/com.juninaba.oekakibbsstyledouga/tools/ffmpeg/ffprobe
+[1773901598.928] create_project_file_from_video cleared_source_dir
+[1773901599.009] create_project_file_from_video probed_video width=854 height=480 fps=30
+[1773901601.123] create_project_file_from_video extracted_frames count=236
+[1773901601.124] create_project_file_from_video seeded_blank_paint_frames
+[1773901601.124] create_project project_file_ready frame_count=236 source_mode=video
+[1773901601.124] create_project complete project_root=/Users/juninaba/Desktop/test frame_count=236 source_mode=video
+[1773901608.459] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901608.461] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901720.289] draw_stroke frame=0 points=1 project_root=/Users/juninaba/Desktop/test elapsed_ms=78
+[1773901740.569] create_project start video_path=/Users/juninaba/Desktop/mountain3.mp4 project_root=/Users/juninaba/Desktop/test
+[1773901740.570] create_project tools_ready
+[1773901740.570] create_project_file_from_video start project_root=/Users/juninaba/Desktop/test video_path=/Users/juninaba/Desktop/mountain3.mp4
+[1773901740.571] create_project_file_from_video ensured_dirs
+[1773901740.571] create_project_file_from_video using_video_tools ffmpeg=/Users/juninaba/Library/Application Support/com.juninaba.oekakibbsstyledouga/tools/ffmpeg/ffmpeg ffprobe=/Users/juninaba/Library/Application Support/com.juninaba.oekakibbsstyledouga/tools/ffmpeg/ffprobe
+[1773901740.571] create_project_file_from_video cleared_source_dir
+[1773901740.651] create_project_file_from_video probed_video width=854 height=480 fps=30
+[1773901742.728] create_project_file_from_video extracted_frames count=236
+[1773901784.631] create_project_file_from_video seeded_blank_paint_frames
+[1773901784.631] create_project project_file_ready frame_count=236 source_mode=video
+[1773901784.631] create_project complete project_root=/Users/juninaba/Desktop/test frame_count=236 source_mode=video
+[1773901799.349] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=333
+[1773901799.352] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901911.588] draw_stroke frame=0 points=1 project_root=/Users/juninaba/Desktop/test elapsed_ms=67
+[1773901943.651] fill_region start frame=0 x=243 y=322 color=rgba(237,174,73,255) project_root=/Users/juninaba/Desktop/test
+[1773901943.986] fill_region read_metadata frame=0 elapsed_ms=334
+[1773901943.986] fill_region track=1 candidate_frames=77
+[1773901946.123] fill_region frame=0 changed=yes materialize_ms=0 load_ms=12 fill_ms=18 save_ms=48 total_ms=79
+[1773901946.123] fill_region frame=1 changed=yes materialize_ms=0 load_ms=69 fill_ms=18 save_ms=48 total_ms=136
+[1773901946.123] fill_region frame=2 changed=yes materialize_ms=0 load_ms=69 fill_ms=19 save_ms=49 total_ms=138
+[1773901946.123] fill_region frame=3 changed=yes materialize_ms=0 load_ms=69 fill_ms=18 save_ms=47 total_ms=136
+[1773901946.123] fill_region frame=4 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=50 total_ms=138
+[1773901946.123] fill_region frame=5 changed=yes materialize_ms=1 load_ms=214 fill_ms=83 save_ms=258 total_ms=559
+[1773901946.123] fill_region frame=6 changed=yes materialize_ms=0 load_ms=124 fill_ms=18 save_ms=48 total_ms=191
+[1773901946.123] fill_region frame=7 changed=yes materialize_ms=0 load_ms=69 fill_ms=18 save_ms=48 total_ms=136
+[1773901946.123] fill_region frame=8 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=48 total_ms=135
+[1773901946.123] fill_region frame=9 changed=yes materialize_ms=0 load_ms=92 fill_ms=18 save_ms=48 total_ms=160
+[1773901946.123] fill_region frame=10 changed=yes materialize_ms=1 load_ms=266 fill_ms=71 save_ms=242 total_ms=582
+[1773901946.123] fill_region frame=11 changed=yes materialize_ms=1 load_ms=191 fill_ms=78 save_ms=138 total_ms=409
+[1773901946.124] fill_region frame=12 changed=yes materialize_ms=0 load_ms=211 fill_ms=18 save_ms=49 total_ms=280
+[1773901946.124] fill_region frame=13 changed=yes materialize_ms=0 load_ms=69 fill_ms=19 save_ms=50 total_ms=140
+[1773901946.124] fill_region frame=14 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=48 total_ms=136
+[1773901946.124] fill_region frame=15 changed=yes materialize_ms=3 load_ms=215 fill_ms=112 save_ms=130 total_ms=462
+[1773901946.124] fill_region frame=16 changed=yes materialize_ms=12 load_ms=209 fill_ms=40 save_ms=159 total_ms=422
+[1773901946.124] fill_region frame=17 changed=yes materialize_ms=0 load_ms=235 fill_ms=66 save_ms=157 total_ms=459
+[1773901946.124] fill_region frame=18 changed=yes materialize_ms=0 load_ms=212 fill_ms=18 save_ms=48 total_ms=279
+[1773901946.124] fill_region frame=19 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=48 total_ms=136
+[1773901946.124] fill_region frame=20 changed=yes materialize_ms=2 load_ms=320 fill_ms=52 save_ms=161 total_ms=537
+[1773901946.124] fill_region frame=21 changed=yes materialize_ms=0 load_ms=261 fill_ms=77 save_ms=145 total_ms=484
+[1773901946.124] fill_region frame=22 changed=yes materialize_ms=0 load_ms=202 fill_ms=45 save_ms=135 total_ms=384
+[1773901946.124] fill_region frame=23 changed=yes materialize_ms=0 load_ms=216 fill_ms=61 save_ms=106 total_ms=384
+[1773901946.124] fill_region frame=24 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=49 total_ms=137
+[1773901946.124] fill_region frame=25 changed=yes materialize_ms=2 load_ms=242 fill_ms=78 save_ms=211 total_ms=533
+[1773901946.124] fill_region frame=26 changed=yes materialize_ms=1 load_ms=226 fill_ms=92 save_ms=171 total_ms=492
+[1773901946.124] fill_region frame=27 changed=yes materialize_ms=0 load_ms=148 fill_ms=71 save_ms=161 total_ms=381
+[1773901946.124] fill_region frame=28 changed=yes materialize_ms=0 load_ms=209 fill_ms=60 save_ms=127 total_ms=398
+[1773901946.124] fill_region frame=29 changed=yes materialize_ms=0 load_ms=148 fill_ms=18 save_ms=48 total_ms=215
+[1773901946.124] fill_region frame=30 changed=yes materialize_ms=2 load_ms=206 fill_ms=107 save_ms=161 total_ms=477
+[1773901946.124] fill_region frame=31 changed=yes materialize_ms=0 load_ms=250 fill_ms=124 save_ms=140 total_ms=515
+[1773901946.124] fill_region frame=32 changed=yes materialize_ms=0 load_ms=197 fill_ms=81 save_ms=169 total_ms=449
+[1773901946.124] fill_region frame=33 changed=yes materialize_ms=0 load_ms=189 fill_ms=64 save_ms=135 total_ms=389
+[1773901946.125] fill_region frame=34 changed=yes materialize_ms=0 load_ms=128 fill_ms=60 save_ms=49 total_ms=239
+[1773901946.125] fill_region frame=35 changed=yes materialize_ms=2 load_ms=225 fill_ms=73 save_ms=161 total_ms=463
+[1773901946.125] fill_region frame=36 changed=yes materialize_ms=0 load_ms=252 fill_ms=40 save_ms=176 total_ms=470
+[1773901946.125] fill_region frame=37 changed=yes materialize_ms=0 load_ms=214 fill_ms=90 save_ms=144 total_ms=450
+[1773901946.125] fill_region frame=38 changed=yes materialize_ms=0 load_ms=195 fill_ms=84 save_ms=98 total_ms=378
+[1773901946.125] fill_region frame=39 changed=yes materialize_ms=0 load_ms=187 fill_ms=35 save_ms=91 total_ms=314
+[1773901946.125] fill_region frame=40 changed=yes materialize_ms=2 load_ms=298 fill_ms=58 save_ms=192 total_ms=551
+[1773901946.125] fill_region frame=41 changed=yes materialize_ms=2 load_ms=255 fill_ms=72 save_ms=166 total_ms=497
+[1773901946.125] fill_region frame=42 changed=yes materialize_ms=0 load_ms=204 fill_ms=74 save_ms=141 total_ms=421
+[1773901946.125] fill_region frame=43 changed=yes materialize_ms=0 load_ms=166 fill_ms=72 save_ms=125 total_ms=365
+[1773901946.125] fill_region frame=44 changed=yes materialize_ms=0 load_ms=153 fill_ms=70 save_ms=54 total_ms=279
+[1773901946.125] fill_region frame=45 changed=yes materialize_ms=3 load_ms=284 fill_ms=44 save_ms=223 total_ms=556
+[1773901946.125] fill_region frame=46 changed=yes materialize_ms=0 load_ms=215 fill_ms=95 save_ms=127 total_ms=439
+[1773901946.125] fill_region frame=47 changed=yes materialize_ms=0 load_ms=196 fill_ms=56 save_ms=133 total_ms=387
+[1773901946.125] fill_region frame=48 changed=yes materialize_ms=0 load_ms=188 fill_ms=80 save_ms=159 total_ms=428
+[1773901946.125] fill_region frame=49 changed=yes materialize_ms=0 load_ms=218 fill_ms=18 save_ms=76 total_ms=314
+[1773901946.125] fill_region frame=50 changed=yes materialize_ms=2 load_ms=289 fill_ms=58 save_ms=209 total_ms=559
+[1773901946.125] fill_region frame=51 changed=yes materialize_ms=0 load_ms=235 fill_ms=50 save_ms=191 total_ms=478
+[1773901946.125] fill_region frame=52 changed=yes materialize_ms=0 load_ms=215 fill_ms=65 save_ms=111 total_ms=393
+[1773901946.126] fill_region frame=53 changed=yes materialize_ms=0 load_ms=203 fill_ms=93 save_ms=118 total_ms=416
+[1773901946.126] fill_region frame=54 changed=yes materialize_ms=0 load_ms=174 fill_ms=30 save_ms=60 total_ms=265
+[1773901946.126] fill_region frame=55 changed=yes materialize_ms=1 load_ms=243 fill_ms=68 save_ms=181 total_ms=495
+[1773901946.126] fill_region frame=56 changed=yes materialize_ms=1 load_ms=272 fill_ms=91 save_ms=179 total_ms=544
+[1773901946.126] fill_region frame=57 changed=yes materialize_ms=0 load_ms=245 fill_ms=57 save_ms=121 total_ms=424
+[1773901946.126] fill_region frame=58 changed=yes materialize_ms=0 load_ms=179 fill_ms=45 save_ms=107 total_ms=332
+[1773901946.126] fill_region frame=59 changed=yes materialize_ms=0 load_ms=170 fill_ms=38 save_ms=92 total_ms=300
+[1773901946.126] fill_region frame=60 changed=yes materialize_ms=2 load_ms=225 fill_ms=109 save_ms=181 total_ms=518
+[1773901946.126] fill_region frame=61 changed=yes materialize_ms=0 load_ms=252 fill_ms=64 save_ms=144 total_ms=461
+[1773901946.126] fill_region frame=62 changed=yes materialize_ms=0 load_ms=204 fill_ms=63 save_ms=149 total_ms=418
+[1773901946.126] fill_region frame=63 changed=yes materialize_ms=0 load_ms=160 fill_ms=82 save_ms=116 total_ms=360
+[1773901946.126] fill_region frame=64 changed=yes materialize_ms=0 load_ms=150 fill_ms=49 save_ms=108 total_ms=309
+[1773901946.126] fill_region frame=65 changed=yes materialize_ms=2 load_ms=348 fill_ms=41 save_ms=190 total_ms=584
+[1773901946.126] fill_region frame=66 changed=yes materialize_ms=0 load_ms=265 fill_ms=49 save_ms=164 total_ms=478
+[1773901946.126] fill_region frame=67 changed=yes materialize_ms=0 load_ms=210 fill_ms=33 save_ms=200 total_ms=445
+[1773901946.126] fill_region frame=68 changed=yes materialize_ms=0 load_ms=160 fill_ms=67 save_ms=117 total_ms=345
+[1773901946.126] fill_region frame=69 changed=yes materialize_ms=0 load_ms=182 fill_ms=46 save_ms=51 total_ms=281
+[1773901946.126] fill_region frame=70 changed=yes materialize_ms=2 load_ms=207 fill_ms=97 save_ms=224 total_ms=532
+[1773901946.126] fill_region frame=71 changed=yes materialize_ms=0 load_ms=240 fill_ms=61 save_ms=184 total_ms=487
+[1773901946.126] fill_region frame=72 changed=yes materialize_ms=0 load_ms=241 fill_ms=50 save_ms=140 total_ms=433
+[1773901946.126] fill_region frame=73 changed=yes materialize_ms=0 load_ms=232 fill_ms=33 save_ms=119 total_ms=385
+[1773901946.126] fill_region frame=74 changed=yes materialize_ms=0 load_ms=172 fill_ms=33 save_ms=82 total_ms=288
+[1773901946.126] fill_region frame=75 changed=yes materialize_ms=2 load_ms=243 fill_ms=75 save_ms=173 total_ms=495
+[1773901946.127] fill_region frame=76 changed=yes materialize_ms=0 load_ms=235 fill_ms=60 save_ms=120 total_ms=417
+[1773901946.127] fill_region complete frame=0 track_id=1 updated_frames=77 workers=16 elapsed_ms=2476
+[1773901957.901] fill_region start frame=0 x=360 y=181 color=rgba(0,121,140,255) project_root=/Users/juninaba/Desktop/test
+[1773901958.236] fill_region read_metadata frame=0 elapsed_ms=334
+[1773901958.236] fill_region track=1 candidate_frames=77
+[1773901959.280] fill_region frame=0 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=48 total_ms=68
+[1773901959.280] fill_region frame=1 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=47 total_ms=66
+[1773901959.280] fill_region frame=2 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=48 total_ms=68
+[1773901959.280] fill_region frame=3 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=47 total_ms=66
+[1773901959.280] fill_region frame=4 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=48 total_ms=68
+[1773901959.280] fill_region frame=5 changed=yes materialize_ms=1 load_ms=23 fill_ms=103 save_ms=174 total_ms=303
+[1773901959.280] fill_region frame=6 changed=yes materialize_ms=0 load_ms=0 fill_ms=38 save_ms=47 total_ms=86
+[1773901959.280] fill_region frame=7 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=46 total_ms=65
+[1773901959.280] fill_region frame=8 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=47 total_ms=66
+[1773901959.280] fill_region frame=9 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=47 total_ms=66
+[1773901959.280] fill_region frame=10 changed=yes materialize_ms=1 load_ms=0 fill_ms=44 save_ms=177 total_ms=224
+[1773901959.280] fill_region frame=11 changed=yes materialize_ms=0 load_ms=0 fill_ms=71 save_ms=199 total_ms=272
+[1773901959.280] fill_region frame=12 changed=yes materialize_ms=0 load_ms=0 fill_ms=76 save_ms=62 total_ms=139
+[1773901959.280] fill_region frame=13 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=68
+[1773901959.280] fill_region frame=14 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=47 total_ms=66
+[1773901959.280] fill_region frame=15 changed=yes materialize_ms=2 load_ms=12 fill_ms=18 save_ms=163 total_ms=197
+[1773901959.280] fill_region frame=16 changed=yes materialize_ms=0 load_ms=0 fill_ms=66 save_ms=173 total_ms=241
+[1773901959.281] fill_region frame=17 changed=yes materialize_ms=0 load_ms=0 fill_ms=61 save_ms=184 total_ms=246
+[1773901959.281] fill_region frame=18 changed=yes materialize_ms=0 load_ms=0 fill_ms=78 save_ms=49 total_ms=128
+[1773901959.281] fill_region frame=19 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=47 total_ms=66
+[1773901959.281] fill_region frame=20 changed=yes materialize_ms=1 load_ms=9 fill_ms=83 save_ms=169 total_ms=263
+[1773901959.281] fill_region frame=21 changed=yes materialize_ms=0 load_ms=5 fill_ms=68 save_ms=177 total_ms=253
+[1773901959.281] fill_region frame=22 changed=yes materialize_ms=0 load_ms=0 fill_ms=36 save_ms=167 total_ms=205
+[1773901959.281] fill_region frame=23 changed=yes materialize_ms=0 load_ms=0 fill_ms=49 save_ms=116 total_ms=166
+[1773901959.281] fill_region frame=24 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=48 total_ms=67
+[1773901959.281] fill_region frame=25 changed=yes materialize_ms=1 load_ms=0 fill_ms=77 save_ms=176 total_ms=255
+[1773901959.281] fill_region frame=26 changed=yes materialize_ms=0 load_ms=4 fill_ms=59 save_ms=148 total_ms=213
+[1773901959.281] fill_region frame=27 changed=yes materialize_ms=0 load_ms=0 fill_ms=73 save_ms=129 total_ms=204
+[1773901959.281] fill_region frame=28 changed=yes materialize_ms=0 load_ms=0 fill_ms=60 save_ms=120 total_ms=180
+[1773901959.281] fill_region frame=29 changed=yes materialize_ms=0 load_ms=0 fill_ms=51 save_ms=79 total_ms=131
+[1773901959.281] fill_region frame=30 changed=yes materialize_ms=1 load_ms=0 fill_ms=64 save_ms=164 total_ms=231
+[1773901959.281] fill_region frame=31 changed=yes materialize_ms=0 load_ms=0 fill_ms=86 save_ms=137 total_ms=224
+[1773901959.281] fill_region frame=32 changed=yes materialize_ms=0 load_ms=0 fill_ms=70 save_ms=105 total_ms=176
+[1773901959.281] fill_region frame=33 changed=yes materialize_ms=0 load_ms=0 fill_ms=62 save_ms=144 total_ms=206
+[1773901959.281] fill_region frame=34 changed=yes materialize_ms=0 load_ms=0 fill_ms=41 save_ms=110 total_ms=153
+[1773901959.281] fill_region frame=35 changed=yes materialize_ms=2 load_ms=12 fill_ms=52 save_ms=199 total_ms=267
+[1773901959.281] fill_region frame=36 changed=yes materialize_ms=0 load_ms=2 fill_ms=54 save_ms=135 total_ms=193
+[1773901959.281] fill_region frame=37 changed=yes materialize_ms=0 load_ms=0 fill_ms=49 save_ms=146 total_ms=196
+[1773901959.281] fill_region frame=38 changed=yes materialize_ms=0 load_ms=0 fill_ms=40 save_ms=119 total_ms=160
+[1773901959.281] fill_region frame=39 changed=yes materialize_ms=0 load_ms=0 fill_ms=49 save_ms=125 total_ms=174
+[1773901959.281] fill_region frame=40 changed=yes materialize_ms=2 load_ms=39 fill_ms=47 save_ms=177 total_ms=266
+[1773901959.282] fill_region frame=41 changed=yes materialize_ms=1 load_ms=2 fill_ms=61 save_ms=168 total_ms=233
+[1773901959.282] fill_region frame=42 changed=yes materialize_ms=0 load_ms=0 fill_ms=19 save_ms=161 total_ms=181
+[1773901959.282] fill_region frame=43 changed=yes materialize_ms=0 load_ms=0 fill_ms=43 save_ms=149 total_ms=193
+[1773901959.282] fill_region frame=44 changed=yes materialize_ms=0 load_ms=0 fill_ms=37 save_ms=96 total_ms=135
+[1773901959.282] fill_region frame=45 changed=yes materialize_ms=2 load_ms=0 fill_ms=46 save_ms=163 total_ms=212
+[1773901959.282] fill_region frame=46 changed=yes materialize_ms=0 load_ms=0 fill_ms=76 save_ms=192 total_ms=269
+[1773901959.282] fill_region frame=47 changed=yes materialize_ms=0 load_ms=0 fill_ms=45 save_ms=107 total_ms=153
+[1773901959.282] fill_region frame=48 changed=yes materialize_ms=0 load_ms=0 fill_ms=67 save_ms=140 total_ms=209
+[1773901959.282] fill_region frame=49 changed=yes materialize_ms=0 load_ms=0 fill_ms=44 save_ms=107 total_ms=152
+[1773901959.282] fill_region frame=50 changed=yes materialize_ms=2 load_ms=27 fill_ms=95 save_ms=181 total_ms=306
+[1773901959.282] fill_region frame=51 changed=yes materialize_ms=0 load_ms=0 fill_ms=64 save_ms=127 total_ms=192
+[1773901959.282] fill_region frame=52 changed=yes materialize_ms=0 load_ms=0 fill_ms=81 save_ms=149 total_ms=231
+[1773901959.282] fill_region frame=53 changed=yes materialize_ms=0 load_ms=0 fill_ms=25 save_ms=119 total_ms=145
+[1773901959.282] fill_region frame=54 changed=yes materialize_ms=0 load_ms=0 fill_ms=30 save_ms=95 total_ms=125
+[1773901959.282] fill_region frame=55 changed=yes materialize_ms=2 load_ms=1 fill_ms=99 save_ms=159 total_ms=262
+[1773901959.282] fill_region frame=56 changed=yes materialize_ms=0 load_ms=0 fill_ms=98 save_ms=199 total_ms=299
+[1773901959.282] fill_region frame=57 changed=yes materialize_ms=0 load_ms=0 fill_ms=34 save_ms=144 total_ms=179
+[1773901959.282] fill_region frame=58 changed=yes materialize_ms=0 load_ms=0 fill_ms=49 save_ms=155 total_ms=205
+[1773901959.282] fill_region frame=59 changed=yes materialize_ms=0 load_ms=0 fill_ms=47 save_ms=47 total_ms=95
+[1773901959.282] fill_region frame=60 changed=yes materialize_ms=2 load_ms=0 fill_ms=65 save_ms=212 total_ms=280
+[1773901959.282] fill_region frame=61 changed=yes materialize_ms=0 load_ms=0 fill_ms=89 save_ms=169 total_ms=260
+[1773901959.282] fill_region frame=62 changed=yes materialize_ms=0 load_ms=0 fill_ms=55 save_ms=156 total_ms=212
+[1773901959.282] fill_region frame=63 changed=yes materialize_ms=0 load_ms=0 fill_ms=78 save_ms=131 total_ms=210
+[1773901959.282] fill_region frame=64 changed=yes materialize_ms=0 load_ms=0 fill_ms=30 save_ms=47 total_ms=79
+[1773901959.283] fill_region frame=65 changed=yes materialize_ms=3 load_ms=0 fill_ms=45 save_ms=174 total_ms=222
+[1773901959.283] fill_region frame=66 changed=yes materialize_ms=0 load_ms=0 fill_ms=84 save_ms=167 total_ms=252
+[1773901959.283] fill_region frame=67 changed=yes materialize_ms=0 load_ms=0 fill_ms=62 save_ms=153 total_ms=216
+[1773901959.283] fill_region frame=68 changed=yes materialize_ms=0 load_ms=0 fill_ms=67 save_ms=138 total_ms=206
+[1773901959.283] fill_region frame=69 changed=yes materialize_ms=0 load_ms=0 fill_ms=24 save_ms=85 total_ms=110
+[1773901959.283] fill_region frame=70 changed=yes materialize_ms=2 load_ms=1 fill_ms=63 save_ms=172 total_ms=239
+[1773901959.283] fill_region frame=71 changed=yes materialize_ms=0 load_ms=0 fill_ms=60 save_ms=143 total_ms=203
+[1773901959.283] fill_region frame=72 changed=yes materialize_ms=0 load_ms=0 fill_ms=64 save_ms=148 total_ms=213
+[1773901959.283] fill_region frame=73 changed=yes materialize_ms=0 load_ms=0 fill_ms=51 save_ms=109 total_ms=161
+[1773901959.283] fill_region frame=74 changed=yes materialize_ms=0 load_ms=0 fill_ms=38 save_ms=100 total_ms=139
+[1773901959.283] fill_region frame=75 changed=yes materialize_ms=2 load_ms=22 fill_ms=66 save_ms=172 total_ms=263
+[1773901959.283] fill_region frame=76 changed=yes materialize_ms=1 load_ms=0 fill_ms=62 save_ms=187 total_ms=251
+[1773901959.283] fill_region complete frame=0 track_id=1 updated_frames=77 workers=16 elapsed_ms=1382
+[1773901972.404] get_frame_bundle frame=1 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.440] get_frame_bundle frame=2 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.475] get_frame_bundle frame=3 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.512] get_frame_bundle frame=4 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.547] get_frame_bundle frame=5 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.584] get_frame_bundle frame=6 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.619] get_frame_bundle frame=7 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.658] get_frame_bundle frame=8 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.692] get_frame_bundle frame=9 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.727] get_frame_bundle frame=10 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.763] get_frame_bundle frame=11 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.799] get_frame_bundle frame=12 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.834] get_frame_bundle frame=13 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.869] get_frame_bundle frame=14 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.904] get_frame_bundle frame=15 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.939] get_frame_bundle frame=16 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901972.974] get_frame_bundle frame=17 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.009] get_frame_bundle frame=18 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.044] get_frame_bundle frame=19 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.079] get_frame_bundle frame=20 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.114] get_frame_bundle frame=21 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.150] get_frame_bundle frame=22 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.185] get_frame_bundle frame=23 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.220] get_frame_bundle frame=24 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.255] get_frame_bundle frame=25 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.290] get_frame_bundle frame=26 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.331] get_frame_bundle frame=27 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.366] get_frame_bundle frame=28 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.401] get_frame_bundle frame=29 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.436] get_frame_bundle frame=30 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.471] get_frame_bundle frame=31 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.506] get_frame_bundle frame=32 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.541] get_frame_bundle frame=33 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.577] get_frame_bundle frame=34 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.612] get_frame_bundle frame=35 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.648] get_frame_bundle frame=36 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.683] get_frame_bundle frame=37 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.718] get_frame_bundle frame=38 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.754] get_frame_bundle frame=39 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.788] get_frame_bundle frame=40 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.824] get_frame_bundle frame=41 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.869] get_frame_bundle frame=42 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.904] get_frame_bundle frame=43 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.939] get_frame_bundle frame=44 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901973.974] get_frame_bundle frame=45 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.010] get_frame_bundle frame=46 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.060] get_frame_bundle frame=47 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.095] get_frame_bundle frame=48 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.130] get_frame_bundle frame=49 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.166] get_frame_bundle frame=50 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.204] get_frame_bundle frame=51 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901974.237] get_frame_bundle frame=52 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.271] get_frame_bundle frame=53 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.306] get_frame_bundle frame=54 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.341] get_frame_bundle frame=55 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.377] get_frame_bundle frame=56 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.415] get_frame_bundle frame=57 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.448] get_frame_bundle frame=58 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.483] get_frame_bundle frame=59 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.518] get_frame_bundle frame=60 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.566] get_frame_bundle frame=61 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.601] get_frame_bundle frame=62 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.636] get_frame_bundle frame=63 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.670] get_frame_bundle frame=64 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.705] get_frame_bundle frame=65 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.740] get_frame_bundle frame=66 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.775] get_frame_bundle frame=67 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.810] get_frame_bundle frame=68 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.846] get_frame_bundle frame=69 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.882] get_frame_bundle frame=70 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901974.916] get_frame_bundle frame=71 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.951] get_frame_bundle frame=72 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901974.986] get_frame_bundle frame=73 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.020] get_frame_bundle frame=74 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.055] get_frame_bundle frame=75 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.089] get_frame_bundle frame=76 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.125] get_frame_bundle frame=77 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.159] get_frame_bundle frame=78 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.194] get_frame_bundle frame=79 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.230] get_frame_bundle frame=80 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.268] get_frame_bundle frame=81 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901975.301] get_frame_bundle frame=82 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.336] get_frame_bundle frame=83 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.371] get_frame_bundle frame=84 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.408] get_frame_bundle frame=85 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901975.450] get_frame_bundle frame=86 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.487] get_frame_bundle frame=87 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.526] get_frame_bundle frame=88 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.560] get_frame_bundle frame=89 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.595] get_frame_bundle frame=90 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.631] get_frame_bundle frame=91 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.665] get_frame_bundle frame=92 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.701] get_frame_bundle frame=93 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.738] get_frame_bundle frame=94 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.782] get_frame_bundle frame=95 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.817] get_frame_bundle frame=96 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.852] get_frame_bundle frame=97 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.889] get_frame_bundle frame=98 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.938] get_frame_bundle frame=99 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901975.986] get_frame_bundle frame=100 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901976.023] get_frame_bundle frame=101 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.056] get_frame_bundle frame=102 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.091] get_frame_bundle frame=103 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.126] get_frame_bundle frame=104 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.161] get_frame_bundle frame=105 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.196] get_frame_bundle frame=106 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.230] get_frame_bundle frame=107 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.265] get_frame_bundle frame=108 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.300] get_frame_bundle frame=109 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.335] get_frame_bundle frame=110 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.370] get_frame_bundle frame=111 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.404] get_frame_bundle frame=112 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.439] get_frame_bundle frame=113 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.473] get_frame_bundle frame=114 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.508] get_frame_bundle frame=115 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.543] get_frame_bundle frame=116 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.577] get_frame_bundle frame=117 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.613] get_frame_bundle frame=118 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.648] get_frame_bundle frame=119 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.683] get_frame_bundle frame=120 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.717] get_frame_bundle frame=121 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.752] get_frame_bundle frame=122 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.787] get_frame_bundle frame=123 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.822] get_frame_bundle frame=124 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.856] get_frame_bundle frame=125 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.891] get_frame_bundle frame=126 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.926] get_frame_bundle frame=127 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.960] get_frame_bundle frame=128 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901976.996] get_frame_bundle frame=129 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.031] get_frame_bundle frame=130 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.066] get_frame_bundle frame=131 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.101] get_frame_bundle frame=132 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.135] get_frame_bundle frame=133 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.170] get_frame_bundle frame=134 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.205] get_frame_bundle frame=135 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.239] get_frame_bundle frame=136 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.274] get_frame_bundle frame=137 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.309] get_frame_bundle frame=138 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.343] get_frame_bundle frame=139 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.379] get_frame_bundle frame=140 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.414] get_frame_bundle frame=141 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.449] get_frame_bundle frame=142 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.484] get_frame_bundle frame=143 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.519] get_frame_bundle frame=144 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.553] get_frame_bundle frame=145 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.587] get_frame_bundle frame=146 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.622] get_frame_bundle frame=147 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.656] get_frame_bundle frame=148 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.691] get_frame_bundle frame=149 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.726] get_frame_bundle frame=150 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.760] get_frame_bundle frame=151 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.796] get_frame_bundle frame=152 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.832] get_frame_bundle frame=153 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.867] get_frame_bundle frame=154 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.902] get_frame_bundle frame=155 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.937] get_frame_bundle frame=156 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901977.971] get_frame_bundle frame=157 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.006] get_frame_bundle frame=158 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.040] get_frame_bundle frame=159 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.075] get_frame_bundle frame=160 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.110] get_frame_bundle frame=161 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.144] get_frame_bundle frame=162 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.179] get_frame_bundle frame=163 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.214] get_frame_bundle frame=164 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.250] get_frame_bundle frame=165 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.284] get_frame_bundle frame=166 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.318] get_frame_bundle frame=167 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.353] get_frame_bundle frame=168 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.387] get_frame_bundle frame=169 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.422] get_frame_bundle frame=170 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.456] get_frame_bundle frame=171 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.490] get_frame_bundle frame=172 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.525] get_frame_bundle frame=173 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.560] get_frame_bundle frame=174 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.595] get_frame_bundle frame=175 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.630] get_frame_bundle frame=176 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.666] get_frame_bundle frame=177 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.701] get_frame_bundle frame=178 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.735] get_frame_bundle frame=179 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.769] get_frame_bundle frame=180 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.804] get_frame_bundle frame=181 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.838] get_frame_bundle frame=182 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.872] get_frame_bundle frame=183 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.907] get_frame_bundle frame=184 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.941] get_frame_bundle frame=185 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901978.976] get_frame_bundle frame=186 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.011] get_frame_bundle frame=187 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.046] get_frame_bundle frame=188 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.081] get_frame_bundle frame=189 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.115] get_frame_bundle frame=190 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.150] get_frame_bundle frame=191 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.185] get_frame_bundle frame=192 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.222] get_frame_bundle frame=193 project_root=/Users/juninaba/Desktop/test elapsed_ms=3
+[1773901979.253] get_frame_bundle frame=194 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.287] get_frame_bundle frame=195 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.322] get_frame_bundle frame=196 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.356] get_frame_bundle frame=197 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.391] get_frame_bundle frame=198 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.426] get_frame_bundle frame=199 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.461] get_frame_bundle frame=200 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.496] get_frame_bundle frame=201 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.531] get_frame_bundle frame=202 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.566] get_frame_bundle frame=203 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.601] get_frame_bundle frame=204 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.635] get_frame_bundle frame=205 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.670] get_frame_bundle frame=206 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.705] get_frame_bundle frame=207 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.739] get_frame_bundle frame=208 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.774] get_frame_bundle frame=209 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.809] get_frame_bundle frame=210 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.844] get_frame_bundle frame=211 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.879] get_frame_bundle frame=212 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.914] get_frame_bundle frame=213 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.949] get_frame_bundle frame=214 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901979.985] get_frame_bundle frame=215 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.020] get_frame_bundle frame=216 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.054] get_frame_bundle frame=217 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.088] get_frame_bundle frame=218 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.123] get_frame_bundle frame=219 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.158] get_frame_bundle frame=220 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.194] get_frame_bundle frame=221 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.229] get_frame_bundle frame=222 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.264] get_frame_bundle frame=223 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.300] get_frame_bundle frame=224 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.335] get_frame_bundle frame=225 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.370] get_frame_bundle frame=226 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.404] get_frame_bundle frame=227 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.438] get_frame_bundle frame=228 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.473] get_frame_bundle frame=229 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.508] get_frame_bundle frame=230 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.543] get_frame_bundle frame=231 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.577] get_frame_bundle frame=232 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.612] get_frame_bundle frame=233 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.648] get_frame_bundle frame=234 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.683] get_frame_bundle frame=235 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.718] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.754] get_frame_bundle frame=1 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.788] get_frame_bundle frame=2 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.823] get_frame_bundle frame=3 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.857] get_frame_bundle frame=4 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.892] get_frame_bundle frame=5 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.927] get_frame_bundle frame=6 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.962] get_frame_bundle frame=7 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901980.997] get_frame_bundle frame=8 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.032] get_frame_bundle frame=9 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.067] get_frame_bundle frame=10 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.102] get_frame_bundle frame=11 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.137] get_frame_bundle frame=12 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.171] get_frame_bundle frame=13 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.206] get_frame_bundle frame=14 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.241] get_frame_bundle frame=15 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.275] get_frame_bundle frame=16 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.310] get_frame_bundle frame=17 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.344] get_frame_bundle frame=18 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.379] get_frame_bundle frame=19 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.414] get_frame_bundle frame=20 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.449] get_frame_bundle frame=21 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.484] get_frame_bundle frame=22 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.519] get_frame_bundle frame=23 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.554] get_frame_bundle frame=24 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.588] get_frame_bundle frame=25 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.623] get_frame_bundle frame=26 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.658] get_frame_bundle frame=27 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.693] get_frame_bundle frame=28 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.728] get_frame_bundle frame=29 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.763] get_frame_bundle frame=30 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.797] get_frame_bundle frame=31 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.833] get_frame_bundle frame=32 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.868] get_frame_bundle frame=33 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.902] get_frame_bundle frame=34 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.937] get_frame_bundle frame=35 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901981.971] get_frame_bundle frame=36 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.006] get_frame_bundle frame=37 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.041] get_frame_bundle frame=38 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.076] get_frame_bundle frame=39 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.110] get_frame_bundle frame=40 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.145] get_frame_bundle frame=41 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.180] get_frame_bundle frame=42 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.215] get_frame_bundle frame=43 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.250] get_frame_bundle frame=44 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.285] get_frame_bundle frame=45 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.320] get_frame_bundle frame=46 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.354] get_frame_bundle frame=47 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.388] get_frame_bundle frame=48 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.423] get_frame_bundle frame=49 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.458] get_frame_bundle frame=50 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.492] get_frame_bundle frame=51 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.527] get_frame_bundle frame=52 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.563] get_frame_bundle frame=53 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.598] get_frame_bundle frame=54 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.633] get_frame_bundle frame=55 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.668] get_frame_bundle frame=56 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.702] get_frame_bundle frame=57 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.737] get_frame_bundle frame=58 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.771] get_frame_bundle frame=59 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.806] get_frame_bundle frame=60 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.840] get_frame_bundle frame=61 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.875] get_frame_bundle frame=62 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.910] get_frame_bundle frame=63 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.945] get_frame_bundle frame=64 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901982.980] get_frame_bundle frame=65 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.015] get_frame_bundle frame=66 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.051] get_frame_bundle frame=67 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.085] get_frame_bundle frame=68 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.120] get_frame_bundle frame=69 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.154] get_frame_bundle frame=70 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.188] get_frame_bundle frame=71 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.222] get_frame_bundle frame=72 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.256] get_frame_bundle frame=73 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.291] get_frame_bundle frame=74 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.325] get_frame_bundle frame=75 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.359] get_frame_bundle frame=76 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.394] get_frame_bundle frame=77 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.428] get_frame_bundle frame=78 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.464] get_frame_bundle frame=79 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.498] get_frame_bundle frame=80 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.533] get_frame_bundle frame=81 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.568] get_frame_bundle frame=82 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.602] get_frame_bundle frame=83 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.636] get_frame_bundle frame=84 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.671] get_frame_bundle frame=85 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.705] get_frame_bundle frame=86 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.739] get_frame_bundle frame=87 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.774] get_frame_bundle frame=88 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.809] get_frame_bundle frame=89 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.843] get_frame_bundle frame=90 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.878] get_frame_bundle frame=91 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.914] get_frame_bundle frame=92 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.949] get_frame_bundle frame=93 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901983.984] get_frame_bundle frame=94 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.019] get_frame_bundle frame=95 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.054] get_frame_bundle frame=96 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.088] get_frame_bundle frame=97 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.122] get_frame_bundle frame=98 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.157] get_frame_bundle frame=99 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.192] get_frame_bundle frame=100 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.227] get_frame_bundle frame=101 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.262] get_frame_bundle frame=102 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.297] get_frame_bundle frame=103 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.331] get_frame_bundle frame=104 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.366] get_frame_bundle frame=105 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.401] get_frame_bundle frame=106 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.435] get_frame_bundle frame=107 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.470] get_frame_bundle frame=108 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.504] get_frame_bundle frame=109 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.539] get_frame_bundle frame=110 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.573] get_frame_bundle frame=111 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.608] get_frame_bundle frame=112 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.643] get_frame_bundle frame=113 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.677] get_frame_bundle frame=114 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.712] get_frame_bundle frame=115 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.747] get_frame_bundle frame=116 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.782] get_frame_bundle frame=117 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.817] get_frame_bundle frame=118 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.852] get_frame_bundle frame=119 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.887] get_frame_bundle frame=120 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.921] get_frame_bundle frame=121 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.956] get_frame_bundle frame=122 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901984.990] get_frame_bundle frame=123 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.024] get_frame_bundle frame=124 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.059] get_frame_bundle frame=125 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.094] get_frame_bundle frame=126 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.129] get_frame_bundle frame=127 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.163] get_frame_bundle frame=128 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.198] get_frame_bundle frame=129 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.234] get_frame_bundle frame=130 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.268] get_frame_bundle frame=131 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.303] get_frame_bundle frame=132 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.337] get_frame_bundle frame=133 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901985.371] get_frame_bundle frame=134 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901987.583] fill_region start frame=134 x=274 y=167 color=rgba(237,174,73,255) project_root=/Users/juninaba/Desktop/test
+[1773901987.906] fill_region read_metadata frame=134 elapsed_ms=322
+[1773901987.906] fill_region track=5058 candidate_frames=159
+[1773901992.571] fill_region frame=77 changed=yes materialize_ms=0 load_ms=69 fill_ms=18 save_ms=49 total_ms=138
+[1773901992.574] fill_region frame=78 changed=yes materialize_ms=0 load_ms=68 fill_ms=19 save_ms=49 total_ms=138
+[1773901992.574] fill_region frame=79 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=49 total_ms=137
+[1773901992.574] fill_region frame=80 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=49 total_ms=137
+[1773901992.574] fill_region frame=81 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=49 total_ms=137
+[1773901992.574] fill_region frame=82 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=49 total_ms=137
+[1773901992.574] fill_region frame=83 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=49 total_ms=137
+[1773901992.574] fill_region frame=84 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=49 total_ms=137
+[1773901992.574] fill_region frame=85 changed=yes materialize_ms=0 load_ms=67 fill_ms=18 save_ms=49 total_ms=137
+[1773901992.574] fill_region frame=86 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=50 total_ms=137
+[1773901992.574] fill_region frame=87 changed=yes materialize_ms=2 load_ms=237 fill_ms=101 save_ms=150 total_ms=491
+[1773901992.574] fill_region frame=88 changed=yes materialize_ms=0 load_ms=318 fill_ms=54 save_ms=171 total_ms=545
+[1773901992.574] fill_region frame=89 changed=yes materialize_ms=0 load_ms=274 fill_ms=66 save_ms=46 total_ms=387
+[1773901992.574] fill_region frame=90 changed=yes materialize_ms=0 load_ms=68 fill_ms=16 save_ms=42 total_ms=128
+[1773901992.574] fill_region frame=91 changed=yes materialize_ms=0 load_ms=68 fill_ms=15 save_ms=42 total_ms=127
+[1773901992.574] fill_region frame=92 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=49 total_ms=137
+[1773901992.574] fill_region frame=93 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=50 total_ms=138
+[1773901992.574] fill_region frame=94 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=49 total_ms=137
+[1773901992.574] fill_region frame=95 changed=yes materialize_ms=0 load_ms=68 fill_ms=18 save_ms=49 total_ms=136
+[1773901992.574] fill_region frame=96 changed=yes materialize_ms=0 load_ms=70 fill_ms=19 save_ms=50 total_ms=140
+[1773901992.574] fill_region frame=97 changed=yes materialize_ms=1 load_ms=233 fill_ms=136 save_ms=216 total_ms=587
+[1773901992.575] fill_region frame=98 changed=yes materialize_ms=0 load_ms=258 fill_ms=65 save_ms=160 total_ms=484
+[1773901992.575] fill_region frame=99 changed=yes materialize_ms=0 load_ms=281 fill_ms=114 save_ms=188 total_ms=584
+[1773901992.575] fill_region frame=100 changed=yes materialize_ms=0 load_ms=250 fill_ms=87 save_ms=132 total_ms=470
+[1773901992.575] fill_region frame=101 changed=yes materialize_ms=0 load_ms=260 fill_ms=16 save_ms=44 total_ms=323
+[1773901992.575] fill_region frame=102 changed=yes materialize_ms=0 load_ms=69 fill_ms=18 save_ms=49 total_ms=138
+[1773901992.575] fill_region frame=103 changed=yes materialize_ms=0 load_ms=68 fill_ms=16 save_ms=44 total_ms=130
+[1773901992.575] fill_region frame=104 changed=yes materialize_ms=0 load_ms=70 fill_ms=18 save_ms=58 total_ms=148
+[1773901992.575] fill_region frame=105 changed=yes materialize_ms=0 load_ms=75 fill_ms=18 save_ms=67 total_ms=162
+[1773901992.575] fill_region frame=106 changed=yes materialize_ms=0 load_ms=72 fill_ms=19 save_ms=54 total_ms=145
+[1773901992.575] fill_region frame=107 changed=yes materialize_ms=11 load_ms=312 fill_ms=46 save_ms=186 total_ms=557
+[1773901992.575] fill_region frame=108 changed=yes materialize_ms=0 load_ms=239 fill_ms=115 save_ms=184 total_ms=540
+[1773901992.575] fill_region frame=109 changed=yes materialize_ms=0 load_ms=261 fill_ms=49 save_ms=117 total_ms=429
+[1773901992.575] fill_region frame=110 changed=yes materialize_ms=0 load_ms=245 fill_ms=167 save_ms=172 total_ms=585
+[1773901992.575] fill_region frame=111 changed=yes materialize_ms=0 load_ms=230 fill_ms=87 save_ms=162 total_ms=480
+[1773901992.575] fill_region frame=112 changed=yes materialize_ms=1 load_ms=229 fill_ms=95 save_ms=202 total_ms=529
+[1773901992.575] fill_region frame=113 changed=yes materialize_ms=0 load_ms=94 fill_ms=18 save_ms=60 total_ms=174
+[1773901992.575] fill_region frame=114 changed=yes materialize_ms=0 load_ms=70 fill_ms=16 save_ms=56 total_ms=144
+[1773901992.575] fill_region frame=115 changed=yes materialize_ms=0 load_ms=73 fill_ms=17 save_ms=49 total_ms=140
+[1773901992.575] fill_region frame=116 changed=yes materialize_ms=0 load_ms=73 fill_ms=18 save_ms=48 total_ms=140
+[1773901992.575] fill_region frame=117 changed=yes materialize_ms=1 load_ms=279 fill_ms=82 save_ms=181 total_ms=545
+[1773901992.575] fill_region frame=118 changed=yes materialize_ms=0 load_ms=184 fill_ms=99 save_ms=174 total_ms=459
+[1773901992.575] fill_region frame=119 changed=yes materialize_ms=0 load_ms=269 fill_ms=127 save_ms=183 total_ms=581
+[1773901992.575] fill_region frame=120 changed=yes materialize_ms=0 load_ms=221 fill_ms=73 save_ms=172 total_ms=467
+[1773901992.575] fill_region frame=121 changed=yes materialize_ms=0 load_ms=197 fill_ms=79 save_ms=233 total_ms=509
+[1773901992.575] fill_region frame=122 changed=yes materialize_ms=0 load_ms=230 fill_ms=66 save_ms=174 total_ms=472
+[1773901992.576] fill_region frame=123 changed=yes materialize_ms=0 load_ms=249 fill_ms=71 save_ms=127 total_ms=447
+[1773901992.576] fill_region frame=124 changed=yes materialize_ms=0 load_ms=221 fill_ms=28 save_ms=66 total_ms=316
+[1773901992.576] fill_region frame=125 changed=yes materialize_ms=0 load_ms=71 fill_ms=18 save_ms=61 total_ms=152
+[1773901992.576] fill_region frame=126 changed=yes materialize_ms=0 load_ms=71 fill_ms=18 save_ms=53 total_ms=144
+[1773901992.576] fill_region frame=127 changed=yes materialize_ms=2 load_ms=266 fill_ms=130 save_ms=185 total_ms=584
+[1773901992.576] fill_region frame=128 changed=yes materialize_ms=0 load_ms=243 fill_ms=73 save_ms=165 total_ms=482
+[1773901992.576] fill_region frame=129 changed=yes materialize_ms=0 load_ms=292 fill_ms=73 save_ms=161 total_ms=528
+[1773901992.576] fill_region frame=130 changed=yes materialize_ms=0 load_ms=273 fill_ms=72 save_ms=202 total_ms=548
+[1773901992.576] fill_region frame=131 changed=yes materialize_ms=0 load_ms=289 fill_ms=59 save_ms=133 total_ms=482
+[1773901992.576] fill_region frame=132 changed=yes materialize_ms=0 load_ms=210 fill_ms=77 save_ms=212 total_ms=501
+[1773901992.576] fill_region frame=133 changed=yes materialize_ms=1 load_ms=186 fill_ms=48 save_ms=150 total_ms=388
+[1773901992.576] fill_region frame=134 changed=yes materialize_ms=0 load_ms=175 fill_ms=62 save_ms=126 total_ms=365
+[1773901992.576] fill_region frame=135 changed=yes materialize_ms=0 load_ms=221 fill_ms=18 save_ms=60 total_ms=301
+[1773901992.576] fill_region frame=136 changed=yes materialize_ms=0 load_ms=71 fill_ms=18 save_ms=72 total_ms=163
+[1773901992.576] fill_region frame=137 changed=yes materialize_ms=1 load_ms=303 fill_ms=94 save_ms=196 total_ms=595
+[1773901992.576] fill_region frame=138 changed=yes materialize_ms=0 load_ms=296 fill_ms=39 save_ms=195 total_ms=531
+[1773901992.576] fill_region frame=139 changed=yes materialize_ms=0 load_ms=343 fill_ms=85 save_ms=182 total_ms=612
+[1773901992.576] fill_region frame=140 changed=yes materialize_ms=0 load_ms=216 fill_ms=98 save_ms=143 total_ms=458
+[1773901992.576] fill_region frame=141 changed=yes materialize_ms=0 load_ms=255 fill_ms=93 save_ms=171 total_ms=521
+[1773901992.576] fill_region frame=142 changed=yes materialize_ms=0 load_ms=292 fill_ms=63 save_ms=142 total_ms=498
+[1773901992.576] fill_region frame=143 changed=yes materialize_ms=0 load_ms=227 fill_ms=66 save_ms=137 total_ms=432
+[1773901992.576] fill_region frame=144 changed=yes materialize_ms=0 load_ms=210 fill_ms=72 save_ms=149 total_ms=432
+[1773901992.576] fill_region frame=145 changed=yes materialize_ms=1 load_ms=134 fill_ms=27 save_ms=132 total_ms=295
+[1773901992.576] fill_region frame=146 changed=yes materialize_ms=0 load_ms=71 fill_ms=18 save_ms=77 total_ms=168
+[1773901992.576] fill_region frame=147 changed=yes materialize_ms=2 load_ms=245 fill_ms=126 save_ms=201 total_ms=576
+[1773901992.577] fill_region frame=148 changed=yes materialize_ms=1 load_ms=245 fill_ms=71 save_ms=193 total_ms=512
+[1773901992.577] fill_region frame=149 changed=yes materialize_ms=0 load_ms=243 fill_ms=57 save_ms=236 total_ms=538
+[1773901992.577] fill_region frame=150 changed=yes materialize_ms=0 load_ms=243 fill_ms=109 save_ms=176 total_ms=529
+[1773901992.577] fill_region frame=151 changed=yes materialize_ms=0 load_ms=301 fill_ms=71 save_ms=168 total_ms=541
+[1773901992.577] fill_region frame=152 changed=yes materialize_ms=0 load_ms=198 fill_ms=50 save_ms=178 total_ms=427
+[1773901992.577] fill_region frame=153 changed=yes materialize_ms=0 load_ms=214 fill_ms=83 save_ms=146 total_ms=444
+[1773901992.577] fill_region frame=154 changed=yes materialize_ms=0 load_ms=193 fill_ms=53 save_ms=141 total_ms=388
+[1773901992.577] fill_region frame=155 changed=yes materialize_ms=0 load_ms=195 fill_ms=35 save_ms=188 total_ms=419
+[1773901992.577] fill_region frame=156 changed=yes materialize_ms=0 load_ms=137 fill_ms=30 save_ms=62 total_ms=231
+[1773901992.577] fill_region frame=157 changed=yes materialize_ms=22 load_ms=333 fill_ms=114 save_ms=185 total_ms=655
+[1773901992.577] fill_region frame=158 changed=yes materialize_ms=0 load_ms=298 fill_ms=104 save_ms=202 total_ms=605
+[1773901992.577] fill_region frame=159 changed=yes materialize_ms=0 load_ms=260 fill_ms=58 save_ms=272 total_ms=592
+[1773901992.577] fill_region frame=160 changed=yes materialize_ms=0 load_ms=239 fill_ms=44 save_ms=216 total_ms=500
+[1773901992.577] fill_region frame=161 changed=yes materialize_ms=0 load_ms=259 fill_ms=60 save_ms=243 total_ms=563
+[1773901992.577] fill_region frame=162 changed=yes materialize_ms=0 load_ms=194 fill_ms=52 save_ms=200 total_ms=448
+[1773901992.577] fill_region frame=163 changed=yes materialize_ms=0 load_ms=163 fill_ms=78 save_ms=148 total_ms=390
+[1773901992.577] fill_region frame=164 changed=yes materialize_ms=0 load_ms=145 fill_ms=53 save_ms=110 total_ms=309
+[1773901992.577] fill_region frame=165 changed=yes materialize_ms=0 load_ms=157 fill_ms=53 save_ms=150 total_ms=360
+[1773901992.577] fill_region frame=166 changed=yes materialize_ms=0 load_ms=99 fill_ms=27 save_ms=75 total_ms=203
+[1773901992.577] fill_region frame=167 changed=yes materialize_ms=1 load_ms=293 fill_ms=108 save_ms=220 total_ms=624
+[1773901992.577] fill_region frame=168 changed=yes materialize_ms=5 load_ms=301 fill_ms=95 save_ms=175 total_ms=578
+[1773901992.577] fill_region frame=169 changed=yes materialize_ms=0 load_ms=229 fill_ms=125 save_ms=150 total_ms=505
+[1773901992.577] fill_region frame=170 changed=yes materialize_ms=0 load_ms=258 fill_ms=64 save_ms=181 total_ms=505
+[1773901992.577] fill_region frame=171 changed=yes materialize_ms=0 load_ms=216 fill_ms=76 save_ms=157 total_ms=450
+[1773901992.577] fill_region frame=172 changed=yes materialize_ms=0 load_ms=194 fill_ms=91 save_ms=179 total_ms=465
+[1773901992.577] fill_region frame=173 changed=yes materialize_ms=3 load_ms=165 fill_ms=91 save_ms=175 total_ms=435
+[1773901992.578] fill_region frame=174 changed=yes materialize_ms=0 load_ms=186 fill_ms=55 save_ms=139 total_ms=382
+[1773901992.578] fill_region frame=175 changed=yes materialize_ms=0 load_ms=181 fill_ms=63 save_ms=121 total_ms=366
+[1773901992.578] fill_region frame=176 changed=yes materialize_ms=0 load_ms=108 fill_ms=40 save_ms=112 total_ms=261
+[1773901992.578] fill_region frame=177 changed=yes materialize_ms=21 load_ms=221 fill_ms=103 save_ms=188 total_ms=535
+[1773901992.578] fill_region frame=178 changed=yes materialize_ms=0 load_ms=215 fill_ms=78 save_ms=176 total_ms=470
+[1773901992.578] fill_region frame=179 changed=yes materialize_ms=0 load_ms=235 fill_ms=63 save_ms=188 total_ms=487
+[1773901992.578] fill_region frame=180 changed=yes materialize_ms=0 load_ms=290 fill_ms=63 save_ms=170 total_ms=524
+[1773901992.578] fill_region frame=181 changed=yes materialize_ms=0 load_ms=235 fill_ms=128 save_ms=102 total_ms=466
+[1773901992.578] fill_region frame=182 changed=yes materialize_ms=0 load_ms=215 fill_ms=65 save_ms=225 total_ms=506
+[1773901992.578] fill_region frame=183 changed=yes materialize_ms=0 load_ms=139 fill_ms=114 save_ms=164 total_ms=418
+[1773901992.578] fill_region frame=184 changed=yes materialize_ms=0 load_ms=148 fill_ms=45 save_ms=173 total_ms=368
+[1773901992.578] fill_region frame=185 changed=yes materialize_ms=0 load_ms=200 fill_ms=55 save_ms=127 total_ms=384
+[1773901992.578] fill_region frame=186 changed=yes materialize_ms=0 load_ms=132 fill_ms=31 save_ms=109 total_ms=274
+[1773901992.578] fill_region frame=187 changed=yes materialize_ms=21 load_ms=328 fill_ms=46 save_ms=224 total_ms=620
+[1773901992.578] fill_region frame=188 changed=yes materialize_ms=0 load_ms=296 fill_ms=59 save_ms=232 total_ms=589
+[1773901992.578] fill_region frame=189 changed=yes materialize_ms=0 load_ms=243 fill_ms=58 save_ms=201 total_ms=504
+[1773901992.578] fill_region frame=190 changed=yes materialize_ms=0 load_ms=218 fill_ms=102 save_ms=163 total_ms=484
+[1773901992.578] fill_region frame=191 changed=yes materialize_ms=0 load_ms=295 fill_ms=48 save_ms=172 total_ms=516
+[1773901992.578] fill_region frame=192 changed=yes materialize_ms=0 load_ms=313 fill_ms=58 save_ms=130 total_ms=502
+[1773901992.578] fill_region frame=193 changed=yes materialize_ms=0 load_ms=241 fill_ms=55 save_ms=140 total_ms=437
+[1773901992.578] fill_region frame=194 changed=yes materialize_ms=1 load_ms=159 fill_ms=80 save_ms=145 total_ms=386
+[1773901992.578] fill_region frame=195 changed=yes materialize_ms=0 load_ms=142 fill_ms=39 save_ms=269 total_ms=451
+[1773901992.578] fill_region frame=196 changed=yes materialize_ms=1 load_ms=90 fill_ms=18 save_ms=61 total_ms=171
+[1773901992.578] fill_region frame=197 changed=yes materialize_ms=15 load_ms=257 fill_ms=75 save_ms=161 total_ms=509
+[1773901992.578] fill_region frame=198 changed=yes materialize_ms=0 load_ms=282 fill_ms=63 save_ms=248 total_ms=595
+[1773901992.578] fill_region frame=199 changed=yes materialize_ms=1 load_ms=247 fill_ms=67 save_ms=148 total_ms=464
+[1773901992.579] fill_region frame=200 changed=yes materialize_ms=0 load_ms=248 fill_ms=81 save_ms=173 total_ms=503
+[1773901992.579] fill_region frame=201 changed=yes materialize_ms=1 load_ms=308 fill_ms=57 save_ms=157 total_ms=525
+[1773901992.579] fill_region frame=202 changed=yes materialize_ms=0 load_ms=228 fill_ms=98 save_ms=203 total_ms=530
+[1773901992.579] fill_region frame=203 changed=yes materialize_ms=0 load_ms=219 fill_ms=56 save_ms=146 total_ms=423
+[1773901992.579] fill_region frame=204 changed=yes materialize_ms=0 load_ms=218 fill_ms=74 save_ms=104 total_ms=399
+[1773901992.579] fill_region frame=205 changed=yes materialize_ms=0 load_ms=193 fill_ms=37 save_ms=120 total_ms=352
+[1773901992.579] fill_region frame=206 changed=yes materialize_ms=0 load_ms=99 fill_ms=41 save_ms=126 total_ms=267
+[1773901992.579] fill_region frame=207 changed=yes materialize_ms=16 load_ms=292 fill_ms=99 save_ms=198 total_ms=607
+[1773901992.579] fill_region frame=208 changed=yes materialize_ms=0 load_ms=245 fill_ms=86 save_ms=216 total_ms=548
+[1773901992.579] fill_region frame=209 changed=yes materialize_ms=0 load_ms=253 fill_ms=75 save_ms=200 total_ms=529
+[1773901992.579] fill_region frame=210 changed=yes materialize_ms=0 load_ms=243 fill_ms=62 save_ms=142 total_ms=449
+[1773901992.579] fill_region frame=211 changed=yes materialize_ms=0 load_ms=252 fill_ms=101 save_ms=200 total_ms=554
+[1773901992.579] fill_region frame=212 changed=yes materialize_ms=1 load_ms=263 fill_ms=43 save_ms=144 total_ms=452
+[1773901992.579] fill_region frame=213 changed=yes materialize_ms=1 load_ms=219 fill_ms=44 save_ms=157 total_ms=422
+[1773901992.579] fill_region frame=214 changed=yes materialize_ms=0 load_ms=221 fill_ms=55 save_ms=119 total_ms=397
+[1773901992.579] fill_region frame=215 changed=yes materialize_ms=1 load_ms=170 fill_ms=62 save_ms=165 total_ms=399
+[1773901992.579] fill_region frame=216 changed=yes materialize_ms=0 load_ms=89 fill_ms=21 save_ms=94 total_ms=206
+[1773901992.579] fill_region frame=217 changed=yes materialize_ms=5 load_ms=210 fill_ms=64 save_ms=192 total_ms=473
+[1773901992.579] fill_region frame=218 changed=yes materialize_ms=1 load_ms=202 fill_ms=68 save_ms=242 total_ms=514
+[1773901992.579] fill_region frame=219 changed=yes materialize_ms=17 load_ms=255 fill_ms=71 save_ms=175 total_ms=520
+[1773901992.579] fill_region frame=220 changed=yes materialize_ms=0 load_ms=217 fill_ms=100 save_ms=156 total_ms=475
+[1773901992.579] fill_region frame=221 changed=yes materialize_ms=1 load_ms=331 fill_ms=100 save_ms=139 total_ms=572
+[1773901992.579] fill_region frame=222 changed=yes materialize_ms=0 load_ms=260 fill_ms=125 save_ms=187 total_ms=574
+[1773901992.579] fill_region frame=223 changed=yes materialize_ms=3 load_ms=222 fill_ms=55 save_ms=167 total_ms=449
+[1773901992.579] fill_region frame=224 changed=yes materialize_ms=0 load_ms=241 fill_ms=69 save_ms=127 total_ms=438
+[1773901992.579] fill_region frame=225 changed=yes materialize_ms=0 load_ms=180 fill_ms=61 save_ms=155 total_ms=397
+[1773901992.579] fill_region frame=226 changed=yes materialize_ms=0 load_ms=127 fill_ms=22 save_ms=69 total_ms=219
+[1773901992.580] fill_region frame=227 changed=yes materialize_ms=11 load_ms=241 fill_ms=100 save_ms=183 total_ms=536
+[1773901992.580] fill_region frame=228 changed=yes materialize_ms=0 load_ms=288 fill_ms=107 save_ms=174 total_ms=571
+[1773901992.580] fill_region frame=229 changed=yes materialize_ms=0 load_ms=301 fill_ms=70 save_ms=181 total_ms=554
+[1773901992.580] fill_region frame=230 changed=yes materialize_ms=0 load_ms=212 fill_ms=69 save_ms=178 total_ms=460
+[1773901992.580] fill_region frame=231 changed=yes materialize_ms=0 load_ms=279 fill_ms=80 save_ms=171 total_ms=531
+[1773901992.580] fill_region frame=232 changed=yes materialize_ms=0 load_ms=156 fill_ms=129 save_ms=182 total_ms=468
+[1773901992.580] fill_region frame=233 changed=yes materialize_ms=0 load_ms=164 fill_ms=62 save_ms=134 total_ms=361
+[1773901992.580] fill_region frame=234 changed=yes materialize_ms=0 load_ms=169 fill_ms=61 save_ms=156 total_ms=388
+[1773901992.580] fill_region frame=235 changed=yes materialize_ms=1 load_ms=187 fill_ms=70 save_ms=122 total_ms=382
+[1773901992.580] fill_region complete frame=134 track_id=5058 updated_frames=159 workers=16 elapsed_ms=4997
+[1773901994.206] get_frame_bundle frame=135 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.240] get_frame_bundle frame=136 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.276] get_frame_bundle frame=137 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901994.309] get_frame_bundle frame=138 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.344] get_frame_bundle frame=139 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.379] get_frame_bundle frame=140 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.414] get_frame_bundle frame=141 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.449] get_frame_bundle frame=142 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.486] get_frame_bundle frame=143 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901994.519] get_frame_bundle frame=144 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.553] get_frame_bundle frame=145 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.588] get_frame_bundle frame=146 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.622] get_frame_bundle frame=147 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.657] get_frame_bundle frame=148 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.692] get_frame_bundle frame=149 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.727] get_frame_bundle frame=150 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.761] get_frame_bundle frame=151 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.796] get_frame_bundle frame=152 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.831] get_frame_bundle frame=153 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.867] get_frame_bundle frame=154 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.902] get_frame_bundle frame=155 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.937] get_frame_bundle frame=156 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901994.973] get_frame_bundle frame=157 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.017] get_frame_bundle frame=158 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.053] get_frame_bundle frame=159 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.087] get_frame_bundle frame=160 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.121] get_frame_bundle frame=161 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.161] get_frame_bundle frame=162 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.195] get_frame_bundle frame=163 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.230] get_frame_bundle frame=164 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.265] get_frame_bundle frame=165 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.299] get_frame_bundle frame=166 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.335] get_frame_bundle frame=167 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.372] get_frame_bundle frame=168 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.411] get_frame_bundle frame=169 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.445] get_frame_bundle frame=170 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.481] get_frame_bundle frame=171 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.515] get_frame_bundle frame=172 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.553] get_frame_bundle frame=173 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.589] get_frame_bundle frame=174 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.623] get_frame_bundle frame=175 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.658] get_frame_bundle frame=176 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.695] get_frame_bundle frame=177 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.744] get_frame_bundle frame=178 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.780] get_frame_bundle frame=179 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.815] get_frame_bundle frame=180 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.850] get_frame_bundle frame=181 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.885] get_frame_bundle frame=182 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.920] get_frame_bundle frame=183 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.955] get_frame_bundle frame=184 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901995.989] get_frame_bundle frame=185 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.024] get_frame_bundle frame=186 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.059] get_frame_bundle frame=187 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.094] get_frame_bundle frame=188 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.129] get_frame_bundle frame=189 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.172] get_frame_bundle frame=190 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.207] get_frame_bundle frame=191 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.242] get_frame_bundle frame=192 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.277] get_frame_bundle frame=193 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.313] get_frame_bundle frame=194 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.347] get_frame_bundle frame=195 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.383] get_frame_bundle frame=196 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.418] get_frame_bundle frame=197 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.453] get_frame_bundle frame=198 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.492] get_frame_bundle frame=199 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.527] get_frame_bundle frame=200 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.562] get_frame_bundle frame=201 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.598] get_frame_bundle frame=202 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.633] get_frame_bundle frame=203 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.686] get_frame_bundle frame=204 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901996.721] get_frame_bundle frame=205 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.756] get_frame_bundle frame=206 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.791] get_frame_bundle frame=207 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.825] get_frame_bundle frame=208 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.861] get_frame_bundle frame=209 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.896] get_frame_bundle frame=210 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.931] get_frame_bundle frame=211 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901996.966] get_frame_bundle frame=212 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.001] get_frame_bundle frame=213 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.036] get_frame_bundle frame=214 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.070] get_frame_bundle frame=215 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.106] get_frame_bundle frame=216 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901997.145] get_frame_bundle frame=217 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.180] get_frame_bundle frame=218 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.215] get_frame_bundle frame=219 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.250] get_frame_bundle frame=220 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.285] get_frame_bundle frame=221 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.321] get_frame_bundle frame=222 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.355] get_frame_bundle frame=223 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.390] get_frame_bundle frame=224 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.425] get_frame_bundle frame=225 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.460] get_frame_bundle frame=226 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.495] get_frame_bundle frame=227 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.531] get_frame_bundle frame=228 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.566] get_frame_bundle frame=229 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.601] get_frame_bundle frame=230 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.635] get_frame_bundle frame=231 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.670] get_frame_bundle frame=232 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.704] get_frame_bundle frame=233 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.741] get_frame_bundle frame=234 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.776] get_frame_bundle frame=235 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.811] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.846] get_frame_bundle frame=1 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.881] get_frame_bundle frame=2 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.916] get_frame_bundle frame=3 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.951] get_frame_bundle frame=4 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901997.986] get_frame_bundle frame=5 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.021] get_frame_bundle frame=6 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.055] get_frame_bundle frame=7 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.090] get_frame_bundle frame=8 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.125] get_frame_bundle frame=9 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.159] get_frame_bundle frame=10 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.194] get_frame_bundle frame=11 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.229] get_frame_bundle frame=12 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.265] get_frame_bundle frame=13 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.299] get_frame_bundle frame=14 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.334] get_frame_bundle frame=15 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.370] get_frame_bundle frame=16 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.404] get_frame_bundle frame=17 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.438] get_frame_bundle frame=18 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.473] get_frame_bundle frame=19 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.508] get_frame_bundle frame=20 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.543] get_frame_bundle frame=21 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.579] get_frame_bundle frame=22 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.614] get_frame_bundle frame=23 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.648] get_frame_bundle frame=24 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.683] get_frame_bundle frame=25 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.719] get_frame_bundle frame=26 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.754] get_frame_bundle frame=27 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.788] get_frame_bundle frame=28 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.823] get_frame_bundle frame=29 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.858] get_frame_bundle frame=30 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.893] get_frame_bundle frame=31 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.929] get_frame_bundle frame=32 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.964] get_frame_bundle frame=33 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901998.999] get_frame_bundle frame=34 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.035] get_frame_bundle frame=35 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.070] get_frame_bundle frame=36 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.107] get_frame_bundle frame=37 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.144] get_frame_bundle frame=38 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.182] get_frame_bundle frame=39 project_root=/Users/juninaba/Desktop/test elapsed_ms=3
+[1773901999.215] get_frame_bundle frame=40 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.250] get_frame_bundle frame=41 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.286] get_frame_bundle frame=42 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.320] get_frame_bundle frame=43 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.355] get_frame_bundle frame=44 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.390] get_frame_bundle frame=45 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901999.430] get_frame_bundle frame=46 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.465] get_frame_bundle frame=47 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.500] get_frame_bundle frame=48 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.536] get_frame_bundle frame=49 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.570] get_frame_bundle frame=50 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.605] get_frame_bundle frame=51 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.658] get_frame_bundle frame=52 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.695] get_frame_bundle frame=53 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.741] get_frame_bundle frame=54 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773901999.774] get_frame_bundle frame=55 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.809] get_frame_bundle frame=56 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.844] get_frame_bundle frame=57 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.878] get_frame_bundle frame=58 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.914] get_frame_bundle frame=59 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.949] get_frame_bundle frame=60 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773901999.984] get_frame_bundle frame=61 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.018] get_frame_bundle frame=62 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.055] get_frame_bundle frame=63 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.089] get_frame_bundle frame=64 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.124] get_frame_bundle frame=65 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.158] get_frame_bundle frame=66 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.193] get_frame_bundle frame=67 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.229] get_frame_bundle frame=68 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.264] get_frame_bundle frame=69 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.299] get_frame_bundle frame=70 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.334] get_frame_bundle frame=71 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.369] get_frame_bundle frame=72 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.404] get_frame_bundle frame=73 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.438] get_frame_bundle frame=74 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.473] get_frame_bundle frame=75 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.508] get_frame_bundle frame=76 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.543] get_frame_bundle frame=77 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.577] get_frame_bundle frame=78 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.612] get_frame_bundle frame=79 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.648] get_frame_bundle frame=80 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.683] get_frame_bundle frame=81 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.719] get_frame_bundle frame=82 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.754] get_frame_bundle frame=83 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.788] get_frame_bundle frame=84 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.823] get_frame_bundle frame=85 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.858] get_frame_bundle frame=86 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.893] get_frame_bundle frame=87 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.927] get_frame_bundle frame=88 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.964] get_frame_bundle frame=89 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902000.998] get_frame_bundle frame=90 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.033] get_frame_bundle frame=91 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.068] get_frame_bundle frame=92 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.105] get_frame_bundle frame=93 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.139] get_frame_bundle frame=94 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.174] get_frame_bundle frame=95 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.209] get_frame_bundle frame=96 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.244] get_frame_bundle frame=97 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.279] get_frame_bundle frame=98 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.314] get_frame_bundle frame=99 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.350] get_frame_bundle frame=100 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.385] get_frame_bundle frame=101 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.420] get_frame_bundle frame=102 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.454] get_frame_bundle frame=103 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.489] get_frame_bundle frame=104 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.524] get_frame_bundle frame=105 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.559] get_frame_bundle frame=106 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.593] get_frame_bundle frame=107 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.629] get_frame_bundle frame=108 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.664] get_frame_bundle frame=109 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.699] get_frame_bundle frame=110 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.734] get_frame_bundle frame=111 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.769] get_frame_bundle frame=112 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.808] get_frame_bundle frame=113 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.843] get_frame_bundle frame=114 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.877] get_frame_bundle frame=115 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.912] get_frame_bundle frame=116 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.946] get_frame_bundle frame=117 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902001.982] get_frame_bundle frame=118 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.016] get_frame_bundle frame=119 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.051] get_frame_bundle frame=120 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.086] get_frame_bundle frame=121 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.120] get_frame_bundle frame=122 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.154] get_frame_bundle frame=123 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.188] get_frame_bundle frame=124 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.223] get_frame_bundle frame=125 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.258] get_frame_bundle frame=126 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.293] get_frame_bundle frame=127 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.327] get_frame_bundle frame=128 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.362] get_frame_bundle frame=129 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.397] get_frame_bundle frame=130 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.433] get_frame_bundle frame=131 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.468] get_frame_bundle frame=132 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.502] get_frame_bundle frame=133 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.537] get_frame_bundle frame=134 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.571] get_frame_bundle frame=135 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.606] get_frame_bundle frame=136 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.640] get_frame_bundle frame=137 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.675] get_frame_bundle frame=138 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.710] get_frame_bundle frame=139 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.745] get_frame_bundle frame=140 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.781] get_frame_bundle frame=141 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.816] get_frame_bundle frame=142 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.850] get_frame_bundle frame=143 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.885] get_frame_bundle frame=144 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.920] get_frame_bundle frame=145 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.954] get_frame_bundle frame=146 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902002.988] get_frame_bundle frame=147 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902003.023] get_frame_bundle frame=148 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902003.057] get_frame_bundle frame=149 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902003.092] get_frame_bundle frame=150 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902003.127] get_frame_bundle frame=151 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902003.162] get_frame_bundle frame=152 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902003.197] get_frame_bundle frame=153 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902003.234] get_frame_bundle frame=154 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902003.268] get_frame_bundle frame=155 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902003.304] get_frame_bundle frame=156 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902003.338] get_frame_bundle frame=157 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902004.989] get_frame_bundle frame=159 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902005.888] get_frame_bundle frame=163 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902009.435] fill_region start frame=163 x=300 y=326 color=rgba(209,73,91,255) project_root=/Users/juninaba/Desktop/test
+[1773902009.778] fill_region read_metadata frame=163 elapsed_ms=342
+[1773902009.778] fill_region track=5058 candidate_frames=159
+[1773902011.972] fill_region frame=77 changed=yes materialize_ms=1 load_ms=0 fill_ms=18 save_ms=49 total_ms=70
+[1773902011.972] fill_region frame=78 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902011.972] fill_region frame=79 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.972] fill_region frame=80 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.972] fill_region frame=81 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.972] fill_region frame=82 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=51 total_ms=71
+[1773902011.972] fill_region frame=83 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.972] fill_region frame=84 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.973] fill_region frame=85 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=51 total_ms=71
+[1773902011.973] fill_region frame=86 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.973] fill_region frame=87 changed=yes materialize_ms=1 load_ms=1 fill_ms=39 save_ms=162 total_ms=203
+[1773902011.973] fill_region frame=88 changed=yes materialize_ms=0 load_ms=0 fill_ms=74 save_ms=137 total_ms=212
+[1773902011.973] fill_region frame=89 changed=yes materialize_ms=0 load_ms=0 fill_ms=65 save_ms=217 total_ms=284
+[1773902011.973] fill_region frame=90 changed=yes materialize_ms=0 load_ms=0 fill_ms=16 save_ms=44 total_ms=61
+[1773902011.973] fill_region frame=91 changed=yes materialize_ms=0 load_ms=0 fill_ms=15 save_ms=43 total_ms=60
+[1773902011.973] fill_region frame=92 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.973] fill_region frame=93 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.973] fill_region frame=94 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=51 total_ms=71
+[1773902011.973] fill_region frame=95 changed=yes materialize_ms=0 load_ms=0 fill_ms=19 save_ms=50 total_ms=70
+[1773902011.973] fill_region frame=96 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.973] fill_region frame=97 changed=yes materialize_ms=1 load_ms=9 fill_ms=68 save_ms=214 total_ms=294
+[1773902011.973] fill_region frame=98 changed=yes materialize_ms=0 load_ms=0 fill_ms=66 save_ms=204 total_ms=272
+[1773902011.973] fill_region frame=99 changed=yes materialize_ms=1 load_ms=4 fill_ms=58 save_ms=152 total_ms=217
+[1773902011.973] fill_region frame=100 changed=yes materialize_ms=0 load_ms=0 fill_ms=30 save_ms=177 total_ms=208
+[1773902011.973] fill_region frame=101 changed=yes materialize_ms=0 load_ms=0 fill_ms=73 save_ms=123 total_ms=198
+[1773902011.973] fill_region frame=102 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.973] fill_region frame=103 changed=yes materialize_ms=0 load_ms=0 fill_ms=16 save_ms=44 total_ms=62
+[1773902011.973] fill_region frame=104 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902011.973] fill_region frame=105 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.973] fill_region frame=106 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=51 total_ms=70
+[1773902011.974] fill_region frame=107 changed=yes materialize_ms=1 load_ms=3 fill_ms=114 save_ms=220 total_ms=339
+[1773902011.974] fill_region frame=108 changed=yes materialize_ms=0 load_ms=0 fill_ms=70 save_ms=235 total_ms=307
+[1773902011.974] fill_region frame=109 changed=yes materialize_ms=0 load_ms=0 fill_ms=39 save_ms=199 total_ms=239
+[1773902011.974] fill_region frame=110 changed=yes materialize_ms=0 load_ms=0 fill_ms=105 save_ms=154 total_ms=260
+[1773902011.974] fill_region frame=111 changed=yes materialize_ms=0 load_ms=0 fill_ms=80 save_ms=143 total_ms=225
+[1773902011.974] fill_region frame=112 changed=yes materialize_ms=0 load_ms=0 fill_ms=57 save_ms=115 total_ms=173
+[1773902011.974] fill_region frame=113 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=52 total_ms=71
+[1773902011.974] fill_region frame=114 changed=yes materialize_ms=0 load_ms=0 fill_ms=16 save_ms=46 total_ms=63
+[1773902011.974] fill_region frame=115 changed=yes materialize_ms=0 load_ms=0 fill_ms=17 save_ms=48 total_ms=67
+[1773902011.974] fill_region frame=116 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=68
+[1773902011.974] fill_region frame=117 changed=yes materialize_ms=2 load_ms=11 fill_ms=59 save_ms=175 total_ms=247
+[1773902011.974] fill_region frame=118 changed=yes materialize_ms=0 load_ms=0 fill_ms=63 save_ms=138 total_ms=202
+[1773902011.974] fill_region frame=119 changed=yes materialize_ms=0 load_ms=0 fill_ms=51 save_ms=198 total_ms=250
+[1773902011.974] fill_region frame=120 changed=yes materialize_ms=0 load_ms=0 fill_ms=108 save_ms=147 total_ms=255
+[1773902011.974] fill_region frame=121 changed=yes materialize_ms=0 load_ms=0 fill_ms=91 save_ms=140 total_ms=232
+[1773902011.974] fill_region frame=122 changed=yes materialize_ms=0 load_ms=0 fill_ms=37 save_ms=158 total_ms=197
+[1773902011.974] fill_region frame=123 changed=yes materialize_ms=0 load_ms=0 fill_ms=69 save_ms=174 total_ms=244
+[1773902011.974] fill_region frame=124 changed=yes materialize_ms=0 load_ms=0 fill_ms=66 save_ms=134 total_ms=201
+[1773902011.974] fill_region frame=125 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=70
+[1773902011.974] fill_region frame=126 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=69
+[1773902011.974] fill_region frame=127 changed=yes materialize_ms=1 load_ms=2 fill_ms=64 save_ms=146 total_ms=215
+[1773902011.975] fill_region frame=128 changed=yes materialize_ms=0 load_ms=0 fill_ms=74 save_ms=211 total_ms=286
+[1773902011.975] fill_region frame=129 changed=yes materialize_ms=0 load_ms=0 fill_ms=48 save_ms=134 total_ms=183
+[1773902011.975] fill_region frame=130 changed=yes materialize_ms=0 load_ms=1 fill_ms=115 save_ms=144 total_ms=261
+[1773902011.975] fill_region frame=131 changed=yes materialize_ms=0 load_ms=0 fill_ms=89 save_ms=123 total_ms=214
+[1773902011.975] fill_region frame=132 changed=yes materialize_ms=0 load_ms=0 fill_ms=54 save_ms=120 total_ms=175
+[1773902011.975] fill_region frame=133 changed=yes materialize_ms=0 load_ms=0 fill_ms=104 save_ms=147 total_ms=252
+[1773902011.975] fill_region frame=134 changed=yes materialize_ms=0 load_ms=0 fill_ms=63 save_ms=171 total_ms=236
+[1773902011.975] fill_region frame=135 changed=yes materialize_ms=0 load_ms=0 fill_ms=35 save_ms=125 total_ms=162
+[1773902011.975] fill_region frame=136 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902011.975] fill_region frame=137 changed=yes materialize_ms=1 load_ms=0 fill_ms=46 save_ms=179 total_ms=228
+[1773902011.975] fill_region frame=138 changed=yes materialize_ms=0 load_ms=0 fill_ms=124 save_ms=208 total_ms=334
+[1773902011.975] fill_region frame=139 changed=yes materialize_ms=0 load_ms=0 fill_ms=45 save_ms=137 total_ms=184
+[1773902011.975] fill_region frame=140 changed=yes materialize_ms=0 load_ms=0 fill_ms=60 save_ms=179 total_ms=240
+[1773902011.975] fill_region frame=141 changed=yes materialize_ms=0 load_ms=0 fill_ms=52 save_ms=261 total_ms=314
+[1773902011.975] fill_region frame=142 changed=yes materialize_ms=0 load_ms=0 fill_ms=51 save_ms=154 total_ms=206
+[1773902011.975] fill_region frame=143 changed=yes materialize_ms=0 load_ms=0 fill_ms=40 save_ms=161 total_ms=203
+[1773902011.975] fill_region frame=144 changed=yes materialize_ms=0 load_ms=21 fill_ms=61 save_ms=154 total_ms=237
+[1773902011.975] fill_region frame=145 changed=yes materialize_ms=0 load_ms=0 fill_ms=63 save_ms=82 total_ms=147
+[1773902011.975] fill_region frame=146 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=51 total_ms=70
+[1773902011.975] fill_region frame=147 changed=yes materialize_ms=1 load_ms=13 fill_ms=61 save_ms=128 total_ms=204
+[1773902011.975] fill_region frame=148 changed=yes materialize_ms=0 load_ms=0 fill_ms=55 save_ms=172 total_ms=228
+[1773902011.975] fill_region frame=149 changed=yes materialize_ms=0 load_ms=0 fill_ms=68 save_ms=131 total_ms=201
+[1773902011.976] fill_region frame=150 changed=yes materialize_ms=0 load_ms=5 fill_ms=74 save_ms=199 total_ms=279
+[1773902011.976] fill_region frame=151 changed=yes materialize_ms=0 load_ms=0 fill_ms=50 save_ms=201 total_ms=252
+[1773902011.976] fill_region frame=152 changed=yes materialize_ms=0 load_ms=0 fill_ms=65 save_ms=173 total_ms=239
+[1773902011.976] fill_region frame=153 changed=yes materialize_ms=0 load_ms=0 fill_ms=34 save_ms=158 total_ms=193
+[1773902011.976] fill_region frame=154 changed=yes materialize_ms=0 load_ms=0 fill_ms=45 save_ms=111 total_ms=157
+[1773902011.976] fill_region frame=155 changed=yes materialize_ms=0 load_ms=0 fill_ms=32 save_ms=162 total_ms=195
+[1773902011.976] fill_region frame=156 changed=yes materialize_ms=0 load_ms=0 fill_ms=48 save_ms=106 total_ms=155
+[1773902011.976] fill_region frame=157 changed=yes materialize_ms=2 load_ms=9 fill_ms=72 save_ms=205 total_ms=290
+[1773902011.976] fill_region frame=158 changed=yes materialize_ms=0 load_ms=0 fill_ms=36 save_ms=146 total_ms=183
+[1773902011.976] fill_region frame=159 changed=yes materialize_ms=0 load_ms=0 fill_ms=59 save_ms=200 total_ms=261
+[1773902011.976] fill_region frame=160 changed=yes materialize_ms=0 load_ms=0 fill_ms=57 save_ms=176 total_ms=235
+[1773902011.976] fill_region frame=161 changed=yes materialize_ms=0 load_ms=0 fill_ms=75 save_ms=161 total_ms=237
+[1773902011.976] fill_region frame=162 changed=yes materialize_ms=0 load_ms=0 fill_ms=79 save_ms=201 total_ms=281
+[1773902011.976] fill_region frame=163 changed=yes materialize_ms=0 load_ms=0 fill_ms=50 save_ms=170 total_ms=221
+[1773902011.976] fill_region frame=164 changed=yes materialize_ms=0 load_ms=0 fill_ms=36 save_ms=118 total_ms=156
+[1773902011.976] fill_region frame=165 changed=yes materialize_ms=0 load_ms=0 fill_ms=46 save_ms=132 total_ms=180
+[1773902011.976] fill_region frame=166 changed=yes materialize_ms=0 load_ms=0 fill_ms=37 save_ms=82 total_ms=120
+[1773902011.976] fill_region frame=167 changed=yes materialize_ms=2 load_ms=0 fill_ms=34 save_ms=208 total_ms=246
+[1773902011.976] fill_region frame=168 changed=yes materialize_ms=0 load_ms=0 fill_ms=46 save_ms=163 total_ms=211
+[1773902011.976] fill_region frame=169 changed=yes materialize_ms=0 load_ms=0 fill_ms=82 save_ms=172 total_ms=255
+[1773902011.976] fill_region frame=170 changed=yes materialize_ms=0 load_ms=0 fill_ms=56 save_ms=150 total_ms=207
+[1773902011.976] fill_region frame=171 changed=yes materialize_ms=0 load_ms=0 fill_ms=30 save_ms=157 total_ms=188
+[1773902011.976] fill_region frame=172 changed=yes materialize_ms=0 load_ms=0 fill_ms=35 save_ms=146 total_ms=182
+[1773902011.977] fill_region frame=173 changed=yes materialize_ms=0 load_ms=0 fill_ms=60 save_ms=140 total_ms=202
+[1773902011.977] fill_region frame=174 changed=yes materialize_ms=0 load_ms=0 fill_ms=34 save_ms=166 total_ms=201
+[1773902011.977] fill_region frame=175 changed=yes materialize_ms=0 load_ms=8 fill_ms=29 save_ms=145 total_ms=184
+[1773902011.977] fill_region frame=176 changed=yes materialize_ms=0 load_ms=0 fill_ms=43 save_ms=149 total_ms=193
+[1773902011.977] fill_region frame=177 changed=yes materialize_ms=2 load_ms=37 fill_ms=55 save_ms=199 total_ms=295
+[1773902011.977] fill_region frame=178 changed=yes materialize_ms=0 load_ms=0 fill_ms=75 save_ms=251 total_ms=328
+[1773902011.977] fill_region frame=179 changed=yes materialize_ms=0 load_ms=0 fill_ms=19 save_ms=178 total_ms=199
+[1773902011.977] fill_region frame=180 changed=yes materialize_ms=0 load_ms=0 fill_ms=55 save_ms=147 total_ms=204
+[1773902011.977] fill_region frame=181 changed=yes materialize_ms=0 load_ms=0 fill_ms=44 save_ms=178 total_ms=223
+[1773902011.977] fill_region frame=182 changed=yes materialize_ms=0 load_ms=0 fill_ms=45 save_ms=150 total_ms=196
+[1773902011.977] fill_region frame=183 changed=yes materialize_ms=0 load_ms=0 fill_ms=45 save_ms=219 total_ms=265
+[1773902011.977] fill_region frame=184 changed=yes materialize_ms=1 load_ms=7 fill_ms=39 save_ms=138 total_ms=186
+[1773902011.977] fill_region frame=185 changed=yes materialize_ms=0 load_ms=0 fill_ms=73 save_ms=106 total_ms=181
+[1773902011.977] fill_region frame=186 changed=yes materialize_ms=1 load_ms=0 fill_ms=45 save_ms=57 total_ms=104
+[1773902011.977] fill_region frame=187 changed=yes materialize_ms=1 load_ms=19 fill_ms=64 save_ms=177 total_ms=264
+[1773902011.977] fill_region frame=188 changed=yes materialize_ms=0 load_ms=0 fill_ms=63 save_ms=146 total_ms=210
+[1773902011.977] fill_region frame=189 changed=yes materialize_ms=0 load_ms=0 fill_ms=57 save_ms=220 total_ms=278
+[1773902011.977] fill_region frame=190 changed=yes materialize_ms=0 load_ms=0 fill_ms=68 save_ms=153 total_ms=222
+[1773902011.977] fill_region frame=191 changed=yes materialize_ms=0 load_ms=0 fill_ms=72 save_ms=162 total_ms=235
+[1773902011.977] fill_region frame=192 changed=yes materialize_ms=0 load_ms=0 fill_ms=54 save_ms=144 total_ms=199
+[1773902011.977] fill_region frame=193 changed=yes materialize_ms=0 load_ms=0 fill_ms=61 save_ms=138 total_ms=200
+[1773902011.977] fill_region frame=194 changed=yes materialize_ms=0 load_ms=0 fill_ms=66 save_ms=136 total_ms=203
+[1773902011.977] fill_region frame=195 changed=yes materialize_ms=0 load_ms=0 fill_ms=25 save_ms=121 total_ms=147
+[1773902011.977] fill_region frame=196 changed=yes materialize_ms=0 load_ms=0 fill_ms=47 save_ms=116 total_ms=164
+[1773902011.978] fill_region frame=197 changed=yes materialize_ms=2 load_ms=22 fill_ms=36 save_ms=160 total_ms=221
+[1773902011.978] fill_region frame=198 changed=yes materialize_ms=0 load_ms=0 fill_ms=45 save_ms=204 total_ms=250
+[1773902011.978] fill_region frame=199 changed=yes materialize_ms=0 load_ms=0 fill_ms=55 save_ms=195 total_ms=251
+[1773902011.978] fill_region frame=200 changed=yes materialize_ms=0 load_ms=0 fill_ms=87 save_ms=221 total_ms=310
+[1773902011.978] fill_region frame=201 changed=yes materialize_ms=0 load_ms=0 fill_ms=50 save_ms=109 total_ms=161
+[1773902011.978] fill_region frame=202 changed=yes materialize_ms=0 load_ms=0 fill_ms=49 save_ms=165 total_ms=215
+[1773902011.978] fill_region frame=203 changed=yes materialize_ms=0 load_ms=0 fill_ms=52 save_ms=167 total_ms=220
+[1773902011.978] fill_region frame=204 changed=yes materialize_ms=0 load_ms=0 fill_ms=102 save_ms=130 total_ms=233
+[1773902011.978] fill_region frame=205 changed=yes materialize_ms=0 load_ms=0 fill_ms=42 save_ms=121 total_ms=165
+[1773902011.978] fill_region frame=206 changed=yes materialize_ms=0 load_ms=0 fill_ms=34 save_ms=91 total_ms=126
+[1773902011.978] fill_region frame=207 changed=yes materialize_ms=2 load_ms=9 fill_ms=46 save_ms=175 total_ms=233
+[1773902011.978] fill_region frame=208 changed=yes materialize_ms=0 load_ms=0 fill_ms=87 save_ms=197 total_ms=285
+[1773902011.978] fill_region frame=209 changed=yes materialize_ms=0 load_ms=0 fill_ms=49 save_ms=206 total_ms=256
+[1773902011.978] fill_region frame=210 changed=yes materialize_ms=0 load_ms=0 fill_ms=59 save_ms=179 total_ms=239
+[1773902011.978] fill_region frame=211 changed=yes materialize_ms=0 load_ms=0 fill_ms=59 save_ms=201 total_ms=261
+[1773902011.978] fill_region frame=212 changed=yes materialize_ms=0 load_ms=0 fill_ms=82 save_ms=183 total_ms=266
+[1773902011.978] fill_region frame=213 changed=yes materialize_ms=0 load_ms=0 fill_ms=34 save_ms=128 total_ms=163
+[1773902011.978] fill_region frame=214 changed=yes materialize_ms=0 load_ms=0 fill_ms=63 save_ms=163 total_ms=226
+[1773902011.978] fill_region frame=215 changed=yes materialize_ms=0 load_ms=0 fill_ms=62 save_ms=97 total_ms=160
+[1773902011.978] fill_region frame=216 changed=yes materialize_ms=0 load_ms=0 fill_ms=31 save_ms=66 total_ms=98
+[1773902011.978] fill_region frame=217 changed=yes materialize_ms=2 load_ms=42 fill_ms=49 save_ms=275 total_ms=370
+[1773902011.978] fill_region frame=218 changed=yes materialize_ms=0 load_ms=0 fill_ms=74 save_ms=162 total_ms=237
+[1773902011.978] fill_region frame=219 changed=yes materialize_ms=0 load_ms=0 fill_ms=43 save_ms=245 total_ms=289
+[1773902011.978] fill_region frame=220 changed=yes materialize_ms=0 load_ms=0 fill_ms=30 save_ms=194 total_ms=225
+[1773902011.978] fill_region frame=221 changed=yes materialize_ms=0 load_ms=0 fill_ms=44 save_ms=159 total_ms=204
+[1773902011.979] fill_region frame=222 changed=yes materialize_ms=0 load_ms=0 fill_ms=84 save_ms=110 total_ms=195
+[1773902011.979] fill_region frame=223 changed=yes materialize_ms=0 load_ms=0 fill_ms=75 save_ms=191 total_ms=267
+[1773902011.979] fill_region frame=224 changed=yes materialize_ms=0 load_ms=0 fill_ms=37 save_ms=105 total_ms=143
+[1773902011.979] fill_region frame=225 changed=yes materialize_ms=0 load_ms=0 fill_ms=47 save_ms=106 total_ms=154
+[1773902011.979] fill_region frame=226 changed=yes materialize_ms=1 load_ms=0 fill_ms=24 save_ms=61 total_ms=87
+[1773902011.979] fill_region frame=227 changed=yes materialize_ms=2 load_ms=33 fill_ms=77 save_ms=222 total_ms=336
+[1773902011.979] fill_region frame=228 changed=yes materialize_ms=0 load_ms=0 fill_ms=70 save_ms=208 total_ms=280
+[1773902011.979] fill_region frame=229 changed=yes materialize_ms=0 load_ms=0 fill_ms=63 save_ms=170 total_ms=234
+[1773902011.979] fill_region frame=230 changed=yes materialize_ms=0 load_ms=0 fill_ms=59 save_ms=173 total_ms=234
+[1773902011.979] fill_region frame=231 changed=yes materialize_ms=0 load_ms=0 fill_ms=67 save_ms=161 total_ms=230
+[1773902011.979] fill_region frame=232 changed=yes materialize_ms=0 load_ms=0 fill_ms=77 save_ms=149 total_ms=227
+[1773902011.979] fill_region frame=233 changed=yes materialize_ms=0 load_ms=0 fill_ms=64 save_ms=109 total_ms=174
+[1773902011.979] fill_region frame=234 changed=yes materialize_ms=0 load_ms=0 fill_ms=70 save_ms=152 total_ms=224
+[1773902011.979] fill_region frame=235 changed=yes materialize_ms=0 load_ms=0 fill_ms=39 save_ms=119 total_ms=159
+[1773902011.979] fill_region complete frame=163 track_id=5058 updated_frames=159 workers=16 elapsed_ms=2544
+[1773902012.884] fill_region start frame=163 x=299 y=467 color=rgba(209,73,91,255) project_root=/Users/juninaba/Desktop/test
+[1773902013.226] fill_region read_metadata frame=163 elapsed_ms=340
+[1773902013.226] fill_region track=5058 candidate_frames=159
+[1773902013.249] fill_region frame=77 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.249] fill_region frame=78 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=79 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=80 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.250] fill_region frame=81 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.250] fill_region frame=82 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=83 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=84 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=85 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=86 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.250] fill_region frame=87 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=88 changed=no materialize_ms=2 load_ms=1 fill_ms=0 total_ms=4
+[1773902013.250] fill_region frame=89 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.250] fill_region frame=90 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=91 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=92 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.250] fill_region frame=93 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.250] fill_region frame=94 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=95 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=96 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=97 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.250] fill_region frame=98 changed=no materialize_ms=2 load_ms=1 fill_ms=0 total_ms=4
+[1773902013.250] fill_region frame=99 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.251] fill_region frame=100 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.251] fill_region frame=101 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.251] fill_region frame=102 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.251] fill_region frame=103 changed=no materialize_ms=2 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.251] fill_region frame=104 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.251] fill_region frame=105 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.251] fill_region frame=106 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.251] fill_region frame=107 changed=no materialize_ms=3 load_ms=0 fill_ms=0 total_ms=4
+[1773902013.251] fill_region frame=108 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.251] fill_region frame=109 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.251] fill_region frame=110 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.251] fill_region frame=111 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.251] fill_region frame=112 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.251] fill_region frame=113 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.251] fill_region frame=114 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.251] fill_region frame=115 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.251] fill_region frame=116 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.251] fill_region frame=117 changed=no materialize_ms=2 load_ms=0 fill_ms=0 total_ms=3
+[1773902013.251] fill_region frame=118 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.251] fill_region frame=119 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.251] fill_region frame=120 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.251] fill_region frame=121 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=3
+[1773902013.251] fill_region frame=122 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=123 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=124 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.252] fill_region frame=125 changed=no materialize_ms=0 load_ms=2 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=126 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=127 changed=no materialize_ms=2 load_ms=0 fill_ms=0 total_ms=3
+[1773902013.252] fill_region frame=128 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.252] fill_region frame=129 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=130 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.252] fill_region frame=131 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=132 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.252] fill_region frame=133 changed=no materialize_ms=2 load_ms=1 fill_ms=0 total_ms=3
+[1773902013.252] fill_region frame=134 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.252] fill_region frame=135 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=136 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.252] fill_region frame=137 changed=no materialize_ms=2 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=138 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=139 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=140 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.252] fill_region frame=141 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.252] fill_region frame=142 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.252] fill_region frame=143 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.252] fill_region frame=144 changed=no materialize_ms=1 load_ms=2 fill_ms=0 total_ms=3
+[1773902013.252] fill_region frame=145 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.252] fill_region frame=146 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.252] fill_region frame=147 changed=no materialize_ms=2 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=148 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=149 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=150 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.253] fill_region frame=151 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=152 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=153 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=154 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.253] fill_region frame=155 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.253] fill_region frame=156 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.253] fill_region frame=157 changed=no materialize_ms=3 load_ms=1 fill_ms=0 total_ms=5
+[1773902013.253] fill_region frame=158 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=159 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=3
+[1773902013.253] fill_region frame=160 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=161 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=3
+[1773902013.253] fill_region frame=162 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.253] fill_region frame=163 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=164 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.253] fill_region frame=165 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.253] fill_region frame=166 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.253] fill_region frame=167 changed=no materialize_ms=3 load_ms=1 fill_ms=0 total_ms=4
+[1773902013.253] fill_region frame=168 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=169 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=170 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.253] fill_region frame=171 changed=no materialize_ms=2 load_ms=0 fill_ms=0 total_ms=3
+[1773902013.253] fill_region frame=172 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.253] fill_region frame=173 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.253] fill_region frame=174 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=175 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=176 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.254] fill_region frame=177 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.254] fill_region frame=178 changed=no materialize_ms=1 load_ms=2 fill_ms=0 total_ms=4
+[1773902013.254] fill_region frame=179 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=180 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=181 changed=no materialize_ms=2 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=182 changed=no materialize_ms=2 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=183 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.254] fill_region frame=184 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.254] fill_region frame=185 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=186 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.254] fill_region frame=187 changed=no materialize_ms=2 load_ms=1 fill_ms=0 total_ms=3
+[1773902013.254] fill_region frame=188 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=189 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.254] fill_region frame=190 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=191 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=192 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=193 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.254] fill_region frame=194 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.254] fill_region frame=195 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=196 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=197 changed=no materialize_ms=3 load_ms=3 fill_ms=0 total_ms=6
+[1773902013.254] fill_region frame=198 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=199 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.254] fill_region frame=200 changed=no materialize_ms=2 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.254] fill_region frame=201 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=3
+[1773902013.254] fill_region frame=202 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.255] fill_region frame=203 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.255] fill_region frame=204 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.255] fill_region frame=205 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.255] fill_region frame=206 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.255] fill_region frame=207 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.255] fill_region frame=208 changed=no materialize_ms=1 load_ms=2 fill_ms=0 total_ms=3
+[1773902013.255] fill_region frame=209 changed=no materialize_ms=0 load_ms=2 fill_ms=0 total_ms=2
+[1773902013.255] fill_region frame=210 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.255] fill_region frame=211 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.255] fill_region frame=212 changed=no materialize_ms=2 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.255] fill_region frame=213 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.255] fill_region frame=214 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.255] fill_region frame=215 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.255] fill_region frame=216 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.255] fill_region frame=217 changed=no materialize_ms=3 load_ms=1 fill_ms=0 total_ms=4
+[1773902013.255] fill_region frame=218 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.255] fill_region frame=219 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.255] fill_region frame=220 changed=no materialize_ms=0 load_ms=2 fill_ms=0 total_ms=3
+[1773902013.255] fill_region frame=221 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.255] fill_region frame=222 changed=no materialize_ms=0 load_ms=2 fill_ms=0 total_ms=2
+[1773902013.255] fill_region frame=223 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.255] fill_region frame=224 changed=no materialize_ms=1 load_ms=1 fill_ms=0 total_ms=2
+[1773902013.255] fill_region frame=225 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.255] fill_region frame=226 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.255] fill_region frame=227 changed=no materialize_ms=2 load_ms=2 fill_ms=0 total_ms=5
+[1773902013.255] fill_region frame=228 changed=no materialize_ms=0 load_ms=2 fill_ms=0 total_ms=2
+[1773902013.256] fill_region frame=229 changed=no materialize_ms=0 load_ms=1 fill_ms=0 total_ms=1
+[1773902013.256] fill_region frame=230 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.256] fill_region frame=231 changed=no materialize_ms=1 load_ms=0 fill_ms=0 total_ms=2
+[1773902013.256] fill_region frame=232 changed=no materialize_ms=1 load_ms=2 fill_ms=0 total_ms=3
+[1773902013.256] fill_region frame=233 changed=no materialize_ms=1 load_ms=2 fill_ms=0 total_ms=3
+[1773902013.256] fill_region frame=234 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=1
+[1773902013.256] fill_region frame=235 changed=no materialize_ms=0 load_ms=0 fill_ms=0 total_ms=0
+[1773902013.256] fill_region complete frame=163 track_id=5058 updated_frames=0 workers=16 elapsed_ms=371
+[1773902019.184] fill_region start frame=163 x=99 y=14 color=rgba(48,99,142,255) project_root=/Users/juninaba/Desktop/test
+[1773902019.527] fill_region read_metadata frame=163 elapsed_ms=342
+[1773902019.527] fill_region track=5058 candidate_frames=159
+[1773902021.702] fill_region frame=77 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=51 total_ms=71
+[1773902021.702] fill_region frame=78 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=51 total_ms=70
+[1773902021.702] fill_region frame=79 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=53 total_ms=72
+[1773902021.702] fill_region frame=80 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902021.702] fill_region frame=81 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902021.702] fill_region frame=82 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902021.702] fill_region frame=83 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902021.702] fill_region frame=84 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902021.702] fill_region frame=85 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902021.702] fill_region frame=86 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=68
+[1773902021.702] fill_region frame=87 changed=yes materialize_ms=1 load_ms=0 fill_ms=26 save_ms=158 total_ms=186
+[1773902021.702] fill_region frame=88 changed=yes materialize_ms=0 load_ms=0 fill_ms=45 save_ms=150 total_ms=196
+[1773902021.702] fill_region frame=89 changed=yes materialize_ms=1 load_ms=0 fill_ms=75 save_ms=174 total_ms=251
+[1773902021.702] fill_region frame=90 changed=yes materialize_ms=1 load_ms=0 fill_ms=43 save_ms=58 total_ms=102
+[1773902021.703] fill_region frame=91 changed=yes materialize_ms=0 load_ms=0 fill_ms=15 save_ms=43 total_ms=59
+[1773902021.703] fill_region frame=92 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=69
+[1773902021.703] fill_region frame=93 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=51 total_ms=70
+[1773902021.703] fill_region frame=94 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=53 total_ms=72
+[1773902021.703] fill_region frame=95 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=68
+[1773902021.703] fill_region frame=96 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902021.703] fill_region frame=97 changed=yes materialize_ms=1 load_ms=10 fill_ms=72 save_ms=186 total_ms=270
+[1773902021.703] fill_region frame=98 changed=yes materialize_ms=1 load_ms=0 fill_ms=89 save_ms=222 total_ms=313
+[1773902021.703] fill_region frame=99 changed=yes materialize_ms=0 load_ms=0 fill_ms=87 save_ms=159 total_ms=247
+[1773902021.703] fill_region frame=100 changed=yes materialize_ms=0 load_ms=0 fill_ms=28 save_ms=210 total_ms=239
+[1773902021.703] fill_region frame=101 changed=yes materialize_ms=0 load_ms=0 fill_ms=39 save_ms=69 total_ms=109
+[1773902021.703] fill_region frame=102 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902021.703] fill_region frame=103 changed=yes materialize_ms=0 load_ms=0 fill_ms=16 save_ms=44 total_ms=61
+[1773902021.703] fill_region frame=104 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902021.703] fill_region frame=105 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=69
+[1773902021.703] fill_region frame=106 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=55 total_ms=74
+[1773902021.703] fill_region frame=107 changed=yes materialize_ms=2 load_ms=30 fill_ms=156 save_ms=201 total_ms=390
+[1773902021.703] fill_region frame=108 changed=yes materialize_ms=0 load_ms=0 fill_ms=47 save_ms=184 total_ms=232
+[1773902021.703] fill_region frame=109 changed=yes materialize_ms=0 load_ms=0 fill_ms=97 save_ms=216 total_ms=315
+[1773902021.703] fill_region frame=110 changed=yes materialize_ms=0 load_ms=0 fill_ms=41 save_ms=166 total_ms=208
+[1773902021.704] fill_region frame=111 changed=yes materialize_ms=1 load_ms=0 fill_ms=74 save_ms=101 total_ms=177
+[1773902021.704] fill_region frame=112 changed=yes materialize_ms=0 load_ms=0 fill_ms=30 save_ms=114 total_ms=145
+[1773902021.704] fill_region frame=113 changed=yes materialize_ms=0 load_ms=0 fill_ms=56 save_ms=50 total_ms=107
+[1773902021.704] fill_region frame=114 changed=yes materialize_ms=0 load_ms=0 fill_ms=16 save_ms=45 total_ms=62
+[1773902021.704] fill_region frame=115 changed=yes materialize_ms=0 load_ms=0 fill_ms=17 save_ms=47 total_ms=65
+[1773902021.704] fill_region frame=116 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=51 total_ms=70
+[1773902021.704] fill_region frame=117 changed=yes materialize_ms=1 load_ms=0 fill_ms=51 save_ms=122 total_ms=176
+[1773902021.704] fill_region frame=118 changed=yes materialize_ms=0 load_ms=0 fill_ms=52 save_ms=169 total_ms=222
+[1773902021.704] fill_region frame=119 changed=yes materialize_ms=0 load_ms=0 fill_ms=52 save_ms=179 total_ms=231
+[1773902021.704] fill_region frame=120 changed=yes materialize_ms=9 load_ms=4 fill_ms=70 save_ms=141 total_ms=225
+[1773902021.704] fill_region frame=121 changed=yes materialize_ms=0 load_ms=0 fill_ms=50 save_ms=194 total_ms=245
+[1773902021.704] fill_region frame=122 changed=yes materialize_ms=1 load_ms=0 fill_ms=41 save_ms=203 total_ms=245
+[1773902021.704] fill_region frame=123 changed=yes materialize_ms=0 load_ms=0 fill_ms=50 save_ms=177 total_ms=227
+[1773902021.704] fill_region frame=124 changed=yes materialize_ms=0 load_ms=0 fill_ms=39 save_ms=136 total_ms=175
+[1773902021.704] fill_region frame=125 changed=yes materialize_ms=0 load_ms=0 fill_ms=27 save_ms=49 total_ms=77
+[1773902021.704] fill_region frame=126 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=69
+[1773902021.704] fill_region frame=127 changed=yes materialize_ms=2 load_ms=40 fill_ms=76 save_ms=184 total_ms=303
+[1773902021.704] fill_region frame=128 changed=yes materialize_ms=0 load_ms=0 fill_ms=77 save_ms=190 total_ms=269
+[1773902021.704] fill_region frame=129 changed=yes materialize_ms=0 load_ms=0 fill_ms=92 save_ms=132 total_ms=226
+[1773902021.704] fill_region frame=130 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=168 total_ms=187
+[1773902021.705] fill_region frame=131 changed=yes materialize_ms=0 load_ms=0 fill_ms=63 save_ms=191 total_ms=255
+[1773902021.705] fill_region frame=132 changed=yes materialize_ms=0 load_ms=0 fill_ms=80 save_ms=155 total_ms=236
+[1773902021.705] fill_region frame=133 changed=yes materialize_ms=0 load_ms=0 fill_ms=43 save_ms=137 total_ms=181
+[1773902021.705] fill_region frame=134 changed=yes materialize_ms=0 load_ms=0 fill_ms=57 save_ms=162 total_ms=220
+[1773902021.705] fill_region frame=135 changed=yes materialize_ms=0 load_ms=0 fill_ms=20 save_ms=53 total_ms=75
+[1773902021.705] fill_region frame=136 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=50 total_ms=69
+[1773902021.705] fill_region frame=137 changed=yes materialize_ms=2 load_ms=0 fill_ms=54 save_ms=188 total_ms=245
+[1773902021.705] fill_region frame=138 changed=yes materialize_ms=0 load_ms=0 fill_ms=36 save_ms=187 total_ms=224
+[1773902021.705] fill_region frame=139 changed=yes materialize_ms=0 load_ms=0 fill_ms=78 save_ms=153 total_ms=232
+[1773902021.705] fill_region frame=140 changed=yes materialize_ms=0 load_ms=0 fill_ms=65 save_ms=223 total_ms=289
+[1773902021.705] fill_region frame=141 changed=yes materialize_ms=0 load_ms=0 fill_ms=46 save_ms=226 total_ms=273
+[1773902021.705] fill_region frame=142 changed=yes materialize_ms=1 load_ms=0 fill_ms=111 save_ms=146 total_ms=259
+[1773902021.705] fill_region frame=143 changed=yes materialize_ms=0 load_ms=0 fill_ms=46 save_ms=141 total_ms=188
+[1773902021.705] fill_region frame=144 changed=yes materialize_ms=0 load_ms=0 fill_ms=29 save_ms=137 total_ms=167
+[1773902021.705] fill_region frame=145 changed=yes materialize_ms=1 load_ms=0 fill_ms=65 save_ms=95 total_ms=162
+[1773902021.705] fill_region frame=146 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=49 total_ms=69
+[1773902021.705] fill_region frame=147 changed=yes materialize_ms=1 load_ms=0 fill_ms=50 save_ms=185 total_ms=238
+[1773902021.705] fill_region frame=148 changed=yes materialize_ms=1 load_ms=0 fill_ms=112 save_ms=191 total_ms=305
+[1773902021.705] fill_region frame=149 changed=yes materialize_ms=0 load_ms=0 fill_ms=72 save_ms=165 total_ms=239
+[1773902021.705] fill_region frame=150 changed=yes materialize_ms=0 load_ms=0 fill_ms=42 save_ms=133 total_ms=176
+[1773902021.705] fill_region frame=151 changed=yes materialize_ms=0 load_ms=0 fill_ms=68 save_ms=176 total_ms=245
+[1773902021.706] fill_region frame=152 changed=yes materialize_ms=0 load_ms=0 fill_ms=60 save_ms=130 total_ms=191
+[1773902021.706] fill_region frame=153 changed=yes materialize_ms=1 load_ms=0 fill_ms=76 save_ms=130 total_ms=208
+[1773902021.706] fill_region frame=154 changed=yes materialize_ms=0 load_ms=0 fill_ms=39 save_ms=136 total_ms=176
+[1773902021.706] fill_region frame=155 changed=yes materialize_ms=0 load_ms=0 fill_ms=28 save_ms=132 total_ms=162
+[1773902021.706] fill_region frame=156 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=107 total_ms=127
+[1773902021.706] fill_region frame=157 changed=yes materialize_ms=2 load_ms=0 fill_ms=50 save_ms=211 total_ms=265
+[1773902021.706] fill_region frame=158 changed=yes materialize_ms=5 load_ms=0 fill_ms=84 save_ms=165 total_ms=255
+[1773902021.706] fill_region frame=159 changed=yes materialize_ms=0 load_ms=0 fill_ms=57 save_ms=158 total_ms=216
+[1773902021.706] fill_region frame=160 changed=yes materialize_ms=0 load_ms=0 fill_ms=36 save_ms=176 total_ms=213
+[1773902021.706] fill_region frame=161 changed=yes materialize_ms=0 load_ms=0 fill_ms=55 save_ms=190 total_ms=245
+[1773902021.706] fill_region frame=162 changed=yes materialize_ms=0 load_ms=0 fill_ms=40 save_ms=172 total_ms=213
+[1773902021.706] fill_region frame=163 changed=yes materialize_ms=0 load_ms=0 fill_ms=68 save_ms=187 total_ms=256
+[1773902021.706] fill_region frame=164 changed=yes materialize_ms=0 load_ms=0 fill_ms=15 save_ms=149 total_ms=164
+[1773902021.706] fill_region frame=165 changed=yes materialize_ms=0 load_ms=0 fill_ms=22 save_ms=127 total_ms=150
+[1773902021.706] fill_region frame=166 changed=yes materialize_ms=0 load_ms=0 fill_ms=37 save_ms=85 total_ms=124
+[1773902021.706] fill_region frame=167 changed=yes materialize_ms=1 load_ms=0 fill_ms=75 save_ms=154 total_ms=232
+[1773902021.706] fill_region frame=168 changed=yes materialize_ms=2 load_ms=0 fill_ms=78 save_ms=180 total_ms=261
+[1773902021.706] fill_region frame=169 changed=yes materialize_ms=0 load_ms=0 fill_ms=63 save_ms=189 total_ms=253
+[1773902021.706] fill_region frame=170 changed=yes materialize_ms=0 load_ms=0 fill_ms=65 save_ms=197 total_ms=264
+[1773902021.706] fill_region frame=171 changed=yes materialize_ms=0 load_ms=0 fill_ms=32 save_ms=129 total_ms=162
+[1773902021.706] fill_region frame=172 changed=yes materialize_ms=1 load_ms=0 fill_ms=74 save_ms=108 total_ms=184
+[1773902021.706] fill_region frame=173 changed=yes materialize_ms=0 load_ms=0 fill_ms=43 save_ms=182 total_ms=226
+[1773902021.706] fill_region frame=174 changed=yes materialize_ms=0 load_ms=0 fill_ms=46 save_ms=151 total_ms=198
+[1773902021.707] fill_region frame=175 changed=yes materialize_ms=1 load_ms=0 fill_ms=47 save_ms=149 total_ms=198
+[1773902021.707] fill_region frame=176 changed=yes materialize_ms=1 load_ms=0 fill_ms=51 save_ms=83 total_ms=135
+[1773902021.707] fill_region frame=177 changed=yes materialize_ms=2 load_ms=56 fill_ms=75 save_ms=160 total_ms=295
+[1773902021.707] fill_region frame=178 changed=yes materialize_ms=1 load_ms=0 fill_ms=48 save_ms=193 total_ms=243
+[1773902021.707] fill_region frame=179 changed=yes materialize_ms=0 load_ms=0 fill_ms=118 save_ms=179 total_ms=299
+[1773902021.707] fill_region frame=180 changed=yes materialize_ms=0 load_ms=0 fill_ms=65 save_ms=168 total_ms=234
+[1773902021.707] fill_region frame=181 changed=yes materialize_ms=0 load_ms=0 fill_ms=66 save_ms=163 total_ms=230
+[1773902021.707] fill_region frame=182 changed=yes materialize_ms=0 load_ms=0 fill_ms=84 save_ms=152 total_ms=237
+[1773902021.707] fill_region frame=183 changed=yes materialize_ms=0 load_ms=0 fill_ms=45 save_ms=192 total_ms=239
+[1773902021.707] fill_region frame=184 changed=yes materialize_ms=0 load_ms=0 fill_ms=57 save_ms=144 total_ms=202
+[1773902021.707] fill_region frame=185 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=104 total_ms=123
+[1773902021.707] fill_region frame=186 changed=yes materialize_ms=0 load_ms=0 fill_ms=18 save_ms=48 total_ms=67
+[1773902021.707] fill_region frame=187 changed=yes materialize_ms=11 load_ms=0 fill_ms=34 save_ms=185 total_ms=231
+[1773902021.707] fill_region frame=188 changed=yes materialize_ms=0 load_ms=8 fill_ms=57 save_ms=193 total_ms=259
+[1773902021.707] fill_region frame=189 changed=yes materialize_ms=0 load_ms=11 fill_ms=80 save_ms=167 total_ms=260
+[1773902021.707] fill_region frame=190 changed=yes materialize_ms=0 load_ms=0 fill_ms=53 save_ms=204 total_ms=259
+[1773902021.707] fill_region frame=191 changed=yes materialize_ms=0 load_ms=0 fill_ms=48 save_ms=123 total_ms=173
+[1773902021.707] fill_region frame=192 changed=yes materialize_ms=0 load_ms=0 fill_ms=49 save_ms=172 total_ms=222
+[1773902021.707] fill_region frame=193 changed=yes materialize_ms=0 load_ms=0 fill_ms=47 save_ms=172 total_ms=220
+[1773902021.707] fill_region frame=194 changed=yes materialize_ms=0 load_ms=0 fill_ms=68 save_ms=150 total_ms=219
+[1773902021.707] fill_region frame=195 changed=yes materialize_ms=0 load_ms=0 fill_ms=43 save_ms=114 total_ms=158
+[1773902021.707] fill_region frame=196 changed=yes materialize_ms=0 load_ms=0 fill_ms=37 save_ms=80 total_ms=119
+[1773902021.707] fill_region frame=197 changed=yes materialize_ms=11 load_ms=0 fill_ms=68 save_ms=235 total_ms=315
+[1773902021.707] fill_region frame=198 changed=yes materialize_ms=0 load_ms=0 fill_ms=60 save_ms=186 total_ms=247
+[1773902021.707] fill_region frame=199 changed=yes materialize_ms=0 load_ms=0 fill_ms=77 save_ms=215 total_ms=293
+[1773902021.708] fill_region frame=200 changed=yes materialize_ms=0 load_ms=0 fill_ms=36 save_ms=189 total_ms=226
+[1773902021.708] fill_region frame=201 changed=yes materialize_ms=0 load_ms=0 fill_ms=69 save_ms=163 total_ms=232
+[1773902021.708] fill_region frame=202 changed=yes materialize_ms=0 load_ms=0 fill_ms=27 save_ms=161 total_ms=190
+[1773902021.708] fill_region frame=203 changed=yes materialize_ms=0 load_ms=0 fill_ms=85 save_ms=145 total_ms=231
+[1773902021.708] fill_region frame=204 changed=yes materialize_ms=0 load_ms=0 fill_ms=35 save_ms=147 total_ms=183
+[1773902021.708] fill_region frame=205 changed=yes materialize_ms=0 load_ms=0 fill_ms=40 save_ms=121 total_ms=161
+[1773902021.708] fill_region frame=206 changed=yes materialize_ms=0 load_ms=0 fill_ms=29 save_ms=51 total_ms=81
+[1773902021.708] fill_region frame=207 changed=yes materialize_ms=1 load_ms=21 fill_ms=103 save_ms=182 total_ms=309
+[1773902021.708] fill_region frame=208 changed=yes materialize_ms=0 load_ms=0 fill_ms=110 save_ms=144 total_ms=255
+[1773902021.708] fill_region frame=209 changed=yes materialize_ms=0 load_ms=0 fill_ms=116 save_ms=182 total_ms=299
+[1773902021.708] fill_region frame=210 changed=yes materialize_ms=0 load_ms=0 fill_ms=51 save_ms=170 total_ms=222
+[1773902021.708] fill_region frame=211 changed=yes materialize_ms=0 load_ms=0 fill_ms=44 save_ms=166 total_ms=211
+[1773902021.708] fill_region frame=212 changed=yes materialize_ms=0 load_ms=0 fill_ms=78 save_ms=96 total_ms=175
+[1773902021.708] fill_region frame=213 changed=yes materialize_ms=0 load_ms=0 fill_ms=69 save_ms=146 total_ms=217
+[1773902021.708] fill_region frame=214 changed=yes materialize_ms=0 load_ms=0 fill_ms=56 save_ms=157 total_ms=214
+[1773902021.708] fill_region frame=215 changed=yes materialize_ms=0 load_ms=0 fill_ms=19 save_ms=101 total_ms=121
+[1773902021.708] fill_region frame=216 changed=yes materialize_ms=0 load_ms=0 fill_ms=24 save_ms=89 total_ms=115
+[1773902021.708] fill_region frame=217 changed=yes materialize_ms=1 load_ms=16 fill_ms=30 save_ms=209 total_ms=258
+[1773902021.708] fill_region frame=218 changed=yes materialize_ms=0 load_ms=0 fill_ms=61 save_ms=170 total_ms=232
+[1773902021.708] fill_region frame=219 changed=yes materialize_ms=0 load_ms=0 fill_ms=54 save_ms=159 total_ms=215
+[1773902021.708] fill_region frame=220 changed=yes materialize_ms=0 load_ms=0 fill_ms=59 save_ms=196 total_ms=256
+[1773902021.708] fill_region frame=221 changed=yes materialize_ms=0 load_ms=0 fill_ms=44 save_ms=160 total_ms=206
+[1773902021.708] fill_region frame=222 changed=yes materialize_ms=0 load_ms=0 fill_ms=25 save_ms=167 total_ms=193
+[1773902021.708] fill_region frame=223 changed=yes materialize_ms=0 load_ms=0 fill_ms=69 save_ms=122 total_ms=192
+[1773902021.708] fill_region frame=224 changed=yes materialize_ms=0 load_ms=0 fill_ms=44 save_ms=222 total_ms=267
+[1773902021.709] fill_region frame=225 changed=yes materialize_ms=0 load_ms=0 fill_ms=68 save_ms=156 total_ms=226
+[1773902021.709] fill_region frame=226 changed=yes materialize_ms=0 load_ms=0 fill_ms=30 save_ms=63 total_ms=93
+[1773902021.709] fill_region frame=227 changed=yes materialize_ms=3 load_ms=0 fill_ms=52 save_ms=109 total_ms=165
+[1773902021.709] fill_region frame=228 changed=yes materialize_ms=0 load_ms=0 fill_ms=38 save_ms=132 total_ms=171
+[1773902021.709] fill_region frame=229 changed=yes materialize_ms=0 load_ms=0 fill_ms=62 save_ms=182 total_ms=246
+[1773902021.709] fill_region frame=230 changed=yes materialize_ms=1 load_ms=0 fill_ms=67 save_ms=153 total_ms=223
+[1773902021.709] fill_region frame=231 changed=yes materialize_ms=0 load_ms=0 fill_ms=84 save_ms=229 total_ms=314
+[1773902021.709] fill_region frame=232 changed=yes materialize_ms=0 load_ms=0 fill_ms=61 save_ms=150 total_ms=213
+[1773902021.709] fill_region frame=233 changed=yes materialize_ms=0 load_ms=0 fill_ms=52 save_ms=183 total_ms=236
+[1773902021.709] fill_region frame=234 changed=yes materialize_ms=0 load_ms=0 fill_ms=53 save_ms=181 total_ms=235
+[1773902021.709] fill_region frame=235 changed=yes materialize_ms=1 load_ms=0 fill_ms=43 save_ms=126 total_ms=171
+[1773902021.709] fill_region complete frame=163 track_id=5058 updated_frames=159 workers=16 elapsed_ms=2525
+[1773902023.472] get_frame_bundle frame=164 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902023.506] get_frame_bundle frame=165 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.541] get_frame_bundle frame=166 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.575] get_frame_bundle frame=167 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.610] get_frame_bundle frame=168 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.645] get_frame_bundle frame=169 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.680] get_frame_bundle frame=170 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.715] get_frame_bundle frame=171 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.750] get_frame_bundle frame=172 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.785] get_frame_bundle frame=173 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.820] get_frame_bundle frame=174 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.854] get_frame_bundle frame=175 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.888] get_frame_bundle frame=176 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.923] get_frame_bundle frame=177 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.958] get_frame_bundle frame=178 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902023.992] get_frame_bundle frame=179 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.027] get_frame_bundle frame=180 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.061] get_frame_bundle frame=181 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.096] get_frame_bundle frame=182 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.131] get_frame_bundle frame=183 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.166] get_frame_bundle frame=184 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.201] get_frame_bundle frame=185 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.235] get_frame_bundle frame=186 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.270] get_frame_bundle frame=187 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.305] get_frame_bundle frame=188 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.340] get_frame_bundle frame=189 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.375] get_frame_bundle frame=190 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.410] get_frame_bundle frame=191 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.445] get_frame_bundle frame=192 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.480] get_frame_bundle frame=193 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.514] get_frame_bundle frame=194 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.550] get_frame_bundle frame=195 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.585] get_frame_bundle frame=196 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.620] get_frame_bundle frame=197 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.654] get_frame_bundle frame=198 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.688] get_frame_bundle frame=199 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902024.723] get_frame_bundle frame=200 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902025.206] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902025.890] get_frame_bundle frame=1 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902025.937] get_frame_bundle frame=2 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902025.972] get_frame_bundle frame=3 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.006] get_frame_bundle frame=4 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.040] get_frame_bundle frame=5 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.075] get_frame_bundle frame=6 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.109] get_frame_bundle frame=7 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.144] get_frame_bundle frame=8 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.179] get_frame_bundle frame=9 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.214] get_frame_bundle frame=10 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.249] get_frame_bundle frame=11 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.284] get_frame_bundle frame=12 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.319] get_frame_bundle frame=13 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.353] get_frame_bundle frame=14 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.387] get_frame_bundle frame=15 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.421] get_frame_bundle frame=16 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.456] get_frame_bundle frame=17 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.490] get_frame_bundle frame=18 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.525] get_frame_bundle frame=19 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.560] get_frame_bundle frame=20 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.594] get_frame_bundle frame=21 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.629] get_frame_bundle frame=22 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.664] get_frame_bundle frame=23 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.699] get_frame_bundle frame=24 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.734] get_frame_bundle frame=25 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.769] get_frame_bundle frame=26 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.803] get_frame_bundle frame=27 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.837] get_frame_bundle frame=28 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.872] get_frame_bundle frame=29 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.906] get_frame_bundle frame=30 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.941] get_frame_bundle frame=31 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902026.975] get_frame_bundle frame=32 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902027.010] get_frame_bundle frame=33 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902027.044] get_frame_bundle frame=34 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902027.079] get_frame_bundle frame=35 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902027.114] get_frame_bundle frame=36 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902027.149] get_frame_bundle frame=37 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902027.183] get_frame_bundle frame=38 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902027.218] get_frame_bundle frame=39 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902027.252] get_frame_bundle frame=40 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
