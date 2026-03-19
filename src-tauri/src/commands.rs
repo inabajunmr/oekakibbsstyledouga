@@ -1026,13 +1026,27 @@ fn read_region_track_index(
     serde_json::from_str(&content).map_err(|error| error.to_string())
 }
 
-fn find_region_at_point(metadata: &FrameRegionMetadata, x: u32, y: u32) -> Option<&RegionMetadata> {
-    metadata.regions.iter().find(|region| {
-        x >= region.bounds.x
-            && y >= region.bounds.y
-            && x < region.bounds.x + region.bounds.width
-            && y < region.bounds.y + region.bounds.height
-    })
+fn find_region_at_point<'a>(
+    metadata: &'a FrameRegionMetadata,
+    label_map: &[u32],
+    x: u32,
+    y: u32,
+) -> Option<&'a RegionMetadata> {
+    if x >= metadata.width || y >= metadata.height {
+        return None;
+    }
+
+    let index = (y * metadata.width + x) as usize;
+    let region_id = label_map.get(index).copied().unwrap_or_default();
+
+    if region_id == 0 {
+        return None;
+    }
+
+    metadata
+        .regions
+        .iter()
+        .find(|region| region.region_id == region_id)
 }
 
 fn fill_region_using_label_map(
@@ -1693,13 +1707,18 @@ pub fn fill_region(
     let read_metadata_started_at = Instant::now();
     let fill_color = Rgba([color.r, color.g, color.b, color.a]);
     let region_metadata = read_region_metadata(&region_dir, frame_index)?;
+    let clicked_label_map = load_region_label_map(
+        &region_label_map_path(&root, &project_file.paths, frame_index),
+        project_file.width,
+        project_file.height,
+    )?;
     let track_index = read_region_track_index(&root, &project_file.paths)?;
     log_message(format!(
         "fill_region read_metadata frame={} elapsed_ms={}",
         frame_index,
         read_metadata_started_at.elapsed().as_millis()
     ));
-    let region = find_region_at_point(&region_metadata, x, y);
+    let region = find_region_at_point(&region_metadata, &clicked_label_map, x, y);
     let Some(region) = region else {
         log_message(format!(
             "fill_region no_region frame={} elapsed_ms={}",

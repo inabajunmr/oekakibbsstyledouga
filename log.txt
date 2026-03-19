@@ -2664,3 +2664,130 @@
 [1773902027.183] get_frame_bundle frame=38 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
 [1773902027.218] get_frame_bundle frame=39 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
 [1773902027.252] get_frame_bundle frame=40 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902230.029] create_project start video_path=/Users/juninaba/Desktop/mountain3.mp4 project_root=/Users/juninaba/Desktop/test
+[1773902230.031] create_project tools_ready
+[1773902230.032] create_project_file_from_video start project_root=/Users/juninaba/Desktop/test video_path=/Users/juninaba/Desktop/mountain3.mp4
+[1773902230.032] create_project_file_from_video ensured_dirs
+[1773902230.032] create_project_file_from_video using_video_tools ffmpeg=/Users/juninaba/Library/Application Support/com.juninaba.oekakibbsstyledouga/tools/ffmpeg/ffmpeg ffprobe=/Users/juninaba/Library/Application Support/com.juninaba.oekakibbsstyledouga/tools/ffmpeg/ffprobe
+[1773902230.059] create_project_file_from_video cleared_source_dir
+[1773902230.122] create_project_file_from_video probed_video width=854 height=480 fps=30
+[1773902232.124] create_project_file_from_video extracted_frames count=236
+[1773902232.125] create_project_file_from_video seeded_blank_paint_frames
+[1773902232.125] create_project project_file_ready frame_count=236 source_mode=video
+[1773902232.125] create_project complete project_root=/Users/juninaba/Desktop/test frame_count=236 source_mode=video
+[1773902239.830] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902239.833] get_frame_bundle frame=0 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902357.865] fill_region start frame=0 x=295 y=318 color=rgba(209,73,91,255) project_root=/Users/juninaba/Desktop/test
+[1773902358.213] fill_region read_metadata frame=0 elapsed_ms=346
+[1773902358.213] fill_region track=2 candidate_frames=2
+[1773902358.312] fill_region frame=0 changed=yes materialize_ms=0 load_ms=32 fill_ms=4 save_ms=49 total_ms=87
+[1773902358.312] fill_region frame=1 changed=yes materialize_ms=0 load_ms=44 fill_ms=4 save_ms=48 total_ms=98
+[1773902358.312] fill_region complete frame=0 track_id=2 updated_frames=2 workers=2 elapsed_ms=447
+[1773902361.796] fill_region start frame=0 x=327 y=288 color=rgba(209,73,91,255) project_root=/Users/juninaba/Desktop/test
+[1773902362.131] fill_region read_metadata frame=0 elapsed_ms=334
+[1773902362.131] fill_region track=13 candidate_frames=4
+[1773902362.233] fill_region frame=0 changed=yes materialize_ms=0 load_ms=0 fill_ms=3 save_ms=49 total_ms=53
+[1773902362.233] fill_region frame=1 changed=yes materialize_ms=0 load_ms=0 fill_ms=5 save_ms=49 total_ms=55
+[1773902362.233] fill_region frame=2 changed=yes materialize_ms=0 load_ms=49 fill_ms=3 save_ms=47 total_ms=101
+[1773902362.233] fill_region frame=3 changed=yes materialize_ms=0 load_ms=45 fill_ms=3 save_ms=48 total_ms=97
+[1773902362.233] fill_region complete frame=0 track_id=13 updated_frames=4 workers=4 elapsed_ms=437
+[1773902365.494] fill_region start frame=0 x=362 y=343 color=rgba(209,73,91,255) project_root=/Users/juninaba/Desktop/test
+[1773902365.817] fill_region read_metadata frame=0 elapsed_ms=323
+[1773902365.817] fill_region track=94 candidate_frames=4
+[1773902365.872] fill_region frame=0 changed=yes materialize_ms=0 load_ms=0 fill_ms=3 save_ms=49 total_ms=53
+[1773902365.873] fill_region frame=1 changed=yes materialize_ms=0 load_ms=0 fill_ms=3 save_ms=50 total_ms=54
+[1773902365.873] fill_region frame=2 changed=yes materialize_ms=0 load_ms=0 fill_ms=3 save_ms=50 total_ms=54
+[1773902365.873] fill_region frame=3 changed=yes materialize_ms=0 load_ms=0 fill_ms=3 save_ms=47 total_ms=52
+[1773902365.873] fill_region complete frame=0 track_id=94 updated_frames=4 workers=4 elapsed_ms=379
+[1773902368.897] fill_region start frame=0 x=320 y=339 color=rgba(237,174,73,255) project_root=/Users/juninaba/Desktop/test
+[1773902369.231] fill_region read_metadata frame=0 elapsed_ms=333
+[1773902369.231] fill_region track=276 candidate_frames=1
+[1773902369.283] fill_region frame=0 changed=yes materialize_ms=0 load_ms=0 fill_ms=4 save_ms=46 total_ms=51
+[1773902369.283] fill_region complete frame=0 track_id=276 updated_frames=1 workers=1 elapsed_ms=386
+[1773902369.963] fill_region start frame=0 x=348 y=417 color=rgba(237,174,73,255) project_root=/Users/juninaba/Desktop/test
+[1773902370.297] fill_region read_metadata frame=0 elapsed_ms=332
+[1773902370.297] fill_region no_region frame=0 elapsed_ms=333
+[1773902373.647] fill_region start frame=0 x=565 y=359 color=rgba(237,174,73,255) project_root=/Users/juninaba/Desktop/test
+[1773902373.982] fill_region read_metadata frame=0 elapsed_ms=334
+[1773902373.983] fill_region track=466 candidate_frames=2
+[1773902374.035] fill_region frame=0 changed=yes materialize_ms=0 load_ms=0 fill_ms=3 save_ms=48 total_ms=52
+[1773902374.035] fill_region frame=1 changed=yes materialize_ms=0 load_ms=0 fill_ms=3 save_ms=48 total_ms=52
+[1773902374.036] fill_region complete frame=0 track_id=466 updated_frames=2 workers=2 elapsed_ms=388
+[1773902380.019] get_frame_bundle frame=1 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902380.055] get_frame_bundle frame=2 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.089] get_frame_bundle frame=3 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.125] get_frame_bundle frame=4 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.160] get_frame_bundle frame=5 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.195] get_frame_bundle frame=6 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.230] get_frame_bundle frame=7 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.265] get_frame_bundle frame=8 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.300] get_frame_bundle frame=9 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.335] get_frame_bundle frame=10 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.370] get_frame_bundle frame=11 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.405] get_frame_bundle frame=12 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.439] get_frame_bundle frame=13 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.474] get_frame_bundle frame=14 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.509] get_frame_bundle frame=15 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.544] get_frame_bundle frame=16 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.579] get_frame_bundle frame=17 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.615] get_frame_bundle frame=18 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.649] get_frame_bundle frame=19 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.684] get_frame_bundle frame=20 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.718] get_frame_bundle frame=21 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.753] get_frame_bundle frame=22 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.788] get_frame_bundle frame=23 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.823] get_frame_bundle frame=24 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.858] get_frame_bundle frame=25 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.893] get_frame_bundle frame=26 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.929] get_frame_bundle frame=27 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.964] get_frame_bundle frame=28 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902380.998] get_frame_bundle frame=29 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902382.596] fill_region start frame=29 x=289 y=320 color=rgba(237,174,73,255) project_root=/Users/juninaba/Desktop/test
+[1773902382.942] fill_region read_metadata frame=29 elapsed_ms=345
+[1773902382.942] fill_region track=1684 candidate_frames=4
+[1773902383.047] fill_region frame=26 changed=yes materialize_ms=0 load_ms=44 fill_ms=4 save_ms=49 total_ms=100
+[1773902383.047] fill_region frame=27 changed=yes materialize_ms=0 load_ms=45 fill_ms=4 save_ms=49 total_ms=100
+[1773902383.047] fill_region frame=28 changed=yes materialize_ms=0 load_ms=48 fill_ms=4 save_ms=49 total_ms=103
+[1773902383.047] fill_region frame=29 changed=yes materialize_ms=0 load_ms=32 fill_ms=4 save_ms=50 total_ms=88
+[1773902383.047] fill_region complete frame=29 track_id=1684 updated_frames=4 workers=4 elapsed_ms=451
+[1773902384.102] get_frame_bundle frame=30 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902384.137] get_frame_bundle frame=31 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.172] get_frame_bundle frame=32 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.207] get_frame_bundle frame=33 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.242] get_frame_bundle frame=34 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.278] get_frame_bundle frame=35 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.313] get_frame_bundle frame=36 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.348] get_frame_bundle frame=37 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.382] get_frame_bundle frame=38 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.417] get_frame_bundle frame=39 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.452] get_frame_bundle frame=40 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.487] get_frame_bundle frame=41 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.522] get_frame_bundle frame=42 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.557] get_frame_bundle frame=43 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.592] get_frame_bundle frame=44 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.627] get_frame_bundle frame=45 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.662] get_frame_bundle frame=46 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.697] get_frame_bundle frame=47 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.732] get_frame_bundle frame=48 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.766] get_frame_bundle frame=49 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.801] get_frame_bundle frame=50 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902384.835] get_frame_bundle frame=51 project_root=/Users/juninaba/Desktop/test elapsed_ms=0
+[1773902386.213] fill_region start frame=51 x=306 y=305 color=rgba(237,174,73,255) project_root=/Users/juninaba/Desktop/test
+[1773902386.559] fill_region read_metadata frame=51 elapsed_ms=345
+[1773902386.559] fill_region track=2997 candidate_frames=1
+[1773902386.640] fill_region frame=51 changed=yes materialize_ms=0 load_ms=29 fill_ms=4 save_ms=46 total_ms=80
+[1773902386.640] fill_region complete frame=51 track_id=2997 updated_frames=1 workers=1 elapsed_ms=427
+[1773902388.435] get_frame_bundle frame=52 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902389.785] get_frame_bundle frame=54 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902390.947] fill_region start frame=54 x=273 y=320 color=rgba(237,174,73,255) project_root=/Users/juninaba/Desktop/test
+[1773902391.293] fill_region read_metadata frame=54 elapsed_ms=346
+[1773902391.293] fill_region track=3290 candidate_frames=5
+[1773902391.418] fill_region frame=53 changed=yes materialize_ms=0 load_ms=45 fill_ms=4 save_ms=49 total_ms=99
+[1773902391.418] fill_region frame=54 changed=yes materialize_ms=0 load_ms=35 fill_ms=5 save_ms=60 total_ms=101
+[1773902391.418] fill_region frame=55 changed=yes materialize_ms=0 load_ms=65 fill_ms=5 save_ms=49 total_ms=121
+[1773902391.418] fill_region frame=56 changed=yes materialize_ms=0 load_ms=49 fill_ms=5 save_ms=57 total_ms=113
+[1773902391.418] fill_region frame=57 changed=yes materialize_ms=0 load_ms=55 fill_ms=13 save_ms=54 total_ms=124
+[1773902391.418] fill_region complete frame=54 track_id=3290 updated_frames=5 workers=5 elapsed_ms=472
+[1773902392.533] get_frame_bundle frame=55 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902393.301] get_frame_bundle frame=57 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
+[1773902396.367] get_frame_bundle frame=58 project_root=/Users/juninaba/Desktop/test elapsed_ms=1
