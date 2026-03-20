@@ -3,7 +3,7 @@ import { CanvasStage } from "../canvas/CanvasStage";
 import { Timeline } from "../timeline/Timeline";
 import { useEditorStore } from "../../state/editor-store/useEditorStore";
 
-const tools = ["Pen", "Fill", "Eyedropper"];
+const tools = ["Pen", "Fill"];
 
 function toHex(value: number) {
   return value.toString(16).padStart(2, "0");
