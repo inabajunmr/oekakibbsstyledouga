@@ -47,7 +47,10 @@
         "thumbFramesDir",
         "regionMetadataDir",
         "regionTrackIndexPath",
-        "regionLabelMapsDir"
+        "regionLabelMapsDir",
+        "blockedRegionMetadataDir",
+        "blockedRegionTrackIndexPath",
+        "blockedRegionLabelMapsDir"
       ],
       "properties": {
         "sourceFramesDir": {
@@ -69,6 +72,15 @@
           "type": "string"
         },
         "regionLabelMapsDir": {
+          "type": "string"
+        },
+        "blockedRegionMetadataDir": {
+          "type": "string"
+        },
+        "blockedRegionTrackIndexPath": {
+          "type": "string"
+        },
+        "blockedRegionLabelMapsDir": {
           "type": "string"
         }
       }

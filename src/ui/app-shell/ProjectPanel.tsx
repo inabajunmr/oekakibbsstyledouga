@@ -34,18 +34,6 @@ export function ProjectPanel() {
   const [outputPath, setOutputPath] = useState(demoOutputPath);
   const [busy, setBusy] = useState(false);
 
-  function startBackgroundPreprocess(nextProjectRoot: string) {
-    void preprocessProject(nextProjectRoot)
-      .then((result) => {
-        setStatusMessage(
-          `Prepared fill metadata for ${result.frameCount} frame(s) in the background`
-        );
-      })
-      .catch((error) => {
-        setStatusMessage(`Background preprocess failed: ${String(error)}`);
-      });
-  }
-
   useEffect(() => {
     if (!isTauriApp()) {
       return;
@@ -171,17 +159,38 @@ export function ProjectPanel() {
     setStatusMessage("Creating project...");
 
     try {
+      const startedAt = performance.now();
       const nextProject = await createProject(videoPath, projectRoot);
+      setStatusMessage(
+        `Created project metadata in ${(performance.now() - startedAt).toFixed(0)}ms, preprocessing fill data...`
+      );
       setProject(nextProject);
-      setPaintedFrames(await getPaintedFrames(nextProject.projectRoot));
+      const preprocessStartedAt = performance.now();
+      await preprocessProject(nextProject.projectRoot);
+      setStatusMessage(
+        `Preprocessed fill data in ${(performance.now() - preprocessStartedAt).toFixed(0)}ms, loading frames...`
+      );
+      const paintedFramesStartedAt = performance.now();
+      const paintedFrames = await getPaintedFrames(nextProject.projectRoot);
+      setPaintedFrames(paintedFrames);
+      setStatusMessage(
+        `Loaded painted state in ${(performance.now() - paintedFramesStartedAt).toFixed(0)}ms, opening frame 0...`
+      );
+      const frameBundleStartedAt = performance.now();
       const bundle = await getFrameBundle(nextProject.projectRoot, currentFrame);
       setFrameBundle(bundle);
-      startBackgroundPreprocess(nextProject.projectRoot);
       setStatusMessage(
         nextProject.sourceMode === "video"
-          ? `Created project at ${nextProject.projectRoot}`
+          ? `Created project at ${nextProject.projectRoot} in ${(performance.now() - startedAt).toFixed(0)}ms`
           : `Created placeholder project at ${nextProject.projectRoot} because ffmpeg/ffprobe were not available`
       );
+      console.info("create_project_timing", {
+        createProjectMs: Math.round(preprocessStartedAt - startedAt),
+        preprocessProjectMs: Math.round(paintedFramesStartedAt - preprocessStartedAt),
+        getPaintedFramesMs: Math.round(frameBundleStartedAt - paintedFramesStartedAt),
+        getFrameBundleMs: Math.round(performance.now() - frameBundleStartedAt),
+        totalMs: Math.round(performance.now() - startedAt)
+      });
     } catch (error) {
       setStatusMessage(`Create project failed: ${String(error)}`);
     } finally {
@@ -201,17 +210,38 @@ export function ProjectPanel() {
     setStatusMessage("Opening project...");
 
     try {
+      const startedAt = performance.now();
       const nextProject = await openProject(projectRoot);
       setProject(nextProject);
-      setPaintedFrames(await getPaintedFrames(nextProject.projectRoot));
+      setStatusMessage(
+        `Opened project metadata in ${(performance.now() - startedAt).toFixed(0)}ms, preprocessing fill data...`
+      );
+      const preprocessStartedAt = performance.now();
+      await preprocessProject(nextProject.projectRoot);
+      setStatusMessage(
+        `Preprocessed fill data in ${(performance.now() - preprocessStartedAt).toFixed(0)}ms, loading frames...`
+      );
+      const paintedFramesStartedAt = performance.now();
+      const paintedFrames = await getPaintedFrames(nextProject.projectRoot);
+      setPaintedFrames(paintedFrames);
+      setStatusMessage(
+        `Loaded painted state in ${(performance.now() - paintedFramesStartedAt).toFixed(0)}ms, opening frame 0...`
+      );
+      const frameBundleStartedAt = performance.now();
       const bundle = await getFrameBundle(nextProject.projectRoot, currentFrame);
       setFrameBundle(bundle);
-      startBackgroundPreprocess(nextProject.projectRoot);
       setStatusMessage(
         nextProject.sourceMode === "video"
-          ? `Opened project at ${nextProject.projectRoot}`
+          ? `Opened project at ${nextProject.projectRoot} in ${(performance.now() - startedAt).toFixed(0)}ms`
           : `Opened placeholder project at ${nextProject.projectRoot}`
       );
+      console.info("open_project_timing", {
+        openProjectMs: Math.round(preprocessStartedAt - startedAt),
+        preprocessProjectMs: Math.round(paintedFramesStartedAt - preprocessStartedAt),
+        getPaintedFramesMs: Math.round(frameBundleStartedAt - paintedFramesStartedAt),
+        getFrameBundleMs: Math.round(performance.now() - frameBundleStartedAt),
+        totalMs: Math.round(performance.now() - startedAt)
+      });
     } catch (error) {
       setStatusMessage(`Open project failed: ${String(error)}`);
     } finally {

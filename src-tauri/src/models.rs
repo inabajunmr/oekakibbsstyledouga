@@ -37,6 +37,12 @@ pub struct ProjectPaths {
     pub region_track_index_path: String,
     #[serde(default)]
     pub region_label_maps_dir: String,
+    #[serde(default)]
+    pub blocked_region_metadata_dir: String,
+    #[serde(default)]
+    pub blocked_region_track_index_path: String,
+    #[serde(default)]
+    pub blocked_region_label_maps_dir: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]

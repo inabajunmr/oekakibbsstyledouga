@@ -154,6 +154,9 @@ fn build_project_paths() -> ProjectPaths {
         region_metadata_dir: String::from("regions"),
         region_track_index_path: String::from("regions/track-index.json"),
         region_label_maps_dir: String::from("regions/labels"),
+        blocked_region_metadata_dir: String::from("regions/blocked"),
+        blocked_region_track_index_path: String::from("regions/blocked-track-index.json"),
+        blocked_region_label_maps_dir: String::from("regions/blocked-labels"),
     }
 }
 
@@ -363,6 +366,10 @@ fn ensure_project_dirs(project_root: &Path, paths: &ProjectPaths) -> Result<(), 
     fs::create_dir_all(project_root.join(&paths.region_metadata_dir))
         .map_err(|error| error.to_string())?;
     fs::create_dir_all(project_root.join(&paths.region_label_maps_dir))
+        .map_err(|error| error.to_string())?;
+    fs::create_dir_all(project_root.join(&paths.blocked_region_metadata_dir))
+        .map_err(|error| error.to_string())?;
+    fs::create_dir_all(project_root.join(&paths.blocked_region_label_maps_dir))
         .map_err(|error| error.to_string())?;
     Ok(())
 }
@@ -575,20 +582,6 @@ fn seed_placeholder_frames(
     for frame_index in 0..frame_count {
         let frame_name = frame_file_name(frame_index);
         write_placeholder_frame(&dir.join(frame_name.as_str()), width, height)?;
-    }
-
-    Ok(())
-}
-
-fn seed_blank_paint_frames(
-    dir: &Path,
-    frame_count: u32,
-    width: u32,
-    height: u32,
-) -> Result<(), String> {
-    for frame_index in 0..frame_count {
-        let frame_name = frame_file_name(frame_index);
-        write_transparent_placeholder_frame(&dir.join(frame_name.as_str()), width, height)?;
     }
 
     Ok(())
@@ -816,6 +809,24 @@ fn region_track_index_path(project_root: &Path, paths: &ProjectPaths) -> PathBuf
     project_root.join(&paths.region_track_index_path)
 }
 
+fn blocked_region_metadata_dir(project_root: &Path, paths: &ProjectPaths) -> PathBuf {
+    if paths.blocked_region_metadata_dir.is_empty() {
+        return project_root.join("regions").join("blocked");
+    }
+
+    project_root.join(&paths.blocked_region_metadata_dir)
+}
+
+fn blocked_region_track_index_path(project_root: &Path, paths: &ProjectPaths) -> PathBuf {
+    if paths.blocked_region_track_index_path.is_empty() {
+        return project_root
+            .join("regions")
+            .join("blocked-track-index.json");
+    }
+
+    project_root.join(&paths.blocked_region_track_index_path)
+}
+
 fn region_label_maps_dir(project_root: &Path, paths: &ProjectPaths) -> PathBuf {
     if paths.region_label_maps_dir.is_empty() {
         return project_root.join("regions").join("labels");
@@ -826,6 +837,22 @@ fn region_label_maps_dir(project_root: &Path, paths: &ProjectPaths) -> PathBuf {
 
 fn region_label_map_path(project_root: &Path, paths: &ProjectPaths, frame_index: u32) -> PathBuf {
     region_label_maps_dir(project_root, paths).join(format!("{frame_index:06}.bin"))
+}
+
+fn blocked_region_label_maps_dir(project_root: &Path, paths: &ProjectPaths) -> PathBuf {
+    if paths.blocked_region_label_maps_dir.is_empty() {
+        return project_root.join("regions").join("blocked-labels");
+    }
+
+    project_root.join(&paths.blocked_region_label_maps_dir)
+}
+
+fn blocked_region_label_map_path(
+    project_root: &Path,
+    paths: &ProjectPaths,
+    frame_index: u32,
+) -> PathBuf {
+    blocked_region_label_maps_dir(project_root, paths).join(format!("{frame_index:06}.bin"))
 }
 
 fn write_region_label_map(path: &Path, label_map: &[u32]) -> Result<(), String> {
@@ -875,9 +902,10 @@ fn load_region_label_map(path: &Path, width: u32, height: u32) -> Result<Vec<u32
     Ok(label_map)
 }
 
-fn build_region_metadata(
+fn build_region_metadata_with_predicate(
     frame_index: u32,
     line_image: &GrayImage,
+    include_pixel: impl Fn(&GrayImage, u32, u32) -> bool,
 ) -> (FrameRegionMetadata, Vec<u32>) {
     let width = line_image.width();
     let height = line_image.height();
@@ -890,7 +918,7 @@ fn build_region_metadata(
         for x in 0..width {
             let index = (y * width + x) as usize;
 
-            if visited[index] || line_blocks_fill(line_image, x, y) {
+            if visited[index] || !include_pixel(line_image, x, y) {
                 continue;
             }
 
@@ -923,7 +951,7 @@ fn build_region_metadata(
                 ];
 
                 for (nx, ny, valid) in neighbors {
-                    if !valid || line_blocks_fill(line_image, nx, ny) {
+                    if !valid || !include_pixel(line_image, nx, ny) {
                         continue;
                     }
 
@@ -964,6 +992,22 @@ fn build_region_metadata(
         },
         label_map,
     )
+}
+
+fn build_region_metadata(
+    frame_index: u32,
+    line_image: &GrayImage,
+) -> (FrameRegionMetadata, Vec<u32>) {
+    build_region_metadata_with_predicate(frame_index, line_image, |image, x, y| {
+        !line_blocks_fill(image, x, y)
+    })
+}
+
+fn build_blocked_region_metadata(
+    frame_index: u32,
+    line_image: &GrayImage,
+) -> (FrameRegionMetadata, Vec<u32>) {
+    build_region_metadata_with_predicate(frame_index, line_image, line_blocks_fill)
 }
 
 fn write_region_metadata(
@@ -1007,23 +1051,44 @@ fn build_region_track_index(all_region_metadata: &[FrameRegionMetadata]) -> Regi
     RegionTrackIndex { tracks }
 }
 
+fn write_region_track_index_to_path(path: PathBuf, index: &RegionTrackIndex) -> Result<(), String> {
+    let content = serde_json::to_string_pretty(index).map_err(|error| error.to_string())?;
+    fs::write(path, content).map_err(|error| error.to_string())
+}
+
 fn write_region_track_index(
     project_root: &Path,
     paths: &ProjectPaths,
     index: &RegionTrackIndex,
 ) -> Result<(), String> {
-    let content = serde_json::to_string_pretty(index).map_err(|error| error.to_string())?;
-    fs::write(region_track_index_path(project_root, paths), content)
-        .map_err(|error| error.to_string())
+    write_region_track_index_to_path(region_track_index_path(project_root, paths), index)
+}
+
+fn read_region_track_index_from_path(path: PathBuf) -> Result<RegionTrackIndex, String> {
+    let content = fs::read_to_string(path).map_err(|error| error.to_string())?;
+    serde_json::from_str(&content).map_err(|error| error.to_string())
 }
 
 fn read_region_track_index(
     project_root: &Path,
     paths: &ProjectPaths,
 ) -> Result<RegionTrackIndex, String> {
-    let content = fs::read_to_string(region_track_index_path(project_root, paths))
-        .map_err(|error| error.to_string())?;
-    serde_json::from_str(&content).map_err(|error| error.to_string())
+    read_region_track_index_from_path(region_track_index_path(project_root, paths))
+}
+
+fn write_blocked_region_track_index(
+    project_root: &Path,
+    paths: &ProjectPaths,
+    index: &RegionTrackIndex,
+) -> Result<(), String> {
+    write_region_track_index_to_path(blocked_region_track_index_path(project_root, paths), index)
+}
+
+fn read_blocked_region_track_index(
+    project_root: &Path,
+    paths: &ProjectPaths,
+) -> Result<RegionTrackIndex, String> {
+    read_region_track_index_from_path(blocked_region_track_index_path(project_root, paths))
 }
 
 fn find_region_at_point<'a>(
@@ -1064,19 +1129,8 @@ fn fill_region_using_label_map(
         return false;
     }
 
-    let sample_index = if sample_x < width && sample_y < height {
-        let index = (sample_y * width + sample_x) as usize;
-        if label_map.get(index).copied() == Some(region_id) {
-            Some(index)
-        } else {
-            None
-        }
-    } else {
-        None
-    };
-
     let sample_index =
-        sample_index.or_else(|| label_map.iter().position(|label| *label == region_id));
+        find_region_sample_index(label_map, width, height, region_id, sample_x, sample_y);
 
     let Some(sample_index) = sample_index else {
         return false;
@@ -1110,6 +1164,144 @@ fn fill_region_using_label_map(
     }
 
     changed
+}
+
+fn find_region_sample_index(
+    label_map: &[u32],
+    width: u32,
+    height: u32,
+    region_id: u32,
+    sample_x: u32,
+    sample_y: u32,
+) -> Option<usize> {
+    if width == 0 || height == 0 {
+        return None;
+    }
+
+    let sample_index = if sample_x < width && sample_y < height {
+        let index = (sample_y * width + sample_x) as usize;
+        if label_map.get(index).copied() == Some(region_id) {
+            Some(index)
+        } else {
+            None
+        }
+    } else {
+        None
+    };
+
+    sample_index.or_else(|| label_map.iter().position(|label| *label == region_id))
+}
+
+fn sample_region_color(
+    paint_image: &RgbaImage,
+    label_map: &[u32],
+    region_id: u32,
+    sample_x: u32,
+    sample_y: u32,
+) -> Option<Rgba<u8>> {
+    let sample_index = find_region_sample_index(
+        label_map,
+        paint_image.width(),
+        paint_image.height(),
+        region_id,
+        sample_x,
+        sample_y,
+    )?;
+    let x = (sample_index as u32) % paint_image.width();
+    let y = (sample_index as u32) / paint_image.width();
+    Some(*paint_image.get_pixel(x, y))
+}
+
+fn is_transparent(pixel: &Rgba<u8>) -> bool {
+    pixel[3] == 0
+}
+
+fn select_track_frames_by_color(
+    root: &Path,
+    project_file: &ProjectFile,
+    track_id: u32,
+    frame_index: u32,
+    track_frames: &[TrackFrameEntry],
+    clicked_color: Rgba<u8>,
+    fill_color: Rgba<u8>,
+    label_map_path_for_frame: impl Fn(u32) -> PathBuf,
+) -> Result<Vec<TrackFrameEntry>, String> {
+    let mut sorted_track_frames = track_frames.to_vec();
+    sorted_track_frames.sort_by_key(|entry| entry.frame_index);
+
+    let Some(clicked_track_index) = sorted_track_frames
+        .iter()
+        .position(|entry| entry.frame_index == frame_index)
+    else {
+        return Err(format!(
+            "Track {track_id} does not contain clicked frame {frame_index}."
+        ));
+    };
+
+    let mut selected_track_frames = vec![sorted_track_frames[clicked_track_index].clone()];
+
+    for entry in sorted_track_frames[..clicked_track_index].iter().rev() {
+        let paint_path = root
+            .join(&project_file.paths.paint_frames_dir)
+            .join(frame_file_name(entry.frame_index));
+        let paint_image = ensure_paint_image(&paint_path, project_file.width, project_file.height)?;
+        let label_map = load_region_label_map(
+            &label_map_path_for_frame(entry.frame_index),
+            project_file.width,
+            project_file.height,
+        )?;
+        let sample_color = sample_region_color(
+            &paint_image,
+            &label_map,
+            entry.region_id,
+            entry.sample_x,
+            entry.sample_y,
+        )
+        .unwrap_or(Rgba([0, 0, 0, 0]));
+
+        if sample_color == clicked_color
+            || sample_color == fill_color
+            || is_transparent(&sample_color)
+        {
+            selected_track_frames.push(entry.clone());
+            continue;
+        }
+
+        break;
+    }
+
+    for entry in sorted_track_frames.iter().skip(clicked_track_index + 1) {
+        let paint_path = root
+            .join(&project_file.paths.paint_frames_dir)
+            .join(frame_file_name(entry.frame_index));
+        let paint_image = ensure_paint_image(&paint_path, project_file.width, project_file.height)?;
+        let label_map = load_region_label_map(
+            &label_map_path_for_frame(entry.frame_index),
+            project_file.width,
+            project_file.height,
+        )?;
+        let sample_color = sample_region_color(
+            &paint_image,
+            &label_map,
+            entry.region_id,
+            entry.sample_x,
+            entry.sample_y,
+        )
+        .unwrap_or(Rgba([0, 0, 0, 0]));
+
+        if sample_color == clicked_color
+            || sample_color == fill_color
+            || is_transparent(&sample_color)
+        {
+            selected_track_frames.push(entry.clone());
+            continue;
+        }
+
+        break;
+    }
+
+    selected_track_frames.sort_by_key(|entry| entry.frame_index);
+    Ok(selected_track_frames)
 }
 
 fn region_match_score(current: &RegionMetadata, previous: &RegionMetadata) -> f32 {
@@ -1271,8 +1463,22 @@ fn create_project_file_from_video(
             ffprobe.display()
         ));
         let source_dir = project_root.join(&paths.source_frames_dir);
+        let line_dir = project_root.join(&paths.line_frames_dir);
+        let paint_dir = project_root.join(&paths.paint_frames_dir);
+        let thumb_dir = project_root.join(&paths.thumb_frames_dir);
+        let region_dir = project_root.join(&paths.region_metadata_dir);
+        let label_map_dir = region_label_maps_dir(project_root, &paths);
+        let blocked_region_dir = blocked_region_metadata_dir(project_root, &paths);
+        let blocked_label_map_dir = blocked_region_label_maps_dir(project_root, &paths);
         clear_png_files(&source_dir)?;
-        log_message("create_project_file_from_video cleared_source_dir");
+        clear_png_files(&line_dir)?;
+        clear_png_files(&paint_dir)?;
+        clear_png_files(&thumb_dir)?;
+        clear_json_files(&region_dir)?;
+        clear_directory(&label_map_dir)?;
+        clear_json_files(&blocked_region_dir)?;
+        clear_directory(&blocked_label_map_dir)?;
+        log_message("create_project_file_from_video cleared_project_artifacts");
         let metadata = probe_video_metadata(&ffprobe, video_path)?;
         log_message(format!(
             "create_project_file_from_video probed_video width={} height={} fps={}",
@@ -1284,14 +1490,7 @@ fn create_project_file_from_video(
             "create_project_file_from_video extracted_frames count={}",
             frame_count
         ));
-
-        seed_blank_paint_frames(
-            &project_root.join(&paths.paint_frames_dir),
-            frame_count,
-            metadata.width,
-            metadata.height,
-        )?;
-        log_message("create_project_file_from_video seeded_blank_paint_frames");
+        log_message("create_project_file_from_video deferred_blank_paint_frames");
 
         return Ok(ProjectFile {
             version: 1,
@@ -1319,12 +1518,6 @@ fn create_project_file_from_video(
 
     seed_placeholder_frames(
         &project_root.join(&project_file.paths.source_frames_dir),
-        project_file.frame_count,
-        project_file.width,
-        project_file.height,
-    )?;
-    seed_blank_paint_frames(
-        &project_root.join(&project_file.paths.paint_frames_dir),
         project_file.frame_count,
         project_file.width,
         project_file.height,
@@ -1366,65 +1559,131 @@ fn preprocess_project_frames(
     project_root: &Path,
     paths: &ProjectPaths,
 ) -> Result<PreprocessResult, String> {
+    let started_at = Instant::now();
     let source_dir = project_root.join(&paths.source_frames_dir);
     let line_dir = project_root.join(&paths.line_frames_dir);
     let thumb_dir = project_root.join(&paths.thumb_frames_dir);
     let paint_dir = project_root.join(&paths.paint_frames_dir);
     let region_dir = project_root.join(&paths.region_metadata_dir);
     let label_map_dir = region_label_maps_dir(project_root, paths);
+    let blocked_region_dir = blocked_region_metadata_dir(project_root, paths);
+    let blocked_label_map_dir = blocked_region_label_maps_dir(project_root, paths);
 
-    clear_png_files(&line_dir)?;
-    clear_png_files(&thumb_dir)?;
     clear_json_files(&region_dir)?;
     clear_directory(&label_map_dir)?;
+    clear_json_files(&blocked_region_dir)?;
+    clear_directory(&blocked_label_map_dir)?;
     fs::create_dir_all(&line_dir).map_err(|error| error.to_string())?;
     fs::create_dir_all(&thumb_dir).map_err(|error| error.to_string())?;
     fs::create_dir_all(&paint_dir).map_err(|error| error.to_string())?;
     fs::create_dir_all(&region_dir).map_err(|error| error.to_string())?;
     fs::create_dir_all(&label_map_dir).map_err(|error| error.to_string())?;
+    fs::create_dir_all(&blocked_region_dir).map_err(|error| error.to_string())?;
+    fs::create_dir_all(&blocked_label_map_dir).map_err(|error| error.to_string())?;
 
-    let mut frame_count = 0;
-    let mut all_region_metadata = Vec::new();
+    let source_paths = png_file_paths(&source_dir)?;
+    let frame_count = source_paths.len() as u32;
+    let worker_count = std::thread::available_parallelism()
+        .map(|count| count.get())
+        .unwrap_or(1)
+        .max(1)
+        .min(source_paths.len().max(1))
+        .min(12);
+    let chunk_size = source_paths.len().max(1).div_ceil(worker_count);
+    let mut all_region_metadata = Vec::with_capacity(source_paths.len());
+    let mut all_blocked_region_metadata = Vec::with_capacity(source_paths.len());
 
-    for entry in fs::read_dir(&source_dir).map_err(|error| error.to_string())? {
-        let entry = entry.map_err(|error| error.to_string())?;
-        let source_path = entry.path();
+    std::thread::scope(|scope| -> Result<(), String> {
+        let mut handles = Vec::new();
 
-        if source_path.extension().and_then(|ext| ext.to_str()) != Some("png") {
-            continue;
+        for chunk in source_paths.chunks(chunk_size) {
+            let chunk = chunk.to_vec();
+            let line_dir = line_dir.clone();
+            let thumb_dir = thumb_dir.clone();
+            let project_root = project_root.to_path_buf();
+            let paths = paths.clone();
+
+            handles.push(scope.spawn(
+                move || -> Result<(Vec<FrameRegionMetadata>, Vec<FrameRegionMetadata>), String> {
+                    let mut chunk_metadata = Vec::with_capacity(chunk.len());
+                    let mut chunk_blocked_metadata = Vec::with_capacity(chunk.len());
+
+                    for source_path in chunk {
+                        let frame_name = source_path
+                            .file_name()
+                            .ok_or_else(|| String::from("Source frame file name was missing."))?
+                            .to_owned();
+                        let frame_stem = source_path
+                            .file_stem()
+                            .and_then(|stem| stem.to_str())
+                            .ok_or_else(|| String::from("Source frame stem was missing."))?;
+                        let frame_index = frame_stem
+                            .parse::<u32>()
+                            .map_err(|error| error.to_string())?;
+                        let line_path = line_dir.join(&frame_name);
+                        let thumb_path = thumb_dir.join(&frame_name);
+
+                        if !line_path.exists() || !thumb_path.exists() {
+                            preprocess_source_frame(&source_path, &line_path, &thumb_path)?;
+                        }
+
+                        let line_image = image::open(&line_path)
+                            .map_err(|error| error.to_string())?
+                            .to_luma8();
+                        let (metadata, label_map) = build_region_metadata(frame_index, &line_image);
+                        let (blocked_metadata, blocked_label_map) =
+                            build_blocked_region_metadata(frame_index, &line_image);
+                        write_region_label_map(
+                            &region_label_map_path(&project_root, &paths, frame_index),
+                            &label_map,
+                        )?;
+                        write_region_label_map(
+                            &blocked_region_label_map_path(&project_root, &paths, frame_index),
+                            &blocked_label_map,
+                        )?;
+                        chunk_metadata.push(metadata);
+                        chunk_blocked_metadata.push(blocked_metadata);
+                    }
+
+                    Ok((chunk_metadata, chunk_blocked_metadata))
+                },
+            ));
         }
 
-        let file_name = entry.file_name();
-        preprocess_source_frame(
-            &source_path,
-            &line_dir.join(&file_name),
-            &thumb_dir.join(&file_name),
-        )?;
-        let line_image = image::open(line_dir.join(&file_name))
-            .map_err(|error| error.to_string())?
-            .to_luma8();
-        let (metadata, label_map) = build_region_metadata(frame_count, &line_image);
-        write_region_label_map(
-            &region_label_map_path(project_root, paths, frame_count),
-            &label_map,
-        )?;
-        all_region_metadata.push(metadata);
-        write_transparent_placeholder_frame(
-            &paint_dir.join(&file_name),
-            line_image.width(),
-            line_image.height(),
-        )?;
-        frame_count += 1;
-    }
+        for handle in handles {
+            let (chunk_metadata, chunk_blocked_metadata) = handle
+                .join()
+                .map_err(|_| String::from("A preprocess worker thread panicked."))??;
+            all_region_metadata.extend(chunk_metadata);
+            all_blocked_region_metadata.extend(chunk_blocked_metadata);
+        }
+
+        Ok(())
+    })?;
+
+    all_region_metadata.sort_by_key(|metadata| metadata.frame_index);
+    all_blocked_region_metadata.sort_by_key(|metadata| metadata.frame_index);
 
     propagate_track_ids(&mut all_region_metadata);
+    propagate_track_ids(&mut all_blocked_region_metadata);
 
     for metadata in &all_region_metadata {
         write_region_metadata(&region_dir, metadata.frame_index, metadata)?;
     }
+    for metadata in &all_blocked_region_metadata {
+        write_region_metadata(&blocked_region_dir, metadata.frame_index, metadata)?;
+    }
 
     let track_index = build_region_track_index(&all_region_metadata);
     write_region_track_index(project_root, paths, &track_index)?;
+    let blocked_track_index = build_region_track_index(&all_blocked_region_metadata);
+    write_blocked_region_track_index(project_root, paths, &blocked_track_index)?;
+    log_message(format!(
+        "preprocess_project frame_count={} workers={} elapsed_ms={}",
+        frame_count,
+        worker_count,
+        started_at.elapsed().as_millis()
+    ));
 
     Ok(PreprocessResult {
         frame_count,
@@ -1548,6 +1807,7 @@ pub fn open_project(project_root: String) -> Result<ProjectSummary, String> {
 
 #[command]
 pub fn get_painted_frames(project_root: String) -> Result<Vec<u32>, String> {
+    let started_at = Instant::now();
     let root = PathBuf::from(project_root);
     let project_file = read_project_file(&root)?;
     let paint_dir = root.join(&project_file.paths.paint_frames_dir);
@@ -1560,6 +1820,14 @@ pub fn get_painted_frames(project_root: String) -> Result<Vec<u32>, String> {
             painted_frames.push(frame_index);
         }
     }
+
+    log_message(format!(
+        "get_painted_frames project_root={} frame_count={} painted_frames={} elapsed_ms={}",
+        root.display(),
+        project_file.frame_count,
+        painted_frames.len(),
+        started_at.elapsed().as_millis()
+    ));
 
     Ok(painted_frames)
 }
@@ -1679,6 +1947,7 @@ pub fn fill_region(
     let root = PathBuf::from(project_root);
     let project_file = read_project_file(&root)?;
     let region_dir = root.join(&project_file.paths.region_metadata_dir);
+    let blocked_region_dir = blocked_region_metadata_dir(&root, &project_file.paths);
     log_message(format!(
         "fill_region start frame={} x={} y={} color=rgba({},{},{},{}) project_root={}",
         frame_index,
@@ -1694,6 +1963,13 @@ pub fn fill_region(
     if !region_metadata_path(&region_dir, frame_index).exists()
         || !region_track_index_path(&root, &project_file.paths).exists()
         || !region_label_map_path(&root, &project_file.paths, frame_index).exists()
+        || !region_metadata_path(
+            &blocked_region_metadata_dir(&root, &project_file.paths),
+            frame_index,
+        )
+        .exists()
+        || !blocked_region_track_index_path(&root, &project_file.paths).exists()
+        || !blocked_region_label_map_path(&root, &project_file.paths, frame_index).exists()
     {
         let preprocess_started_at = Instant::now();
         preprocess_project_frames(&root, &project_file.paths)?;
@@ -1712,14 +1988,106 @@ pub fn fill_region(
         project_file.width,
         project_file.height,
     )?;
+    let blocked_region_metadata = read_region_metadata(&blocked_region_dir, frame_index)?;
+    let clicked_blocked_label_map = load_region_label_map(
+        &blocked_region_label_map_path(&root, &project_file.paths, frame_index),
+        project_file.width,
+        project_file.height,
+    )?;
     let track_index = read_region_track_index(&root, &project_file.paths)?;
+    let blocked_track_index = read_blocked_region_track_index(&root, &project_file.paths)?;
     log_message(format!(
         "fill_region read_metadata frame={} elapsed_ms={}",
         frame_index,
         read_metadata_started_at.elapsed().as_millis()
     ));
+    let clicked_paint_path = root
+        .join(&project_file.paths.paint_frames_dir)
+        .join(frame_file_name(frame_index));
+    let clicked_paint_image =
+        ensure_paint_image(&clicked_paint_path, project_file.width, project_file.height)?;
+    let clicked_color = if x < project_file.width && y < project_file.height {
+        *clicked_paint_image.get_pixel(x, y)
+    } else {
+        Rgba([0, 0, 0, 0])
+    };
+
     let region = find_region_at_point(&region_metadata, &clicked_label_map, x, y);
-    let Some(region) = region else {
+    let blocked_region =
+        find_region_at_point(&blocked_region_metadata, &clicked_blocked_label_map, x, y);
+    let (track_id, selected_track_frames, use_blocked_label_map, track_frame_count, fill_mode): (
+        u32,
+        Vec<TrackFrameEntry>,
+        bool,
+        usize,
+        &'static str,
+    ) = if let Some(region) = region {
+        let Some(track_frames) = track_index.tracks.get(&region.track_id) else {
+            log_message(format!(
+                "fill_region missing_track_index track_id={} frame={} elapsed_ms={}",
+                region.track_id,
+                frame_index,
+                started_at.elapsed().as_millis()
+            ));
+            return Ok(FillResult {
+                track_id: region.track_id,
+                updated_frames: Vec::new(),
+            });
+        };
+
+        let selected_track_frames = select_track_frames_by_color(
+            &root,
+            &project_file,
+            region.track_id,
+            frame_index,
+            track_frames,
+            clicked_color,
+            fill_color,
+            |target_frame_index| {
+                region_label_map_path(&root, &project_file.paths, target_frame_index)
+            },
+        )?;
+        (
+            region.track_id,
+            selected_track_frames,
+            false,
+            track_frames.len(),
+            "region",
+        )
+    } else if let Some(blocked_region) = blocked_region {
+        let Some(track_frames) = blocked_track_index.tracks.get(&blocked_region.track_id) else {
+            log_message(format!(
+                "fill_region missing_blocked_track_index track_id={} frame={} elapsed_ms={}",
+                blocked_region.track_id,
+                frame_index,
+                started_at.elapsed().as_millis()
+            ));
+            return Ok(FillResult {
+                track_id: blocked_region.track_id,
+                updated_frames: Vec::new(),
+            });
+        };
+
+        let selected_track_frames = select_track_frames_by_color(
+            &root,
+            &project_file,
+            blocked_region.track_id,
+            frame_index,
+            track_frames,
+            clicked_color,
+            fill_color,
+            |target_frame_index| {
+                blocked_region_label_map_path(&root, &project_file.paths, target_frame_index)
+            },
+        )?;
+        (
+            blocked_region.track_id,
+            selected_track_frames,
+            true,
+            track_frames.len(),
+            "blocked",
+        )
+    } else {
         log_message(format!(
             "fill_region no_region frame={} elapsed_ms={}",
             frame_index,
@@ -1731,33 +2099,26 @@ pub fn fill_region(
         });
     };
 
-    let Some(track_frames) = track_index.tracks.get(&region.track_id) else {
-        log_message(format!(
-            "fill_region missing_track_index track_id={} frame={} elapsed_ms={}",
-            region.track_id,
-            frame_index,
-            started_at.elapsed().as_millis()
-        ));
-        return Ok(FillResult {
-            track_id: region.track_id,
-            updated_frames: Vec::new(),
-        });
-    };
-
     log_message(format!(
-        "fill_region track={} candidate_frames={}",
-        region.track_id,
-        track_frames.len()
+        "fill_region mode={} track={} candidate_frames={} selected_frames={} clicked_color=rgba({},{},{},{})",
+        fill_mode,
+        track_id,
+        track_frame_count,
+        selected_track_frames.len(),
+        clicked_color[0],
+        clicked_color[1],
+        clicked_color[2],
+        clicked_color[3]
     ));
 
     let worker_count = std::thread::available_parallelism()
         .map(|count| count.get().saturating_mul(2))
         .unwrap_or(4)
         .max(4)
-        .min(track_frames.len().max(1))
+        .min(selected_track_frames.len().max(1))
         .min(24);
-    let chunk_size = track_frames.len().max(1).div_ceil(worker_count);
-    let track_frames = track_frames.clone();
+    let chunk_size = selected_track_frames.len().max(1).div_ceil(worker_count);
+    let track_frames = selected_track_frames;
     let mut updated_frames = Vec::new();
     let mut metrics = Vec::new();
 
@@ -1786,8 +2147,17 @@ pub fn fill_region(
                             project_file.width,
                             project_file.height,
                         )?;
+                        let label_map_path = if use_blocked_label_map {
+                            blocked_region_label_map_path(
+                                &root,
+                                &project_file.paths,
+                                entry.frame_index,
+                            )
+                        } else {
+                            region_label_map_path(&root, &project_file.paths, entry.frame_index)
+                        };
                         let label_map = load_region_label_map(
-                            &region_label_map_path(&root, &project_file.paths, entry.frame_index),
+                            &label_map_path,
                             project_file.width,
                             project_file.height,
                         )?;
@@ -1867,14 +2237,14 @@ pub fn fill_region(
     log_message(format!(
         "fill_region complete frame={} track_id={} updated_frames={} workers={} elapsed_ms={}",
         frame_index,
-        region.track_id,
+        track_id,
         updated_frames.len(),
         worker_count,
         started_at.elapsed().as_millis()
     ));
 
     Ok(FillResult {
-        track_id: region.track_id,
+        track_id,
         updated_frames,
     })
 }
