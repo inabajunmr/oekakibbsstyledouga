@@ -2,6 +2,15 @@ name: Headless Export
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - ".github/workflows/headless-export.yml"
+      - ".github/headless-export.json"
+      - "src-tauri/**"
+      - "test.mp4"
 
 jobs:
   export:
