@@ -2,5 +2,5 @@ node_modules
 dist/*
 !dist/.gitkeep
 target
+.github-artifacts
 .DS_Store
-

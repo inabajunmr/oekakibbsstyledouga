@@ -1744,12 +1744,19 @@ pub fn create_project(
     video_path: String,
     project_root: String,
 ) -> Result<ProjectSummary, String> {
+    let _ = ensure_ffmpeg_tools_internal(&app);
+    create_project_headless(video_path, project_root)
+}
+
+pub fn create_project_headless(
+    video_path: String,
+    project_root: String,
+) -> Result<ProjectSummary, String> {
     clear_image_caches();
     log_message(format!(
         "create_project start video_path={} project_root={}",
         video_path, project_root
     ));
-    let _ = ensure_ffmpeg_tools_internal(&app);
     log_message("create_project tools_ready");
     let project_root = PathBuf::from(project_root);
     let source_video_path = PathBuf::from(video_path);

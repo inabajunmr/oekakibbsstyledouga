@@ -1,0 +1,18 @@
+{
+  "videoPath": "../test.mp4",
+  "projectRoot": "../.github-artifacts/project",
+  "outputPath": "../.github-artifacts/export.mp4",
+  "fills": [
+    {
+      "frameIndex": 0,
+      "x": 640,
+      "y": 360,
+      "color": {
+        "r": 255,
+        "g": 96,
+        "b": 64,
+        "a": 255
+      }
+    }
+  ]
+}

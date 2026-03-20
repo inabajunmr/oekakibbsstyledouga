@@ -6,6 +6,12 @@ use commands::{
     get_painted_frames, open_project, preprocess_project,
 };
 
+pub use commands::{
+    create_project_headless, export_video as export_video_headless,
+    fill_region as fill_region_headless, preprocess_project as preprocess_project_headless,
+};
+pub use models::RgbaColor;
+
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
