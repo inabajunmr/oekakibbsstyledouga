@@ -40,6 +40,9 @@ jobs:
       - name: Install frontend dependencies
         run: npm ci
 
+      - name: Build frontend assets
+        run: npm run build
+
       - name: Run headless export pipeline
         run: cargo run --manifest-path src-tauri/Cargo.toml --bin headless_pipeline -- .github/headless-export.json
 
