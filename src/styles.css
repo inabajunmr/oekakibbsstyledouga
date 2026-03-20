@@ -297,6 +297,33 @@ select {
   overflow: auto;
 }
 
+.timeline__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.timeline__slider {
+  flex: 1 1 auto;
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: #5f5445;
+}
+
+.timeline__slider input {
+  width: 100%;
+}
+
+.timeline__summary {
+  flex: 0 0 auto;
+  min-width: 110px;
+  text-align: right;
+  font-size: 12px;
+  color: #5a3f22;
+}
+
 .timeline__track {
   display: flex;
   gap: 10px;

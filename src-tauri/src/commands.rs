@@ -72,13 +72,27 @@ fn clear_image_caches() {
 }
 
 fn log_file_path() -> PathBuf {
+    workspace_root_dir().join("log.txt")
+}
+
+fn workspace_root_dir() -> PathBuf {
     let current_dir = env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
 
     if current_dir.file_name().and_then(|name| name.to_str()) == Some("src-tauri") {
-        return current_dir.parent().unwrap_or(&current_dir).join("log.txt");
+        return current_dir.parent().unwrap_or(&current_dir).to_path_buf();
     }
 
-    current_dir.join("log.txt")
+    current_dir
+}
+
+fn resolve_workspace_path(value: impl AsRef<Path>) -> PathBuf {
+    let path = value.as_ref();
+
+    if path.is_absolute() {
+        return path.to_path_buf();
+    }
+
+    workspace_root_dir().join(path)
 }
 
 fn log_message(message: impl AsRef<str>) {
@@ -1758,8 +1772,8 @@ pub fn create_project_headless(
         video_path, project_root
     ));
     log_message("create_project tools_ready");
-    let project_root = PathBuf::from(project_root);
-    let source_video_path = PathBuf::from(video_path);
+    let project_root = resolve_workspace_path(project_root);
+    let source_video_path = resolve_workspace_path(video_path);
 
     if !source_video_path.exists() {
         return Err(format!(
@@ -1800,14 +1814,14 @@ pub fn create_project_headless(
 
 #[command]
 pub fn preprocess_project(project_root: String) -> Result<PreprocessResult, String> {
-    let project_root = PathBuf::from(project_root);
+    let project_root = resolve_workspace_path(project_root);
     let project_file = read_project_file(&project_root)?;
     preprocess_project_frames(&project_root, &project_file.paths)
 }
 
 #[command]
 pub fn open_project(project_root: String) -> Result<ProjectSummary, String> {
-    let project_root = PathBuf::from(project_root);
+    let project_root = resolve_workspace_path(project_root);
     let project_file = read_project_file(&project_root)?;
     Ok(project_summary_from_file(&project_root, &project_file))
 }
@@ -1815,7 +1829,7 @@ pub fn open_project(project_root: String) -> Result<ProjectSummary, String> {
 #[command]
 pub fn get_painted_frames(project_root: String) -> Result<Vec<u32>, String> {
     let started_at = Instant::now();
-    let root = PathBuf::from(project_root);
+    let root = resolve_workspace_path(project_root);
     let project_file = read_project_file(&root)?;
     let paint_dir = root.join(&project_file.paths.paint_frames_dir);
     let mut painted_frames = Vec::new();
@@ -1842,13 +1856,13 @@ pub fn get_painted_frames(project_root: String) -> Result<Vec<u32>, String> {
 #[command]
 pub fn export_video(project_root: String, output_path: String) -> Result<ExportResult, String> {
     let started_at = Instant::now();
-    let root = PathBuf::from(project_root);
+    let root = resolve_workspace_path(project_root);
     let project_file = read_project_file(&root)?;
     let ffmpeg = resolve_binary(&["ffmpeg"]).ok_or_else(|| {
         String::from("ffmpeg was not found. Set OEKAKI_TOOLS_DIR or install ffmpeg.")
     })?;
     let export_dir = export_frames_dir(&root);
-    let output_path = PathBuf::from(output_path);
+    let output_path = resolve_workspace_path(output_path);
 
     fs::create_dir_all(&export_dir).map_err(|error| error.to_string())?;
     clear_directory(&export_dir)?;
@@ -1887,7 +1901,7 @@ pub fn export_video(project_root: String, output_path: String) -> Result<ExportR
 #[command]
 pub fn get_frame_bundle(project_root: String, frame_index: u32) -> Result<FrameBundle, String> {
     let started_at = Instant::now();
-    let root = PathBuf::from(project_root);
+    let root = resolve_workspace_path(project_root);
     let project_file = read_project_file(&root)?;
     let line_dir = root.join(&project_file.paths.line_frames_dir);
     let (line_frame_path, paint_frame_path, thumb_frame_path) =
@@ -1922,7 +1936,7 @@ pub fn draw_stroke(
     stroke: StrokeInput,
 ) -> Result<SaveResult, String> {
     let started_at = Instant::now();
-    let root = PathBuf::from(project_root);
+    let root = resolve_workspace_path(project_root);
     let project_file = read_project_file(&root)?;
     let (_, paint_path, _) = materialize_frame_assets(&root, &project_file, frame_index)?;
     let mut image = ensure_paint_image(&paint_path, project_file.width, project_file.height)?;
@@ -1951,7 +1965,7 @@ pub fn fill_region(
     color: RgbaColor,
 ) -> Result<FillResult, String> {
     let started_at = Instant::now();
-    let root = PathBuf::from(project_root);
+    let root = resolve_workspace_path(project_root);
     let project_file = read_project_file(&root)?;
     let region_dir = root.join(&project_file.paths.region_metadata_dir);
     let blocked_region_dir = blocked_region_metadata_dir(&root, &project_file.paths);

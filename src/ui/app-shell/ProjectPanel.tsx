@@ -15,7 +15,7 @@ import {
 import { isTauriApp } from "../../infra/tauri-api/platform";
 import { useEditorStore } from "../../state/editor-store/useEditorStore";
 
-const demoVideoPath = "/Users/juninaba/Desktop/mountain3.mp4";
+const demoVideoPath = "test.mp4";
 const demoProjectRoot = "/Users/juninaba/Desktop/test";
 const demoOutputPath = "/Users/juninaba/Desktop/test/test.mp4";
 
