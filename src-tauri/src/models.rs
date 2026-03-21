@@ -101,6 +101,8 @@ pub struct StrokeInput {
 pub struct SaveResult {
     pub frame_index: u32,
     pub updated_paint_frame_path: String,
+    pub can_undo: bool,
+    pub can_redo: bool,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -108,6 +110,16 @@ pub struct SaveResult {
 pub struct FillResult {
     pub track_id: u32,
     pub updated_frames: Vec<u32>,
+    pub can_undo: bool,
+    pub can_redo: bool,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct HistoryApplyResult {
+    pub updated_frames: Vec<u32>,
+    pub can_undo: bool,
+    pub can_redo: bool,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]

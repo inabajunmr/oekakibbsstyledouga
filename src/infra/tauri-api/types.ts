@@ -12,6 +12,8 @@ export type ProjectSummary = {
 export type SaveResult = {
   frameIndex: number;
   updatedPaintFramePath: string;
+  canUndo: boolean;
+  canRedo: boolean;
 };
 
 export type ExportResult = {
@@ -51,4 +53,12 @@ export type StrokeInput = {
 export type FillResult = {
   trackId: number;
   updatedFrames: number[];
+  canUndo: boolean;
+  canRedo: boolean;
+};
+
+export type HistoryApplyResult = {
+  updatedFrames: number[];
+  canUndo: boolean;
+  canRedo: boolean;
 };

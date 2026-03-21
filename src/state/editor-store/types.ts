@@ -18,5 +18,7 @@ export type EditorState = {
   paintRevisions: Record<number, number>;
   paintedFrames: Record<number, boolean>;
   recentFillFrames: Record<number, boolean>;
+  canUndo: boolean;
+  canRedo: boolean;
   statusMessage: string;
 };

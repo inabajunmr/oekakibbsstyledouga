@@ -15,6 +15,8 @@ let state: EditorState = {
   paintRevisions: {},
   paintedFrames: {},
   recentFillFrames: {},
+  canUndo: false,
+  canRedo: false,
   statusMessage: "No project loaded"
 };
 
@@ -84,7 +86,9 @@ const actions = {
       frameBundle: null,
       paintRevisions: {},
       paintedFrames: {},
-      recentFillFrames: {}
+      recentFillFrames: {},
+      canUndo: false,
+      canRedo: false
     };
     emit();
   },
@@ -133,6 +137,27 @@ const actions = {
       ...state,
       paintedFrames,
       paintRevisions
+    };
+    emit();
+  },
+  syncPaintedFrames(frames: number[]) {
+    const paintedFrames: Record<number, boolean> = {};
+
+    for (const frame of frames) {
+      paintedFrames[frame] = true;
+    }
+
+    state = {
+      ...state,
+      paintedFrames
+    };
+    emit();
+  },
+  setHistoryState(canUndo: boolean, canRedo: boolean) {
+    state = {
+      ...state,
+      canUndo,
+      canRedo
     };
     emit();
   },

@@ -19,6 +19,7 @@ export function CanvasStage() {
     project,
     markFramesPainted,
     selectedColor,
+    setHistoryState,
     setRecentFillFrames,
     setFrameBundle,
     setStatusMessage,
@@ -194,6 +195,7 @@ export function CanvasStage() {
     try {
       const result = await drawStroke(project.projectRoot, currentFrame, stroke);
       markFramesPainted([currentFrame]);
+      setHistoryState(result.canUndo, result.canRedo);
       setRecentFillFrames([currentFrame]);
       updateFrameBundle((currentBundle) =>
         currentBundle && currentBundle.frameIndex === currentFrame
@@ -226,10 +228,12 @@ export function CanvasStage() {
       if (result.updatedFrames.length > 0) {
         markFramesPainted(result.updatedFrames);
         setRecentFillFrames(result.updatedFrames);
+        setHistoryState(result.canUndo, result.canRedo);
         setStatusMessage(
           `Filled ${result.updatedFrames.length} frame(s) on track ${result.trackId}`
         );
       } else {
+        setHistoryState(result.canUndo, result.canRedo);
         setRecentFillFrames([]);
         setStatusMessage("Fill skipped because the clicked point is already filled or blocked.");
       }

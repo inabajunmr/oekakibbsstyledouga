@@ -1,6 +1,12 @@
 import { useEffect } from "react";
+import {
+  getPaintedFrames,
+  redoPaint,
+  undoPaint
+} from "../../infra/tauri-api/client";
 import { CanvasStage } from "../canvas/CanvasStage";
 import { Timeline } from "../timeline/Timeline";
+import { isTauriApp } from "../../infra/tauri-api/platform";
 import { useEditorStore } from "../../state/editor-store/useEditorStore";
 
 const tools = ["Pen", "Fill"];
@@ -20,8 +26,14 @@ export function EditorShell() {
     frameBundle,
     isPlaying,
     project,
+    canRedo,
+    canUndo,
+    markFramesPainted,
     setActiveTool,
     setCurrentFrame,
+    setHistoryState,
+    syncPaintedFrames,
+    setStatusMessage,
     selectedColor,
     setIsPlaying,
     setSelectedColor
@@ -29,6 +41,29 @@ export function EditorShell() {
     useEditorStore();
 
   const colorHex = colorToHex(selectedColor.r, selectedColor.g, selectedColor.b);
+
+  async function applyHistoryAction(action: "undo" | "redo") {
+    if (!project || !isTauriApp()) {
+      return;
+    }
+
+    try {
+      const result =
+        action === "undo"
+          ? await undoPaint(project.projectRoot)
+          : await redoPaint(project.projectRoot);
+      markFramesPainted(result.updatedFrames);
+      setHistoryState(result.canUndo, result.canRedo);
+      syncPaintedFrames(await getPaintedFrames(project.projectRoot));
+      setStatusMessage(
+        result.updatedFrames.length > 0
+          ? `${action === "undo" ? "Undid" : "Redid"} ${result.updatedFrames.length} frame update(s)`
+          : `${action === "undo" ? "Undo" : "Redo"} skipped`
+      );
+    } catch (error) {
+      setStatusMessage(`${action === "undo" ? "Undo" : "Redo"} failed: ${String(error)}`);
+    }
+  }
 
   useEffect(() => {
     if (!isPlaying || !project) {
@@ -45,6 +80,49 @@ export function EditorShell() {
     };
   }, [currentFrame, isPlaying, project, setCurrentFrame]);
 
+  useEffect(() => {
+    if (!project || !isTauriApp()) {
+      return;
+    }
+
+    function isEditableTarget(target: EventTarget | null) {
+      return (
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement ||
+        target instanceof HTMLSelectElement
+      );
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (isEditableTarget(event.target)) {
+        return;
+      }
+
+      const acceleratorPressed = event.metaKey || event.ctrlKey;
+      if (!acceleratorPressed) {
+        return;
+      }
+
+      const key = event.key.toLowerCase();
+      const wantsUndo = key === "z" && !event.shiftKey;
+      const wantsRedo = (key === "z" && event.shiftKey) || key === "y";
+
+      if (wantsUndo && canUndo) {
+        event.preventDefault();
+        void applyHistoryAction("undo");
+      } else if (wantsRedo && canRedo) {
+        event.preventDefault();
+        void applyHistoryAction("redo");
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [canRedo, canUndo, project]);
+
   return (
     <div className="workspace">
       <aside className="sidebar">
@@ -60,6 +138,31 @@ export function EditorShell() {
               type="button"
             >
               To Start
+            </button>
+          </div>
+        </section>
+        <section className="sidebar__section">
+          <h2 className="sidebar__title">History</h2>
+          <div className="tool-grid">
+            <button
+              className="tool-button"
+              disabled={!project || !canUndo}
+              onClick={() => {
+                void applyHistoryAction("undo");
+              }}
+              type="button"
+            >
+              Undo
+            </button>
+            <button
+              className="tool-button"
+              disabled={!project || !canRedo}
+              onClick={() => {
+                void applyHistoryAction("redo");
+              }}
+              type="button"
+            >
+              Redo
             </button>
           </div>
         </section>
@@ -136,6 +239,8 @@ export function EditorShell() {
             <code>currentFrame: {currentFrame}</code>
             <code>project loaded: {project ? "yes" : "no"}</code>
             <code>source mode: {project?.sourceMode ?? "none"}</code>
+            <code>canUndo: {canUndo ? "yes" : "no"}</code>
+            <code>canRedo: {canRedo ? "yes" : "no"}</code>
             <code>color: rgba({selectedColor.r}, {selectedColor.g}, {selectedColor.b}, {selectedColor.a})</code>
             <code>line frame: {frameBundle?.lineFramePath ?? "none"}</code>
             <code>render mode: canvas-only</code>

@@ -22,12 +22,13 @@ use tauri::Manager;
 use zip::ZipArchive;
 
 use crate::models::{
-    ExportResult, FillResult, FrameBundle, FrameRegionMetadata, PreprocessResult, ProjectFile,
-    ProjectPaths, ProjectSummary, RegionBounds, RegionMetadata, RegionTrackIndex, RgbaColor,
-    SaveResult, StrokeInput, ToolSetupResult, TrackFrameEntry,
+    ExportResult, FillResult, FrameBundle, FrameRegionMetadata, HistoryApplyResult,
+    PreprocessResult, ProjectFile, ProjectPaths, ProjectSummary, RegionBounds, RegionMetadata,
+    RegionTrackIndex, RgbaColor, SaveResult, StrokeInput, ToolSetupResult, TrackFrameEntry,
 };
 
 const PROJECT_FILE_NAME: &str = "project.json";
+const MAX_HISTORY_OPERATIONS: usize = 20;
 
 #[derive(Debug, Clone, Copy)]
 struct VideoMetadata {
@@ -40,6 +41,51 @@ struct VideoMetadata {
 struct DownloadSpec {
     ffmpeg_url: &'static str,
     ffprobe_url: &'static str,
+}
+
+#[derive(Debug, Clone)]
+struct PixelChange {
+    x: u32,
+    y: u32,
+    before: [u8; 4],
+    after: [u8; 4],
+}
+
+#[derive(Debug, Clone)]
+struct FramePaintDiff {
+    frame_index: u32,
+    changes: Vec<PixelChange>,
+}
+
+#[derive(Debug, Clone, Copy)]
+enum PaintOperationKind {
+    Pen,
+    Fill,
+}
+
+#[derive(Debug, Clone)]
+struct PaintOperation {
+    kind: PaintOperationKind,
+    frames: Vec<FramePaintDiff>,
+}
+
+#[derive(Debug, Default)]
+struct PaintHistory {
+    undo_stack: VecDeque<PaintOperation>,
+    redo_stack: VecDeque<PaintOperation>,
+}
+
+#[derive(Debug, Clone, Copy)]
+enum HistoryDirection {
+    Undo,
+    Redo,
+}
+
+fn paint_operation_kind_label(kind: PaintOperationKind) -> &'static str {
+    match kind {
+        PaintOperationKind::Pen => "pen",
+        PaintOperationKind::Fill => "fill",
+    }
 }
 
 fn line_image_cache() -> &'static Mutex<HashMap<String, GrayImage>> {
@@ -57,6 +103,11 @@ fn label_map_cache() -> &'static Mutex<HashMap<String, Vec<u32>>> {
     CACHE.get_or_init(|| Mutex::new(HashMap::new()))
 }
 
+fn paint_history_cache() -> &'static Mutex<HashMap<String, PaintHistory>> {
+    static CACHE: OnceLock<Mutex<HashMap<String, PaintHistory>>> = OnceLock::new();
+    CACHE.get_or_init(|| Mutex::new(HashMap::new()))
+}
+
 fn clear_image_caches() {
     if let Ok(mut cache) = line_image_cache().lock() {
         cache.clear();
@@ -69,6 +120,41 @@ fn clear_image_caches() {
     if let Ok(mut cache) = label_map_cache().lock() {
         cache.clear();
     }
+}
+
+fn clear_project_history(project_root: &Path) {
+    if let Ok(mut cache) = paint_history_cache().lock() {
+        cache.remove(&project_root.display().to_string());
+    }
+}
+
+fn history_flags(project_root: &Path) -> (bool, bool) {
+    let Ok(cache) = paint_history_cache().lock() else {
+        return (false, false);
+    };
+
+    let Some(history) = cache.get(&project_root.display().to_string()) else {
+        return (false, false);
+    };
+
+    (!history.undo_stack.is_empty(), !history.redo_stack.is_empty())
+}
+
+fn push_history_operation(project_root: &Path, operation: PaintOperation) -> (bool, bool) {
+    let key = project_root.display().to_string();
+    let Ok(mut cache) = paint_history_cache().lock() else {
+        return (false, false);
+    };
+    let history = cache.entry(key).or_default();
+
+    history.undo_stack.push_back(operation);
+    history.redo_stack.clear();
+
+    while history.undo_stack.len() > MAX_HISTORY_OPERATIONS {
+        history.undo_stack.pop_front();
+    }
+
+    (!history.undo_stack.is_empty(), !history.redo_stack.is_empty())
 }
 
 fn log_file_path() -> PathBuf {
@@ -493,6 +579,31 @@ fn export_frames_dir(project_root: &Path) -> PathBuf {
     project_root.join("frames").join("export")
 }
 
+fn render_export_frames(project_root: &Path, output_dir: &Path) -> Result<u32, String> {
+    let project_file = read_project_file(project_root)?;
+
+    fs::create_dir_all(output_dir).map_err(|error| error.to_string())?;
+    clear_directory(output_dir)?;
+
+    for frame_index in 0..project_file.frame_count {
+        let (line_path, paint_path, _) =
+            materialize_frame_assets(project_root, &project_file, frame_index)?;
+        let frame_name = frame_file_name(frame_index);
+        let line_image = load_line_image(&line_path, project_file.width, project_file.height)?;
+        let paint_image = normalize_rgba_image(
+            ensure_paint_image(&paint_path, project_file.width, project_file.height)?,
+            project_file.width,
+            project_file.height,
+        );
+        let composed = composite_frame(&line_image, &paint_image);
+        composed
+            .save(output_dir.join(&frame_name))
+            .map_err(|error| error.to_string())?;
+    }
+
+    Ok(project_file.frame_count)
+}
+
 fn export_video_with_ffmpeg(
     ffmpeg: &Path,
     input_dir: &Path,
@@ -739,7 +850,44 @@ fn blend_pixel(dest: &mut Rgba<u8>, src: Rgba<u8>) {
         .clamp(0.0, 255.0) as u8;
 }
 
-fn paint_circle(image: &mut RgbaImage, cx: i32, cy: i32, radius: i32, color: Rgba<u8>) {
+fn blended_pixel(dest: Rgba<u8>, src: Rgba<u8>) -> Rgba<u8> {
+    let mut blended = dest;
+    blend_pixel(&mut blended, src);
+    blended
+}
+
+fn record_pixel_change(
+    changes: &mut HashMap<(u32, u32), PixelChange>,
+    x: u32,
+    y: u32,
+    before: Rgba<u8>,
+    after: Rgba<u8>,
+) {
+    if before == after {
+        return;
+    }
+
+    changes
+        .entry((x, y))
+        .and_modify(|change| {
+            change.after = after.0;
+        })
+        .or_insert(PixelChange {
+            x,
+            y,
+            before: before.0,
+            after: after.0,
+        });
+}
+
+fn paint_circle_with_diff(
+    image: &mut RgbaImage,
+    cx: i32,
+    cy: i32,
+    radius: i32,
+    color: Rgba<u8>,
+    changes: &mut HashMap<(u32, u32), PixelChange>,
+) {
     let width = image.width() as i32;
     let height = image.height() as i32;
 
@@ -756,15 +904,22 @@ fn paint_circle(image: &mut RgbaImage, cx: i32, cy: i32, radius: i32, color: Rgb
                 continue;
             }
 
-            let pixel = image.get_pixel_mut(x as u32, y as u32);
-            blend_pixel(pixel, color);
+            let x = x as u32;
+            let y = y as u32;
+            let before = *image.get_pixel(x, y);
+            let after = blended_pixel(before, color);
+            record_pixel_change(changes, x, y, before, after);
+
+            if before != after {
+                image.put_pixel(x, y, after);
+            }
         }
     }
 }
 
-fn draw_stroke_on_image(image: &mut RgbaImage, stroke: &StrokeInput) {
+fn draw_stroke_on_image(image: &mut RgbaImage, stroke: &StrokeInput) -> Vec<PixelChange> {
     if stroke.points.is_empty() {
-        return;
+        return Vec::new();
     }
 
     let color = Rgba([
@@ -774,17 +929,19 @@ fn draw_stroke_on_image(image: &mut RgbaImage, stroke: &StrokeInput) {
         stroke.color.a,
     ]);
     let radius = (stroke.size.max(1.0) / 2.0).round() as i32;
+    let mut changes = HashMap::new();
 
     if stroke.points.len() == 1 {
         let point = &stroke.points[0];
-        paint_circle(
+        paint_circle_with_diff(
             image,
             point.x.round() as i32,
             point.y.round() as i32,
             radius,
             color,
+            &mut changes,
         );
-        return;
+        return changes.into_values().collect();
     }
 
     for segment in stroke.points.windows(2) {
@@ -798,9 +955,18 @@ fn draw_stroke_on_image(image: &mut RgbaImage, stroke: &StrokeInput) {
             let t = step as f32 / steps as f32;
             let x = start.x + dx * t;
             let y = start.y + dy * t;
-            paint_circle(image, x.round() as i32, y.round() as i32, radius, color);
+            paint_circle_with_diff(
+                image,
+                x.round() as i32,
+                y.round() as i32,
+                radius,
+                color,
+                &mut changes,
+            );
         }
     }
+
+    changes.into_values().collect()
 }
 
 fn line_blocks_fill(line_image: &GrayImage, x: u32, y: u32) -> bool {
@@ -1135,19 +1301,19 @@ fn fill_region_using_label_map(
     sample_x: u32,
     sample_y: u32,
     color: Rgba<u8>,
-) -> bool {
+) -> Vec<PixelChange> {
     let width = paint_image.width();
     let height = paint_image.height();
 
     if width == 0 || height == 0 {
-        return false;
+        return Vec::new();
     }
 
     let sample_index =
         find_region_sample_index(label_map, width, height, region_id, sample_x, sample_y);
 
     let Some(sample_index) = sample_index else {
-        return false;
+        return Vec::new();
     };
 
     let target_x = (sample_index as u32) % width;
@@ -1155,10 +1321,10 @@ fn fill_region_using_label_map(
     let target = *paint_image.get_pixel(target_x, target_y);
 
     if color_matches(&target, &color) {
-        return false;
+        return Vec::new();
     }
 
-    let mut changed = false;
+    let mut changes = Vec::new();
 
     for (index, label) in label_map.iter().enumerate() {
         if *label != region_id {
@@ -1174,10 +1340,15 @@ fn fill_region_using_label_map(
         }
 
         paint_image.put_pixel(x, y, color);
-        changed = true;
+        changes.push(PixelChange {
+            x,
+            y,
+            before: current.0,
+            after: color.0,
+        });
     }
 
-    changed
+    changes
 }
 
 fn find_region_sample_index(
@@ -1740,11 +1911,48 @@ fn materialize_frame_assets(
 struct FillFrameMetrics {
     frame_index: u32,
     changed: bool,
+    diff: Option<FramePaintDiff>,
     materialize_ms: u128,
     load_ms: u128,
     fill_ms: u128,
     save_ms: Option<u128>,
     total_ms: u128,
+}
+
+fn apply_frame_diff(
+    root: &Path,
+    project_file: &ProjectFile,
+    frame_diff: &FramePaintDiff,
+    direction: HistoryDirection,
+) -> Result<(), String> {
+    let (_, paint_path, _) = materialize_frame_assets(root, project_file, frame_diff.frame_index)?;
+    let mut image = ensure_paint_image(&paint_path, project_file.width, project_file.height)?;
+
+    for change in &frame_diff.changes {
+        let color = match direction {
+            HistoryDirection::Undo => change.before,
+            HistoryDirection::Redo => change.after,
+        };
+        image.put_pixel(change.x, change.y, Rgba(color));
+    }
+
+    save_paint_image(&paint_path, &image)
+}
+
+fn apply_history_operation(
+    root: &Path,
+    project_file: &ProjectFile,
+    operation: &PaintOperation,
+    direction: HistoryDirection,
+) -> Result<Vec<u32>, String> {
+    let mut updated_frames = Vec::with_capacity(operation.frames.len());
+
+    for frame_diff in &operation.frames {
+        apply_frame_diff(root, project_file, frame_diff, direction)?;
+        updated_frames.push(frame_diff.frame_index);
+    }
+
+    Ok(updated_frames)
 }
 
 #[command]
@@ -1802,6 +2010,7 @@ pub fn create_project_headless(
         project_file.frame_count, project_file.source_mode
     ));
     write_project_file(&project_root, &project_file)?;
+    clear_project_history(&project_root);
     log_message(format!(
         "create_project complete project_root={} frame_count={} source_mode={}",
         project_root.display(),
@@ -1823,6 +2032,7 @@ pub fn preprocess_project(project_root: String) -> Result<PreprocessResult, Stri
 pub fn open_project(project_root: String) -> Result<ProjectSummary, String> {
     let project_root = resolve_workspace_path(project_root);
     let project_file = read_project_file(&project_root)?;
+    clear_project_history(&project_root);
     Ok(project_summary_from_file(&project_root, &project_file))
 }
 
@@ -1864,37 +2074,41 @@ pub fn export_video(project_root: String, output_path: String) -> Result<ExportR
     let export_dir = export_frames_dir(&root);
     let output_path = resolve_workspace_path(output_path);
 
-    fs::create_dir_all(&export_dir).map_err(|error| error.to_string())?;
-    clear_directory(&export_dir)?;
-
-    for frame_index in 0..project_file.frame_count {
-        let (line_path, paint_path, _) =
-            materialize_frame_assets(&root, &project_file, frame_index)?;
-        let frame_name = frame_file_name(frame_index);
-        let line_image = load_line_image(&line_path, project_file.width, project_file.height)?;
-        let paint_image = normalize_rgba_image(
-            ensure_paint_image(&paint_path, project_file.width, project_file.height)?,
-            project_file.width,
-            project_file.height,
-        );
-        let composed = composite_frame(&line_image, &paint_image);
-        composed
-            .save(export_dir.join(&frame_name))
-            .map_err(|error| error.to_string())?;
-    }
+    let frame_count = render_export_frames(&root, &export_dir)?;
 
     export_video_with_ffmpeg(&ffmpeg, &export_dir, &output_path, project_file.fps)?;
     log_message(format!(
         "export_video project_root={} output_path={} frame_count={} elapsed_ms={}",
         root.display(),
         output_path.display(),
-        project_file.frame_count,
+        frame_count,
         started_at.elapsed().as_millis()
     ));
 
     Ok(ExportResult {
         output_path: output_path.display().to_string(),
-        frame_count: project_file.frame_count,
+        frame_count,
+    })
+}
+
+#[command]
+pub fn export_png_frames(project_root: String, output_dir: String) -> Result<ExportResult, String> {
+    let started_at = Instant::now();
+    let root = resolve_workspace_path(project_root);
+    let output_dir = resolve_workspace_path(output_dir);
+    let frame_count = render_export_frames(&root, &output_dir)?;
+
+    log_message(format!(
+        "export_png_frames project_root={} output_dir={} frame_count={} elapsed_ms={}",
+        root.display(),
+        output_dir.display(),
+        frame_count,
+        started_at.elapsed().as_millis()
+    ));
+
+    Ok(ExportResult {
+        output_path: output_dir.display().to_string(),
+        frame_count,
     })
 }
 
@@ -1940,8 +2154,22 @@ pub fn draw_stroke(
     let project_file = read_project_file(&root)?;
     let (_, paint_path, _) = materialize_frame_assets(&root, &project_file, frame_index)?;
     let mut image = ensure_paint_image(&paint_path, project_file.width, project_file.height)?;
-    draw_stroke_on_image(&mut image, &stroke);
+    let changes = draw_stroke_on_image(&mut image, &stroke);
     save_paint_image(&paint_path, &image)?;
+    let (can_undo, can_redo) = if changes.is_empty() {
+        history_flags(&root)
+    } else {
+        push_history_operation(
+            &root,
+            PaintOperation {
+                kind: PaintOperationKind::Pen,
+                frames: vec![FramePaintDiff {
+                    frame_index,
+                    changes,
+                }],
+            },
+        )
+    };
     log_message(format!(
         "draw_stroke frame={} points={} project_root={} elapsed_ms={}",
         frame_index,
@@ -1953,6 +2181,8 @@ pub fn draw_stroke(
     Ok(SaveResult {
         frame_index,
         updated_paint_frame_path: paint_path.display().to_string(),
+        can_undo,
+        can_redo,
     })
 }
 
@@ -2053,6 +2283,8 @@ pub fn fill_region(
             return Ok(FillResult {
                 track_id: region.track_id,
                 updated_frames: Vec::new(),
+                can_undo: history_flags(&root).0,
+                can_redo: history_flags(&root).1,
             });
         };
 
@@ -2086,6 +2318,8 @@ pub fn fill_region(
             return Ok(FillResult {
                 track_id: blocked_region.track_id,
                 updated_frames: Vec::new(),
+                can_undo: history_flags(&root).0,
+                can_redo: history_flags(&root).1,
             });
         };
 
@@ -2117,6 +2351,8 @@ pub fn fill_region(
         return Ok(FillResult {
             track_id: frame_index,
             updated_frames: Vec::new(),
+            can_undo: history_flags(&root).0,
+            can_redo: history_flags(&root).1,
         });
     };
 
@@ -2141,6 +2377,7 @@ pub fn fill_region(
     let chunk_size = selected_track_frames.len().max(1).div_ceil(worker_count);
     let track_frames = selected_track_frames;
     let mut updated_frames = Vec::new();
+    let mut operation_frames = Vec::new();
     let mut metrics = Vec::new();
 
     std::thread::scope(|scope| -> Result<(), String> {
@@ -2185,7 +2422,7 @@ pub fn fill_region(
                         let load_elapsed = load_started_at.elapsed().as_millis();
 
                         let fill_started_at = Instant::now();
-                        let changed = fill_region_using_label_map(
+                        let changes = fill_region_using_label_map(
                             &mut paint_image,
                             &label_map,
                             entry.region_id,
@@ -2193,6 +2430,7 @@ pub fn fill_region(
                             entry.sample_y,
                             fill_color,
                         );
+                        let changed = !changes.is_empty();
                         let fill_elapsed = fill_started_at.elapsed().as_millis();
 
                         let save_elapsed = if changed {
@@ -2206,6 +2444,10 @@ pub fn fill_region(
                         chunk_metrics.push(FillFrameMetrics {
                             frame_index: entry.frame_index,
                             changed,
+                            diff: changed.then_some(FramePaintDiff {
+                                frame_index: entry.frame_index,
+                                changes,
+                            }),
                             materialize_ms: materialize_elapsed,
                             load_ms: load_elapsed,
                             fill_ms: fill_elapsed,
@@ -2232,28 +2474,54 @@ pub fn fill_region(
     metrics.sort_by_key(|entry| entry.frame_index);
 
     for entry in metrics {
-        if entry.changed {
-            updated_frames.push(entry.frame_index);
+        let FillFrameMetrics {
+            frame_index,
+            changed,
+            diff,
+            materialize_ms,
+            load_ms,
+            fill_ms,
+            save_ms,
+            total_ms,
+        } = entry;
+
+        if changed {
+            updated_frames.push(frame_index);
+            if let Some(diff) = diff {
+                operation_frames.push(diff);
+            }
             log_message(format!(
                 "fill_region frame={} changed=yes materialize_ms={} load_ms={} fill_ms={} save_ms={} total_ms={}",
-                entry.frame_index,
-                entry.materialize_ms,
-                entry.load_ms,
-                entry.fill_ms,
-                entry.save_ms.unwrap_or_default(),
-                entry.total_ms
+                frame_index,
+                materialize_ms,
+                load_ms,
+                fill_ms,
+                save_ms.unwrap_or_default(),
+                total_ms
             ));
         } else {
             log_message(format!(
                 "fill_region frame={} changed=no materialize_ms={} load_ms={} fill_ms={} total_ms={}",
-                entry.frame_index,
-                entry.materialize_ms,
-                entry.load_ms,
-                entry.fill_ms,
-                entry.total_ms
+                frame_index,
+                materialize_ms,
+                load_ms,
+                fill_ms,
+                total_ms
             ));
         }
     }
+
+    let (can_undo, can_redo) = if operation_frames.is_empty() {
+        history_flags(&root)
+    } else {
+        push_history_operation(
+            &root,
+            PaintOperation {
+                kind: PaintOperationKind::Fill,
+                frames: operation_frames,
+            },
+        )
+    };
 
     log_message(format!(
         "fill_region complete frame={} track_id={} updated_frames={} workers={} elapsed_ms={}",
@@ -2267,5 +2535,131 @@ pub fn fill_region(
     Ok(FillResult {
         track_id,
         updated_frames,
+        can_undo,
+        can_redo,
     })
+}
+
+#[command]
+pub fn undo_paint(project_root: String) -> Result<HistoryApplyResult, String> {
+    let root = resolve_workspace_path(project_root);
+    let project_file = read_project_file(&root)?;
+    let key = root.display().to_string();
+    let operation = {
+        let Ok(mut cache) = paint_history_cache().lock() else {
+            return Ok(HistoryApplyResult {
+                updated_frames: Vec::new(),
+                can_undo: false,
+                can_redo: false,
+            });
+        };
+        let Some(history) = cache.get_mut(&key) else {
+            return Ok(HistoryApplyResult {
+                updated_frames: Vec::new(),
+                can_undo: false,
+                can_redo: false,
+            });
+        };
+        let Some(operation) = history.undo_stack.pop_back() else {
+            return Ok(HistoryApplyResult {
+                updated_frames: Vec::new(),
+                can_undo: false,
+                can_redo: !history.redo_stack.is_empty(),
+            });
+        };
+        operation
+    };
+
+    match apply_history_operation(&root, &project_file, &operation, HistoryDirection::Undo) {
+        Ok(updated_frames) => {
+            log_message(format!(
+                "undo_paint kind={} updated_frames={}",
+                paint_operation_kind_label(operation.kind),
+                updated_frames.len()
+            ));
+            let Ok(mut cache) = paint_history_cache().lock() else {
+                return Ok(HistoryApplyResult {
+                    updated_frames,
+                    can_undo: false,
+                    can_redo: false,
+                });
+            };
+            let history = cache.entry(key).or_default();
+            history.redo_stack.push_back(operation);
+
+            Ok(HistoryApplyResult {
+                updated_frames,
+                can_undo: !history.undo_stack.is_empty(),
+                can_redo: !history.redo_stack.is_empty(),
+            })
+        }
+        Err(error) => {
+            if let Ok(mut cache) = paint_history_cache().lock() {
+                cache.entry(key).or_default().undo_stack.push_back(operation);
+            }
+            Err(error)
+        }
+    }
+}
+
+#[command]
+pub fn redo_paint(project_root: String) -> Result<HistoryApplyResult, String> {
+    let root = resolve_workspace_path(project_root);
+    let project_file = read_project_file(&root)?;
+    let key = root.display().to_string();
+    let operation = {
+        let Ok(mut cache) = paint_history_cache().lock() else {
+            return Ok(HistoryApplyResult {
+                updated_frames: Vec::new(),
+                can_undo: false,
+                can_redo: false,
+            });
+        };
+        let Some(history) = cache.get_mut(&key) else {
+            return Ok(HistoryApplyResult {
+                updated_frames: Vec::new(),
+                can_undo: false,
+                can_redo: false,
+            });
+        };
+        let Some(operation) = history.redo_stack.pop_back() else {
+            return Ok(HistoryApplyResult {
+                updated_frames: Vec::new(),
+                can_undo: !history.undo_stack.is_empty(),
+                can_redo: false,
+            });
+        };
+        operation
+    };
+
+    match apply_history_operation(&root, &project_file, &operation, HistoryDirection::Redo) {
+        Ok(updated_frames) => {
+            log_message(format!(
+                "redo_paint kind={} updated_frames={}",
+                paint_operation_kind_label(operation.kind),
+                updated_frames.len()
+            ));
+            let Ok(mut cache) = paint_history_cache().lock() else {
+                return Ok(HistoryApplyResult {
+                    updated_frames,
+                    can_undo: false,
+                    can_redo: false,
+                });
+            };
+            let history = cache.entry(key).or_default();
+            history.undo_stack.push_back(operation);
+
+            Ok(HistoryApplyResult {
+                updated_frames,
+                can_undo: !history.undo_stack.is_empty(),
+                can_redo: !history.redo_stack.is_empty(),
+            })
+        }
+        Err(error) => {
+            if let Ok(mut cache) = paint_history_cache().lock() {
+                cache.entry(key).or_default().redo_stack.push_back(operation);
+            }
+            Err(error)
+        }
+    }
 }

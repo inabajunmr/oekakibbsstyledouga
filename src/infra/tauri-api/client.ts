@@ -3,6 +3,7 @@ import type {
   ExportResult,
   FillResult,
   FrameBundle,
+  HistoryApplyResult,
   PreprocessResult,
   ProjectSummary,
   SaveResult,
@@ -65,6 +66,25 @@ export async function fillRegion(
     x,
     y,
     color
+  });
+}
+
+export async function undoPaint(projectRoot: string) {
+  return invoke<HistoryApplyResult>("undo_paint", {
+    projectRoot
+  });
+}
+
+export async function redoPaint(projectRoot: string) {
+  return invoke<HistoryApplyResult>("redo_paint", {
+    projectRoot
+  });
+}
+
+export async function exportPngFrames(projectRoot: string, outputDir: string) {
+  return invoke<ExportResult>("export_png_frames", {
+    projectRoot,
+    outputDir
   });
 }
 

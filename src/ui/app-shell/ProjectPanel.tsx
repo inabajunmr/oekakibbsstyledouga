@@ -6,6 +6,7 @@ import {
 import {
   createProject,
   ensureFfmpegTools,
+  exportPngFrames,
   exportVideo,
   getFrameBundle,
   getPaintedFrames,
@@ -18,6 +19,7 @@ import { useEditorStore } from "../../state/editor-store/useEditorStore";
 const demoVideoPath = "test.mp4";
 const demoProjectRoot = "/Users/juninaba/Desktop/test";
 const demoOutputPath = "/Users/juninaba/Desktop/test/test.mp4";
+const demoPngOutputDir = "/Users/juninaba/Desktop/test/png";
 
 export function ProjectPanel() {
   const {
@@ -32,6 +34,7 @@ export function ProjectPanel() {
   const [videoPath, setVideoPath] = useState(demoVideoPath);
   const [projectRoot, setProjectRoot] = useState(demoProjectRoot);
   const [outputPath, setOutputPath] = useState(demoOutputPath);
+  const [pngOutputDir, setPngOutputDir] = useState(demoPngOutputDir);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
@@ -144,6 +147,28 @@ export function ProjectPanel() {
       }
     } catch (error) {
       setStatusMessage(`Output picker failed: ${String(error)}`);
+    }
+  }
+
+  async function pickPngOutputFolder() {
+    if (!isTauriApp()) {
+      setStatusMessage("PNG output picker is available in Tauri runtime only.");
+      return;
+    }
+
+    try {
+      const selection = await openDialog({
+        directory: true,
+        multiple: false,
+        title: "Choose PNG output folder"
+      });
+
+      if (typeof selection === "string") {
+        setPngOutputDir(selection);
+        setStatusMessage(`Selected PNG output folder: ${selection}`);
+      }
+    } catch (error) {
+      setStatusMessage(`PNG output picker failed: ${String(error)}`);
     }
   }
 
@@ -270,6 +295,27 @@ export function ProjectPanel() {
     }
   }
 
+  async function handleExportPng() {
+    if (!isTauriApp() || !project) {
+      setStatusMessage("PNG export is available in Tauri runtime with a loaded project.");
+      return;
+    }
+
+    setBusy(true);
+    setStatusMessage("Exporting png frames...");
+
+    try {
+      const result = await exportPngFrames(project.projectRoot, pngOutputDir);
+      setStatusMessage(
+        `Exported ${result.frameCount} PNG frame(s) to ${result.outputPath}`
+      );
+    } catch (error) {
+      setStatusMessage(`PNG export failed: ${String(error)}`);
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <section className="project-panel">
       <div className="project-panel__fields">
@@ -312,6 +358,19 @@ export function ProjectPanel() {
             </button>
           </div>
         </label>
+        <label className="project-panel__field">
+          <span>PNG Output Folder</span>
+          <div className="project-panel__row">
+            <input
+              value={pngOutputDir}
+              onChange={(event) => setPngOutputDir(event.target.value)}
+              type="text"
+            />
+            <button className="project-panel__browse" onClick={pickPngOutputFolder} type="button">
+              Browse
+            </button>
+          </div>
+        </label>
       </div>
       <div className="project-panel__actions">
         <button className="topbar__button" disabled={busy} onClick={handleCreate} type="button">
@@ -322,6 +381,9 @@ export function ProjectPanel() {
         </button>
         <button className="topbar__button" disabled={busy || !project} onClick={handleExport} type="button">
           Export MP4
+        </button>
+        <button className="topbar__button" disabled={busy || !project} onClick={handleExportPng} type="button">
+          Export PNG
         </button>
       </div>
       <div className="project-panel__status">
